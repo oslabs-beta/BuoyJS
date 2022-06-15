@@ -25,21 +25,22 @@ function createMainWindow() {
 
 	let indexPath
 
-	if (isDev && process.argv.indexOf('--noDevServer') === -1) {
+	//if (isDev && process.argv.indexOf('--noDevServer') === -1) {
 		indexPath = url.format({
 			protocol: 'http:',
 			host: 'localhost:8080',
 			pathname: 'index.html',
 			slashes: true,
 		})
+	/*
 	} else {
 		indexPath = url.format({
 			protocol: 'file:',
-			pathname: path.join(__dirname, 'dist', 'index.html'),
+			pathname: path.join(__dirname, 'build', 'index.html'),
 			slashes: true,
 		})
 	}
-
+	*/
 	mainWindow.loadURL(indexPath)
 
 	// Don't show until we are ready and loaded
