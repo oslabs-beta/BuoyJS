@@ -8,6 +8,7 @@
     "start": "cross-env NODE_ENV=development webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.dev.config.js --mode development"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
