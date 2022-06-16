@@ -1,9 +1,6 @@
 import React from 'react';
-import { ProgressPlugin } from 'webpack';
 import ClusterResourcesCard from './ClusterResourcesCard.jsx';
 
-const ClusterResourcesDisplay = () => {
-  
   // again, not sure where cluster resource data will be coming from
     // will need to insert props into components once resolved.
   // const mapStateToProps = state => {
@@ -16,6 +13,8 @@ const ClusterResourcesDisplay = () => {
   //   );
   // }
 
+const ClusterResourcesDisplay = props => {
+
   // something like this to pull cluster data, perhaps...
   
   // const clusterResources = [];  // gather cluster resource data from back end, collect in an array
@@ -25,8 +24,9 @@ const ClusterResourcesDisplay = () => {
   
   return (
     <div className="ClusResDispContainer">
-      <h1>Cluster Resources</h1>
+      <h2>Cluster Resources</h2>
       <ClusterResourcesCard />      {/*<--- for now*/} 
+      <ClusterResourcesCard /> 
       {/* {clusterResources} */}    {/*<--- eventually*/} 
     </div>
   )

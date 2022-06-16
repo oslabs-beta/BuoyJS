@@ -27,8 +27,8 @@ const ResourcesContainer = props => {
         <ClusterResourcesDisplay />
       </div>
     </div>
-  )
-}
+  );
+};
 
 // export default connect(mapStateToProps, null)(ResourcesContainer);   // --> uncomment if mapStateToProps used
 export default ResourcesContainer;

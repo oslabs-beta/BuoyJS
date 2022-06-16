@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MemUsage = () => {
+const MemUsage = props => {
   return (
     <div className="MemUsageContainer">
       <h3>Memory Usage:</h3>

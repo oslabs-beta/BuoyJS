@@ -6,7 +6,8 @@ const ClusterResourcesCard = props => {
   return (
     <div className="ClusResCardContainer">
       <div className="ResourceMetrics">
-        <ul>
+        <h3>Cluster #{/*props.id*/}</h3>
+        <ul className="ResourcesList">
           <li>Latency: <span>{/*props.latency*/}</span></li>
           <li>Requests per second: <span>{/*props.rps*/}</span></li>
           <li>Error rate: <span>{/*props.errorRate*/}</span></li>
@@ -15,7 +16,7 @@ const ClusterResourcesCard = props => {
       </div>
       <div className="ResourceGraphs"> Graphs </div>
     </div>
-  )
-}
+  );
+};
 
 export default ClusterResourcesCard;

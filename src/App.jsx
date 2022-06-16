@@ -10,6 +10,7 @@ import { Route, Routes } from 'react-router-dom';
 // imports css 
 import '../assets/HomePage.css';
 import '../assets/SecondPage.css';
+import '../assets/resources.css';
 
 const App = () => {
 	

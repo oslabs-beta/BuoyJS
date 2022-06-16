@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CpuUsage = () => {
+const CpuUsage = props => {
   return (
     <div className="CpuUsageContainer">
       <h3>CPU Usage:</h3>
