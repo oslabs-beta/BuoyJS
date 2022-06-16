@@ -3,9 +3,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = { 
+  mode: 'development',
   entry: {
     main: path.resolve(__dirname, './src/index.js'),
   },
+  devtool: 'inline-source-map',
+  target: 'electron-renderer',
   output: {
     path: path.resolve(__dirname, './build'),
     filename: 'bundle.js', 
@@ -16,6 +19,12 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
   ],
+  resolve: {
+    fallback: {
+      "fs": false,
+      "path": require.resolve("path-browserify"),
+    },
+  },
   module: {
     rules: [
       // Babel: JSX translator
