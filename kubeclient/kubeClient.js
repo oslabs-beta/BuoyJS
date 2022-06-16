@@ -1,8 +1,18 @@
 const k8s = require('@kubernetes/client-node');
-const electron = require('electron');
+const { ipcMain } = require('electron');
+const { exec } = require('child_process');
+const { stdout } = require('process');
 
+/*
+Class for kubernetes client for retrieving similar information to kubectl
+*/
 class KubeClient {
 
+
+  /**
+   * Initialize our connection to the Kubernetes API
+   * @param { BrowserWindow } window 
+   */
   constructor(window) {
 
     console.log(window);
@@ -14,19 +24,34 @@ class KubeClient {
     this.k8sAppsApi = kc.makeApiClient(k8s.AppsV1Api);
     this.window = window;
 
+    this.namespaces = [];
     this.deployments = [];
     this.pods = [];
     this.services = [];
+    this.apiResources;
 
-    this.initializeObjectsData = this.initializeObjectsData.bind(this);
     this.sendObjectsData = this.sendObjectsData.bind(this);
-
     this.initializeObjectsData();
-    this.sendObjectsData();
   }
 
   initializeObjectsData() {
-    this.k8sAppsApi.listDeploymentForAllNamespaces()
+
+    // get all local namespace
+    const namespacePromise = this.k8sCoreApi.listNamespace()
+    .then ( res => res.body )
+    .then ( data => { 
+      const items = data.items;
+      items.map ( namespace => {
+        this.namespaces.push({
+          creationTime: namespace.metadata.creationTimestamp,
+          name: namespace.metadata.name,
+          status: namespace.status.phase,
+        });
+      });
+    });
+
+    // get all local deployments
+    const deploymentPromise = this.k8sAppsApi.listDeploymentForAllNamespaces()
     .then(res => res.body)
     .then(data => {
       const items = data.items;
@@ -34,12 +59,13 @@ class KubeClient {
         this.deployments.push({
           name: deployment.metadata.name,
           namespace: deployment.metadata.namespace,
-          replicas: deployment.metadata.replicas,
+          replicas: deployment.spec.replicas,
         })
-      });
+      })
     });
-
-    this.k8sCoreApi.listPodForAllNamespaces()
+    
+    // get all local pods
+    const podPromise = this.k8sCoreApi.listPodForAllNamespaces()
     .then( res => res.body)
     .then( data => {
       const items = data.items;
@@ -52,7 +78,8 @@ class KubeClient {
       });
     });
 
-    this.k8sCoreApi.listServiceForAllNamespaces()
+    // get all local services
+    const servicePromise = this.k8sCoreApi.listServiceForAllNamespaces()
       .then( res => res.body)
       .then ( data => {
         const items = data.items;
@@ -62,22 +89,33 @@ class KubeClient {
             name: service.metadata.name,
             namespace: service.metadata.namespace,
             clusterIPs: service.spec.clusterIP,
-            ports: service.spec.ports
+            ports: service.spec.ports,
+            type: service.spec.type,
           });
         });
+      });
+    
+    // get output of kubectl api-resources for all resource in current cluster
+    const command = 'kubectl api-resources';
+
+    exec(command, (err, stdout, stderr) => {
+      this.apiResources = { err, stdout, stderr };
+    });
+    // wait for all to be received prior to emitting message
+    Promise.all([namespacePromise, deploymentPromise, podPromise, servicePromise])
+      .then( () => {
+        ipcMain.on('load:kube-objects', this.sendObjectsData);
+        
       });
   }
 
   sendObjectsData() {
-    console.log("Window: ", this.window);
-    
+    this.window.webContents.send('get:namespaces', this.namespace);
     this.window.webContents.send('get:deployments', this.deployments);
-    console.log(this.deployments);
     this.window.webContents.send('get:pods', this.pods);
     this.window.webContents.send('get:services', this.services);
-    
+    this.window.webContents.send('get:apiResources', this.apiResources);
   }
-
 }
 
 module.exports = KubeClient;
