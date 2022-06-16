@@ -1,13 +1,13 @@
-import React from 'react';
-import ClustersContainer from '../containers/ClustersContainer.jsx';
+// import React from 'react';
+// import ClustersContainer from '../containers/ClustersContainer.jsx';
 
-const ClustersPage = () => {
+// const ClustersPage = () => {
 
-  return (
-    <div>
-      <ClustersContainer/>
-    </div>
-  );
-};
+//   return (
+//     <div className="ClustersPage">
+//       <ClustersContainer/>
+//     </div>
+//   );
+// };
 
-export default ClustersPage;
+// export default ClustersPage;

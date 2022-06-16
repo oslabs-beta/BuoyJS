@@ -1,7 +1,7 @@
 import * as types from '../constants/actionTypes';
 
 const initialState = {
-
+  tab: 0,
 };
 
 const reducer = (state = initialState, action) => {
@@ -14,11 +14,6 @@ const reducer = (state = initialState, action) => {
       return Object.assign(
         {}, 
         state, {
-        summonerName: payload.summonerName,
-        summonerLevel: payload.summonerLevel,
-        matchHistory: payload.matchHistory,
-        summonerRank: payload.summonerRank,
-        otherPlayersMatches: payload.otherPlayersMatches,
         }
       );
     default: {

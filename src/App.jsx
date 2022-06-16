@@ -1,18 +1,27 @@
 import React from 'react';
-import HomePage from './routes/HomePage.jsx';
-import ClustersPage from './routes/ClustersPage.jsx';
 
+// import pages
+// import ClustersPage from './routes/ClustersPage.jsx';
+import HomePage from './routes/HomePage.jsx';
+import SecondPage from './routes/ResourcesPage.jsx';
+
+import { Route, Routes } from 'react-router-dom';
+
+// imports css 
 import '../assets/HomePage.css';
+import '../assets/SecondPage.css';
 
 const App = () => {
-
+	
 	return (
+		
 		<div className="App">
-			<HomePage/>
-			<ClustersPage />
+					{/* <Route path="/" element={<HomePage />} /> */}
+					{/* <Route path="resources" element={<SecondPage />} /> */}
+					<SecondPage />
+					{/* <HomePage /> */}
 		</div>
 	);
-
 };
 
 export default App;

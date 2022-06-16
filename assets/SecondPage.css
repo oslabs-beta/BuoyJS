@@ -1,0 +1,41 @@
+.SecondPage {
+  width: 100%;
+}
+
+.Container2 {
+  display: flex;
+  width: 100%;
+}
+
+.SecondPageHeader {
+  display: flex;
+  justify-content: center;
+}
+
+.SecondPageButtons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  gap: 1em;
+  width: 6rem;
+}
+
+.OuterContainer {
+  display: flex;
+  border: 1px solid gray;
+  width: 100%;
+  height: 100%;
+}
+
+#clustersButton, #resourcesButton, #control_plane_button, #alertsButton {
+  /* height: 30px; */
+  /* width: 100px; */
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+#clustersButton:hover, #resourcesButton:hover, #control_plane_button:hover, #alertsButton:hover {
+  background: rgb(194, 194, 194);
+}
