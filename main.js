@@ -1,6 +1,7 @@
 const path = require('path')
 const url = require('url')
 const { app, BrowserWindow } = require('electron')
+const KubeClient = require('./kubeclient/kubeClient')
 
 let mainWindow
 
@@ -19,10 +20,21 @@ function createMainWindow() {
 		height: 800,
 		show: false,
 		webPreferences: {
+		
 			nodeIntegration: true,
+			contextIsolation: false,
 		},
 	})
 
+	/*
+	ipcMain.on('set-title', (e, title) => {
+
+		const webContents = e.sender
+		const win = BrowserWindow.fromWebContents(webContents);
+		win.setTitle('Something')
+	});
+	*/
+	
 	let indexPath
 
 	//if (isDev && process.argv.indexOf('--noDevServer') === -1) {
@@ -41,6 +53,8 @@ function createMainWindow() {
 		})
 	}
 	*/
+	new KubeClient(mainWindow);
+	console.log("Please run");
 	mainWindow.loadURL(indexPath)
 
 	// Don't show until we are ready and loaded
