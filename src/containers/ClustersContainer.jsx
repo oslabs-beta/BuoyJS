@@ -1,27 +1,27 @@
-import React from 'react';
-import { ipcRenderer } from 'electron';
+// import React from 'react';
+// import { ipcRenderer } from 'electron';
 
-const ClustersContainer = () => {
+// const ClustersContainer = () => {
 
   
-  ipcRenderer.on('get:deployments', (e, deployments) => {
-    console.log(deployments);
-  });
+//   ipcRenderer.on('get:deployments', (e, deployments) => {
+//     console.log(deployments);
+//   });
 
-  ipcRenderer.on('get:pods', (e, pods) => {
-    console.log(pods);
-  });
+//   ipcRenderer.on('get:pods', (e, pods) => {
+//     console.log(pods);
+//   });
 
-  ipcRenderer.on('get:services', (e, services) => {
-    console.log(services);
-  });
+//   ipcRenderer.on('get:services', (e, services) => {
+//     console.log(services);
+//   });
   
-  //window.electronAPI.setTitle(title);
+//   //window.electronAPI.setTitle(title);
 
-  return (
-    <div>Clusters Container
-    </div>
-  );
-};
+//   return (
+//     <div>Clusters Container
+//     </div>
+//   );
+// };
 
-export default ClustersContainer;
+// export default ClustersContainer;
