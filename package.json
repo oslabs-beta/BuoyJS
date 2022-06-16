@@ -20,25 +20,12 @@
   },
   "homepage": "https://github.com/oslabs-beta/NY33Group3#readme",
   "dependencies": {
-<<<<<<< HEAD
-    "@reduxjs/toolkit": "^1.8.2",
-    "electron-redux": "^1.5.4",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0",
-    "react-hot-loader": "^4.13.0",
-    "react-redux": "^8.0.2",
-    "react-router": "^6.3.0",
-    "react-router-dom": "^6.3.0",
-    "redux": "^4.2.0",
-    "redux-thunk": "^2.4.1"
-=======
     "concurrently": "^7.2.2",
     "electron": "^19.0.4",
     "electron-packager": "^15.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "wait-on": "^6.0.1"
->>>>>>> 03e57968a23d0c2000c586913326aa6eb43b6cdd
   },
   "devDependencies": {
     "@babel/core": "^7.18.5",
