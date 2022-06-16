@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import TestContainer2 from '../containers/TestContainer2.jsx';
 import TestContainer1 from '../containers/TestContainer1.jsx';
+import ResourcesContainer from '../containers/ResourcesContainer.jsx';
 
 const SecondPage = () => {
 
@@ -24,7 +25,7 @@ const SecondPage = () => {
           </div>
           <div className="OuterContainer">
             { active === 'clusters' && <TestContainer1/> }
-            { active === 'resources' && <TestContainer2/> }
+            { active === 'resources' && <ResourcesContainer/> }
           </div>
         </div>
     </div>
