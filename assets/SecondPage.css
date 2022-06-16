@@ -23,9 +23,12 @@
 
 .OuterContainer {
   display: flex;
-  border: 1px solid gray;
+  flex-direction: column;
+  gap: 2em;
+  /* border: 1px solid gray; */
   width: 100%;
   height: 100%;
+  /* border-radius: 0.5em; */
 }
 
 #clustersButton, #resourcesButton, #control_plane_button, #alertsButton {

@@ -1,0 +1,47 @@
+.ClustersOuterContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+  gap: 2em;
+}
+
+.ApdexHeaderBox {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  border-radius: 0.5em;
+  border: 1px solid #000;
+  background-color: rgb(187, 187, 187);
+}
+
+.ClustersContainer1 {
+  display: flex;
+  border: 1px solid #000;
+  flex-direction: column;
+  border-radius: 0.5em;
+  width: 100%;
+}
+
+.ClusterObjectsContainer {
+  display: flex;
+  border: 1px solid #000;
+  border-radius: 0.5em;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.ClusterObjectsHeader {
+  display: flex;
+  border: 1px solid #000;
+  width: 50%;
+  justify-content: center;
+}
+
+.ClusterObjects {
+  display: flex;
+  border: 1px solid #000;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}
