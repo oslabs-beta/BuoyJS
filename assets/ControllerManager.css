@@ -1,0 +1,30 @@
+.ControllerManagerContainer {
+  display: flex;
+  width: 90%;
+  border: 1px solid #000;
+  border-radius: 0.5em;
+  gap: 2em;
+}
+
+.ControllerManagerDiv {
+  display: flex;
+  width: 100%;
+  border: 1px solid #000;
+  align-items: center;
+  justify-content: center;
+  gap: 5em;  
+}
+
+.ControllerDiv1 {
+  display: flex;
+  border: 1px solid #000;
+  width: 50%;
+  justify-content: center;
+}
+
+.ControllerDiv2 {
+  display: flex;
+  border: 1px solid #000;
+  width: 50%;
+  justify-content: center;
+}
