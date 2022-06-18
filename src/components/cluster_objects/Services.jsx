@@ -3,7 +3,7 @@ import { ipcRenderer } from 'electron';
 import { useDispatch } from 'react-redux';
 import { addServices } from '../../reducers/clustersSlice';
 
-const Services = () => {
+const Services = (props) => {
 
   const [ services, setServices ] = useState([]);
   const dispatch = useDispatch();
@@ -25,10 +25,17 @@ const Services = () => {
           </div>
           <div className="ClusterObjects"></div>
           <div>
-            { services.map( (service, idx) =>
-              <div key={`${service}${idx}`} className="service-item">
-              {service.name} {service.namespace} { service.type } {service.clusterIP}
-              </div>
+            { services.map( (service, idx) => {
+              // console.log('service namespace: ', service.namespace);
+              // console.log('props namespace: ', props.namespace);
+              if (service.namespace == props.namespace) {
+                return (
+                  <div key={`${service}${idx}`} className="service-item">
+                  {service.name} {service.namespace} { service.type } {service.clusterIP}
+                  </div>
+                );
+              }
+            }
             )}
           </div>
         </div>

@@ -3,8 +3,7 @@ import { ipcRenderer } from 'electron';
 import { useDispatch } from 'react-redux';
 import { addDeployments } from '../../reducers/clustersSlice';
 
-const Deployments = () => {
-
+const Deployments = (props) => {
   const [ deployments, setDeployments ] = useState([]);
   const dispatch = useDispatch();
 
@@ -26,10 +25,17 @@ const Deployments = () => {
           </div>
           <div className="ClusterObjects"></div>
           <div>
-            { deployments.map( (deployment, idx) =>
-              <div key={`${deployment}${idx}`} className="deployment-item">
-              {deployment.name} {deployment.namespace} {deployment.replicas}
-              </div>
+            { deployments.map( (deployment, idx) => {
+                // console.log('deployment namespace:', deployment.namespace);
+                // console.log('props namespace:', props.namespace);
+                if (deployment.namespace == props.namespace) {
+                  return (
+                  <div key={`${deployment}${idx}`} className="deployment-item">
+                  {deployment.name} {deployment.namespace} {deployment.replicas}
+                  </div>
+                  )
+                }
+              }
             )}
           </div>
         </div>
