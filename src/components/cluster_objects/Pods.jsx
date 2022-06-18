@@ -32,7 +32,7 @@ const Pods = (props) => {
               if (pod.namespace == props.namespace) {
                 return (
                   <div key={`${pod}${idx}`} className="pod-item">
-                  {pod.name} {pod.namespace} {pod.status} { pod.podIP }
+                  <span>{pod.name}</span> <span>{pod.status}</span> <span>{ pod.podIP }</span>
                   </div>
                 );
               };

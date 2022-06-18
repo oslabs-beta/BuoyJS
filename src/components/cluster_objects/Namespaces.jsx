@@ -25,19 +25,23 @@ const Namespaces = () => {
   return (
     <div className="ClustersContainer1">
         <div className="ClusterObjectsContainer">
-          <div className="ClusterObjectsHeader">
-            <p> Namespaces </p>
+          <div className="PrimaryClusterObjectsHeader">
+            <p> Current Namespaces </p>
           </div>
           <div className="ClusterObjects"></div>
           <div>
-            { useSelector(selectNamespaces).map( (namespace, idx) =>
-            <>
-              <div key={`${namespace}${idx}`} className="namespace-item">{namespace.name} </div>
-              <div key={`status${namespace}${idx}`} className="status">Status: {namespace.status}</div>
-              <Deployments namespace={namespace.name}/>
-              <Pods namespace={namespace.name}/>
-              <Services namespace={namespace.name}/>
-            </>
+            { useSelector(selectNamespaces).map( (namespace, idx) => {
+              if (namespace.name) {
+                return (
+                  <div className="NamespaceContainer">
+                    <div key={`${namespace}${idx}`} className="namespace-item"><p id="name">{namespace.name}</p><p id={`${namespace.status}`}>{namespace.status}</p> </div>
+                    <Deployments namespace={namespace.name}/>
+                    <Pods namespace={namespace.name}/>
+                    <Services namespace={namespace.name}/>
+                  </div>
+                );
+              }
+            }
             )}
           </div>
         </div>

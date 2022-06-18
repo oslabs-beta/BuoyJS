@@ -31,7 +31,7 @@ const Services = (props) => {
               if (service.namespace == props.namespace) {
                 return (
                   <div key={`${service}${idx}`} className="service-item">
-                  {service.name} {service.namespace} { service.type } {service.clusterIP}
+                  <span>{service.name}</span> <span>{ service.type }</span> <span>{service.clusterIP}</span>
                   </div>
                 );
               }

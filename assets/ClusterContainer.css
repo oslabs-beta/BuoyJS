@@ -19,33 +19,74 @@
 
 .ClustersContainer1 {
   display: flex;
-  border: 1px solid #000;
   flex-direction: column;
-  border-radius: 0.5em;
   width: 100%;
+}
+
+.PrimaryClusterObjectsHeader {
+  display: flex;
+  border: 1px solid black;
+  border-radius: 0.5em;
+  justify-content: center;
+  align-items: center;
+  font-size: x-large;
+  font-weight: bold;
+  font-variant-caps: small-caps;
+}
+
+.NamespaceContainer {
+  display: flex;
+  border: 1px solid black;
+  border-radius: 0.5em;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em;
 }
 
 .ClusterObjectsContainer {
   display: flex;
-  border: 1px solid #000;
-  border-radius: 0.5em;
   flex-direction: column;
-  align-items: flex-start;
 }
 
 .ClusterObjectsHeader {
   display: flex;
-  border: 1px solid #000;
-  width: 50%;
   justify-content: center;
+  align-self: flex-start;
+  font-weight: bold;
+  font-variant-caps: small-caps;
 }
 
 .ClusterObjects {
   display: flex;
-  border: 1px solid #000;
   flex-direction: column;
   align-items: center;
-  width: 50%;
+}
+
+.namespace-item {
+  display: flex;
+  flex-direction: column;
+  font-size: large;
+  align-items: center;
+}
+
+#name {
+  color: steelblue;
+  font-size: x-large;
+  font-variant-caps: all-small-caps;
+  font-weight: bold;
+  margin: 0;
+}
+
+#Active {
+  font-style: oblique;
+  font-size: small;
+  color: rgb(118, 181, 131);
+  margin: 0;
+}
+
+.deployment-item, .pod-item, .service-item {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
 }
 
 .api-resources-container {

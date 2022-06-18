@@ -30,9 +30,9 @@ const Deployments = (props) => {
                 // console.log('props namespace:', props.namespace);
                 if (deployment.namespace == props.namespace) {
                   return (
-                  <div key={`${deployment}${idx}`} className="deployment-item">
-                  {deployment.name} {deployment.namespace} {deployment.replicas}
-                  </div>
+                    <div key={`${deployment}${idx}`} className="deployment-item">
+                    <span id="deplname">{deployment.name}</span><span id="deplrepl">Replicas: {deployment.replicas}</span>
+                    </div>
                   )
                 }
               }
