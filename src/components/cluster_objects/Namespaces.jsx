@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ipcRenderer } from 'electron';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addNamespace, selectNamespaces } from '../../reducers/clustersSlice';
+import { addNamespaces, selectNamespaces } from '../../reducers/clustersSlice';
 
 const Namespaces = () => {
 
@@ -12,7 +12,7 @@ const Namespaces = () => {
 
     ipcRenderer.send('load:namespaces');
     ipcRenderer.on('get:namespaces', (e, data) => {
-      dispatch(addNamespace(data));
+      dispatch(addNamespaces(data));
     });
 
   }, []);

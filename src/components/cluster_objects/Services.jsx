@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { ipcRenderer } from 'electron';
+import { useDispatch } from 'react-redux';
+import { addServices } from '../../reducers/clustersSlice';
 
 const Services = () => {
 
   const [ services, setServices ] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect( () => {
-
     ipcRenderer.send('load:services');
     ipcRenderer.on('get:services', (e, data) => {
+      dispatch(addServices(data));
       setServices(data);
     });
     // { service.ports} 

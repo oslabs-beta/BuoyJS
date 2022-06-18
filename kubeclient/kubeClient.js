@@ -54,6 +54,9 @@ class KubeClient {
           status: namespace.status.phase,
         });
       });
+
+      this.namespaces.sort( (a,b) => a.name - b.name);
+
       ipcMain.on('load:namespaces', () => {
         this.window.webContents.send('get:namespaces', this.namespaces);
       });
@@ -73,6 +76,9 @@ class KubeClient {
           replicas: deployment.spec.replicas,
         })
       });
+
+      this.deployments.sort( (a,b) => a.namespace - b.namespace);
+
       ipcMain.on('load:deployments', () => {
         this.window.webContents.send('get:deployments', this.deployments);
       });
@@ -93,6 +99,9 @@ class KubeClient {
           podIP: pod.status.podIP,
         })
       });
+
+      this.pods.sort( (a,b) => a.namespace - b.namespace);
+
       ipcMain.on('load:pods', () => {
         this.window.webContents.send('get:pods', this.pods);
       });
@@ -115,6 +124,9 @@ class KubeClient {
             type: service.spec.type,
           });
         });
+
+        this.pods.sort( (a,b) => a.namespace - b.namespace);
+        
         ipcMain.on('load:services', () => {
           this.window.webContents.send('get:services', this.services);
         });

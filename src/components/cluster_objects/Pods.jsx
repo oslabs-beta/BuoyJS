@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { ipcRenderer } from 'electron';
+import { useDispatch } from 'react-redux';
+import { addPods } from '../../reducers/clustersSlice';
 
 const Pods = () => {
 
   const [ pods, setPods ] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect( () => {
 
     ipcRenderer.send('load:pods');
     ipcRenderer.on('get:pods', (e, data) => {
+      dispatch(addPods(data));
       setPods(data);
     });
     
