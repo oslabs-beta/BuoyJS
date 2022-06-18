@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxygen+Mono&display=swap');
+
 .ClustersOuterContainer {
   display: flex;
   flex-direction: column;
@@ -44,4 +46,30 @@
   flex-direction: column;
   align-items: center;
   width: 50%;
+}
+
+.api-resources-container {
+  margin-bottom: 1rem;
+}
+
+.api-resources-header {
+  font-family: 'Oxygen Mono', monospace;
+  background: rgb(194, 207, 211);
+  padding: 0.4rem;
+}
+
+.api-resources-item {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.8rem;
+
+  color: white;
+  background-color: black;
+  
+  padding: 0.4rem;
+  height:10rem;
+  width:62rem;
+
+  white-space: pre-wrap;
+
+  overflow: scroll
 }
