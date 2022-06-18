@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 // import containers
 import TestContainer2 from '../containers/TestContainer2.jsx';
-import TestContainer1 from '../containers/TestContainer1.jsx';
+import ClustersContainer from '../containers/ClustersContainer.jsx';
 import ResourcesContainer from '../containers/ResourcesContainer.jsx';
 import ControlPlaneAPI from '../containers/control_plane/ControlPlaneAPI.jsx';
 import ControlPlaneScheduler from '../containers/control_plane/ControlPlaneScheduler.jsx';
@@ -28,7 +28,7 @@ const SecondPage = () => {
             <button id="alertsButton" active={active === 'alerts'} onClick={ () => setActive('alerts') }> alerts </button>
           </div>
           <div className="OuterContainer">
-            { active === 'clusters' && <TestContainer1/> }
+            { active === 'clusters' && <ClustersContainer/> }
             { active === 'resources' && <ResourcesContainer/> }
             { active === 'control_plane' && <ControlPlaneAPI /> }
             { active === 'control_plane' && <ControlPlaneScheduler /> }
