@@ -54,10 +54,14 @@
 
 .ClusterObjectsHeader {
   display: flex;
-  justify-content: center;
-  align-self: flex-start;
+  /* justify-content: flex-start; */
+  align-items: center;
   font-weight: bold;
   font-variant-caps: small-caps;
+}
+
+#testButton {
+  margin: 0.5em;
 }
 
 .ClusterObjects {

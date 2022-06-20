@@ -39,6 +39,7 @@ const Namespaces = () => {
   }, []);
 
   const [open, setOpen] = useState(false);
+  const [allOpen, setAllOpen] = useState(false);
 
   return (
     <div className="ClustersContainer1">
@@ -46,6 +47,9 @@ const Namespaces = () => {
           <div className="PrimaryClusterObjectsHeader">
             <p> Current Namespaces </p>
             <button id="testButton" onClick={() => setOpen(!open)}>Open</button>
+            {allOpen && <button id="collapseAll" onClick={() => setAllOpen(!allOpen)}>Collapse All</button>}
+            {!allOpen && <button id="expandAll" onClick={() => setAllOpen(!allOpen)}>Expand All</button>}
+
           </div>
           <div className="ClusterObjects">
           </div>
@@ -53,11 +57,21 @@ const Namespaces = () => {
             { useSelector(selectNamespaces).map( (namespace, idx) => {
               if (namespace.name) {
                 return (
-                  <div key={`${namespace.name}${idx}`} className="NamespaceContainer">
-                    <div className="namespace-item"><p id="name">{namespace.name}</p><p id={`${namespace.status}`}>{namespace.status}</p> </div>
-                    {open && <Deployments namespace={namespace.name}/>}
-                    {open && <Pods namespace={namespace.name}/>}
-                    {open && <Services namespace={namespace.name}/>}
+                  <div key={`namespaces${idx}`} className="NamespaceContainer">
+                    <div key={`${namespace.name}${idx}`} className="namespace-item">
+                      <p id="name">{namespace.name}</p>
+                      <p id={`${namespace.status}`}>{namespace.status}</p> 
+                    </div>
+                    {allOpen && <Deployments openState={allOpen} key={`deployments${idx}`} namespace={namespace.name}/>}
+                    {open && !allOpen && <Deployments openState={allOpen} key={`deployments${idx}`} namespace={namespace.name}/>}
+
+
+                    {allOpen && <Pods openState={allOpen} key={`pods${idx}`} namespace={namespace.name}/>}
+                    {open && !allOpen && <Pods openState={allOpen} key={`pods${idx}`} namespace={namespace.name}/>}
+
+
+                    {allOpen && <Services openState={allOpen} key={`services${idx}`} namespace={namespace.name}/>}
+                    {open && !allOpen && <Services openState={allOpen} key={`services${idx}`} namespace={namespace.name}/>}
                   </div>
                 );
               }
