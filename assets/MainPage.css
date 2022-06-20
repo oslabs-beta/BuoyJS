@@ -16,19 +16,19 @@
   position: fixed;
   top: 40%;
   
-  background-color: rgb(40, 40, 40);
-  border: 0.1rem rgb(40, 40, 40) solid;
+  background-color: #C4D8EC;
+  border: 0.1rem #C4D8EC solid;
   border-radius: 0.5rem;
 
   height: 20%;
   width: 0.5rem; 
 
   font-weight: 900;
-  color: rgb(7, 186, 235);
+  color: #34292A;
 }
 
 .toggleMenu:hover {
-  color: rgb(40, 40, 40);
+  color: #C4D8EC;
 }
 
 .menuTabs {
@@ -59,21 +59,21 @@
   width: 2.5rem;
   padding: 4px;
 
-  background: rgb(40, 40, 40);
+  background: #C4D8EC;
   color: #fff;
 }
 
 .menuTabs .menuTab:hover {
-  color: rgb(7, 186, 235);
+  color: #34292A;
   width: 100%;
 }
 
 .menuTabs .menuTab.active {
-  color: rgb(40, 40, 40);
-  background: rgb(7, 186, 235);
+  color: #C4D8EC;
+  background: #34292A;
 }
 
 .menuTabs .menuTab.active:hover {
-  color: rgb(40, 40, 40);
-  background: rgb(7, 186, 235);
+  color: #C4D8EC;
+  background: #34292A;
 }
