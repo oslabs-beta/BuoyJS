@@ -20,9 +20,6 @@ const ClustersContainer = () => {
         <h1>Apdex Score</h1>
       </div>
       <Namespaces />
-      <Deployments />
-      <Pods />
-      <Services />
       <ApiResources />
     </div>
   );
