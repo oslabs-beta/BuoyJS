@@ -3,13 +3,13 @@ import React from 'react';
 // import pages
 // import ClustersPage from './routes/ClustersPage.jsx';
 import HomePage from './routes/HomePage.jsx';
-import SecondPage from './routes/ResourcesPage.jsx';
+import MainPage from './routes/MainPage.jsx';
 
 import { Route, Routes } from 'react-router-dom';
 
 // imports css 
 import '../assets/HomePage.css';
-import '../assets/SecondPage.css';
+import '../assets/MainPage.css';
 import '../assets/resources.css';
 import '../assets/ClusterContainer.css';
 import '../assets/ControlPlaneAPI.css';
@@ -23,7 +23,7 @@ const App = () => {
 		<div className="App">
 					{/* <Route path="/" element={<HomePage />} /> */}
 					{/* <Route path="resources" element={<SecondPage />} /> */}
-					<SecondPage />
+					<MainPage />
 					{/* <HomePage /> */}
 		</div>
 	);
