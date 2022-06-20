@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Oxygen+Mono&display=swap');
 
-.ClustersOuterContainer {
+
+.clusterContainer {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  align-items: flex-start;
-  gap: 2em;
+  align-items: center;
+  margin: 2rem;
 }
 
 .ApdexHeaderBox {
@@ -84,6 +84,7 @@
   margin: 0;
 }
 
+
 .deployment-item, .pod-item, .service-item {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
@@ -107,8 +108,7 @@
   background-color: black;
   
   padding: 0.4rem;
-  height:10rem;
-  width:62rem;
+  width: 100%;
 
   white-space: pre-wrap;
 

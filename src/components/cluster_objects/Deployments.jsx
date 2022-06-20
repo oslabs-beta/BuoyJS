@@ -1,22 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { ipcRenderer } from 'electron';
-import { useDispatch } from 'react-redux';
-import { addDeployments } from '../../reducers/clustersSlice';
+import { useSelector } from 'react-redux';
+import { selectNamespaces } from '../../reducers/clustersSlice';
 
-const Deployments = (props) => {
-  const [ deployments, setDeployments ] = useState([]);
-  const dispatch = useDispatch();
-
-  useEffect( () => {
-
-    ipcRenderer.send('load:deployments');
-    ipcRenderer.on('get:deployments', (e, data) => {
-      dispatch(addDeployments(data));
-      setDeployments(data);
-    });
-    
-  }, []);
-  
+const Deployments = (props) => {  
   return (
     <div className="ClustersContainer1">
         <div className="ClusterObjectsContainer">
@@ -25,18 +11,17 @@ const Deployments = (props) => {
           </div>
           <div className="ClusterObjects"></div>
           <div>
-            { deployments.map( (deployment, idx) => {
-                // console.log('deployment namespace:', deployment.namespace);
-                // console.log('props namespace:', props.namespace);
-                if (deployment.namespace == props.namespace) {
+            { useSelector(selectNamespaces).map( namespace => {
+              if (namespace.name === props.namespace) {
+                return namespace.deployments.map( (deployment, idx) => {
                   return (
-                    <div key={`${deployment}${idx}`} className="deployment-item">
+                    <div key={`${deployment.name}${idx}`} className="deployment-item">
                     <span id="deplname">{deployment.name}</span><span id="deplrepl">Replicas: {deployment.replicas}</span>
                     </div>
                   )
-                }
+                })
               }
-            )}
+            })}
           </div>
         </div>
     </div>
