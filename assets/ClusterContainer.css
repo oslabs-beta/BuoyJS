@@ -34,6 +34,10 @@
   font-variant-caps: small-caps;
 }
 
+#testButton {
+  margin-left: 10em;
+}
+
 .NamespaceContainer {
   display: flex;
   border: 1px solid black;
@@ -114,3 +118,5 @@
 
   overflow: scroll
 }
+
+

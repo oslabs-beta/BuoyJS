@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { selectNamespaces } from '../../reducers/clustersSlice';
 
 const Deployments = (props) => {  
+
   return (
     <div className="ClustersContainer1">
         <div className="ClusterObjectsContainer">
@@ -19,7 +20,7 @@ const Deployments = (props) => {
                     <span id="deplname">{deployment.name}</span><span id="deplrepl">Replicas: {deployment.replicas}</span>
                     </div>
                   )
-                })
+                });
               }
             })}
           </div>
