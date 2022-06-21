@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectNamespaces } from '../../reducers/clustersSlice';
 import Pod from './Pod.jsx';
-import { BsFillCaretDownSquareFill } from 'react-icons/bs';
+import { BsFillCaretDownFill } from 'react-icons/bs';
 import { BsFillCaretRightFill } from 'react-icons/bs';
 
 const Pods = (props) => {
@@ -23,15 +23,15 @@ const Pods = (props) => {
   }
 
   return (
-    <div className="ClustersContainer1">
+    <div className="ClustersContainer2">
         <div className="ClusterObjectsContainer">
           <div className="ClusterObjectsHeader">
-            <p> Pods </p>
             {!open && <button className="arrow" onClick={() => setOpen(!open)}><BsFillCaretRightFill /></button>}
-            {open && <button className="arrow" onClick={() => setOpen(!open)}><BsFillCaretDownSquareFill /></button>}
+            {open && <button className="arrow" onClick={() => setOpen(!open)}><BsFillCaretDownFill /></button>}
+            <p> Pods </p>
           </div>
           <div className="ClusterObjects"></div>
-          <div>
+          <div className="List">
             {open && podsArr[0] &&
             <div>
               {podsArr}

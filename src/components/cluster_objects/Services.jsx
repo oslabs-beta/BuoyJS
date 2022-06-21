@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectNamespaces } from '../../reducers/clustersSlice';
 import Service from './Service.jsx'
-import { BsFillCaretDownSquareFill } from 'react-icons/bs';
+import { BsFillCaretDownFill } from 'react-icons/bs';
 import { BsFillCaretRightFill } from 'react-icons/bs';
 
 const Services = (props) => {
@@ -23,15 +23,15 @@ const Services = (props) => {
   const [open, setOpen] = useState(openState);
 
   return (
-    <div className="ClustersContainer1">
+    <div className="ClustersContainer2">
         <div className="ClusterObjectsContainer">
           <div className="ClusterObjectsHeader">
-            <p> Services </p>
             {!open && <button className="arrow" onClick={() => setOpen(!open)}><BsFillCaretRightFill /></button>}
-            {open && <button className="arrow" onClick={() => setOpen(!open)}><BsFillCaretDownSquareFill /></button>}
+            {open && <button className="arrow" onClick={() => setOpen(!open)}><BsFillCaretDownFill /></button>}
+            <p> Services </p>
           </div>
           <div className="ClusterObjects"></div>
-          <div>
+          <div className="List">
             {open && serviceArr[0] &&
             <div>
               {serviceArr}

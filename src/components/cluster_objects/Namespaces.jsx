@@ -6,7 +6,7 @@ import { addNamespaces, addDeployments, addPods, addServices, selectNamespaces }
 import Deployments from './Deployments.jsx';
 import Pods from './Pods.jsx';
 import Services from './Services.jsx';
-import { BsFillCaretDownSquareFill } from 'react-icons/bs';
+import { BsFillCaretDownFill } from 'react-icons/bs';
 import { BsFillCaretRightFill } from 'react-icons/bs';
 
 
@@ -20,12 +20,11 @@ const Namespaces = () => {
     <div className="ClustersContainer1">
         <div className="ClusterObjectsContainer">
           <div className="PrimaryClusterObjectsHeader">
-            <p id="currNamespaces"> Current Namespaces </p>
             {!open && <button className="arrow" id="namespaceOpen" onClick={() => setOpen(!open)}><BsFillCaretRightFill /></button>}
-            {open && <button className="arrow" id="namespaceClose" onClick={() => setOpen(!open)}><BsFillCaretDownSquareFill /></button>}
+            {open && <button className="arrow" id="namespaceClose" onClick={() => setOpen(!open)}><BsFillCaretDownFill /></button>}
+            <p id="currNamespaces"> Current Namespaces </p>
             {allOpen && <button className="expandAll" onClick={() => setAllOpen(!allOpen)}>Collapse All</button>}
             {!allOpen && <button className="expandAll" onClick={() => setAllOpen(!allOpen)}>Expand All</button>}
-
           </div>
           <div className="ClusterObjects">
           </div>
@@ -48,9 +47,6 @@ const Namespaces = () => {
 
                     {allOpen && <Services openState={allOpen} key={`services${idx}`} namespace={namespace.name}/>}
                     {open && !allOpen && <Services openState={allOpen} key={`services${idx}`} namespace={namespace.name}/>}
-                  <Deployments namespace={namespace.name}/>
-                  <Pods namespace={namespace.name}/>
-                  <Services namespace={namespace.name}/>
                 </div>
               );
             }
