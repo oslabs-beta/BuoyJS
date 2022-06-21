@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // import pages
 // import ClustersPage from './routes/ClustersPage.jsx';
@@ -6,18 +6,30 @@ import HomePage from './routes/HomePage.jsx';
 import MainPage from './routes/MainPage.jsx';
 
 import { Route, Routes } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { loadKubeClientData } from '../controllers/loadKubeClientData';
+
 
 // imports css 
 import '../assets/HomePage.css';
 import '../assets/MainPage.css';
 import '../assets/resources.css';
 import '../assets/ClusterContainer.css';
+import '../assets/ClustersCardsContainer.css'
 import '../assets/ControlPlaneAPI.css';
 import '../assets/ControlPlaneScheduler.css';
 import '../assets/ControllerManager.css';
 
 const App = () => {
-	
+
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+
+		loadKubeClientData(dispatch);
+
+	}, []);
+
 	return (
 		
 		<div className="App">

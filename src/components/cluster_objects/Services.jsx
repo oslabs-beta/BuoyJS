@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectNamespaces } from '../../reducers/clustersSlice';
 
-const Services = (props) => {
+const Services = (props) => { 
   return (
     <div className="ClustersContainer1">
         <div className="ClusterObjectsContainer">
