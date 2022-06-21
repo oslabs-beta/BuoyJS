@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 // import containers
+import ClustersCardsContainer from '../containers/ClustersCardsContainers.jsx';
 import ClustersContainer from '../containers/ClustersContainer.jsx';
 import ResourcesContainer from '../containers/ResourcesContainer.jsx';
 import ControlPlaneAPI from '../containers/control_plane/ControlPlaneAPI.jsx';
@@ -31,7 +32,6 @@ const MainPage = () => {
     const tab = document.getElementById(event.currentTarget.id);
     const spanText = document.createElement('span');
     spanText.innerHTML = nameMapping[event.currentTarget.id];
-    
     tab.appendChild(spanText);
   }
 
@@ -67,7 +67,7 @@ const MainPage = () => {
             onMouseEnter={ toggleMenuNameOn }
             onMouseLeave={ toggleMenuNameOff }
           > 
-            <i className="fa-brands fa-uncharted fa-2x"></i>
+            <i className="fa-solid fa-circle-nodes fa-2x"></i>
           </button>
           <button className="menuTab"
             id="resourcesTab" 
@@ -94,7 +94,7 @@ const MainPage = () => {
             active={`${active.currentTab === "alertsTab"}`} 
             onClick={ () => setActive({ currentTab: "alertsTab", prevTab: active.currentTab}) }
             onMouseEnter={ toggleMenuNameOn }
-            onMouseLeave={ toggleMenuNameOff }
+            onMouseLeave={ toggleMenuNameOff }  
           > 
             <i className="fa-solid fa-triangle-exclamation fa-2x"></i>
           </button>
@@ -102,7 +102,8 @@ const MainPage = () => {
         </div>
 
         <React.Fragment>
-          { active.currentTab === 'clustersTab' && <ClustersContainer/> }
+          { active.currentTab === 'clustersTab' && <ClustersCardsContainer/> }
+          { /* active.currentTab === 'clustersTab' && <ClustersContainer/> */ }
           { active.currentTab === 'resourcesTab' && <ResourcesContainer/> }
           { active.currentTab === 'controlPlaneTab' && <ControlPlaneAPI /> }
           { active.currentTab === 'controlPlaneTab' && <ControlPlaneScheduler /> }
