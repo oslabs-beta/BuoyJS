@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectNamespaces } from '../../reducers/clustersSlice';
 import Depl from './Depl.jsx';
+import { BsFillCaretDownSquareFill } from 'react-icons/bs';
+import { BsFillCaretRightFill } from 'react-icons/bs';
 
 const Deployments = (props) => {  
 
@@ -27,7 +29,8 @@ const Deployments = (props) => {
         <div className="ClusterObjectsContainer">
           <div className="ClusterObjectsHeader">
             <p> Deployments </p>
-            <button id="testButton" onClick={() => setOpen(!open)}>Open</button>
+            {open && <button className="arrow" onClick={() => setOpen(!open)}><BsFillCaretDownSquareFill /></button>}
+            {!open && <button className="arrow" onClick={() => setOpen(!open)}><BsFillCaretRightFill /></button>}
           </div>
           <div className="ClusterObjects"></div>
           <div>
