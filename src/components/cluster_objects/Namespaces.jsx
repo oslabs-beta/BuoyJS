@@ -20,8 +20,6 @@ const Namespaces = () => {
     <div className="ClustersContainer1">
         <div className="ClusterObjectsContainer">
           <div className="PrimaryClusterObjectsHeader">
-            {!open && <button className="arrow" id="namespaceOpen" onClick={() => setOpen(!open)}><BsFillCaretRightFill /></button>}
-            {open && <button className="arrow" id="namespaceClose" onClick={() => setOpen(!open)}><BsFillCaretDownFill /></button>}
             <p id="currNamespaces"> Current Namespaces </p>
             {allOpen && <button className="expandAll" onClick={() => setAllOpen(!allOpen)}>Collapse All</button>}
             {!allOpen && <button className="expandAll" onClick={() => setAllOpen(!allOpen)}>Expand All</button>}
@@ -34,19 +32,21 @@ const Namespaces = () => {
                 return (
                   <div key={`namespaces${idx}`} className="NamespaceContainer">
                     <div key={`${namespace.name}${idx}`} className="namespace-item">
+                      {open && <button className="arrow" id="namespaceClose" onClick={() => setOpen(!open)}><BsFillCaretDownFill /></button>}
+                      {!open && <button className="arrow" id="namespaceOpen" onClick={() => setOpen(!open)}><BsFillCaretRightFill /></button>}
                       <p id="name">{namespace.name}</p>
                       <p id={`${namespace.status}`}>{namespace.status}</p> 
                     </div>
                     {allOpen && <Deployments openState={allOpen} key={`deployments${idx}`} namespace={namespace.name}/>}
-                    {open && !allOpen && <Deployments openState={allOpen} key={`deployments${idx}`} namespace={namespace.name}/>}
+                    {/* {open && !allOpen && <Deployments openState={allOpen} key={`deployments${idx}`} namespace={namespace.name}/>} */}
 
 
                     {allOpen && <Pods openState={allOpen} key={`pods${idx}`} namespace={namespace.name}/>}
-                    {open && !allOpen && <Pods openState={allOpen} key={`pods${idx}`} namespace={namespace.name}/>}
+                    {/* {open && !allOpen && <Pods openState={allOpen} key={`pods${idx}`} namespace={namespace.name}/>} */}
 
 
                     {allOpen && <Services openState={allOpen} key={`services${idx}`} namespace={namespace.name}/>}
-                    {open && !allOpen && <Services openState={allOpen} key={`services${idx}`} namespace={namespace.name}/>}
+                    {/* {open && !allOpen && <Services openState={allOpen} key={`services${idx}`} namespace={namespace.name}/>} */}
                 </div>
               );
             }

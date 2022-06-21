@@ -102,7 +102,7 @@ const MainPage = () => {
         </div>
 
         <React.Fragment>
-          {/* { active.currentTab === 'clustersTab' && <ClustersCardsContainer/> } */}
+          { active.currentTab === 'clustersTab' && <ClustersCardsContainer/> }
           { active.currentTab === 'clustersTab' && <ClustersContainer/> }
           { active.currentTab === 'resourcesTab' && <ResourcesContainer/> }
           { active.currentTab === 'controlPlaneTab' && <ControlPlaneAPI /> }
