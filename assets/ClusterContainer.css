@@ -32,7 +32,6 @@
 .ClustersContainer2 {
   display: flex;
   flex-direction: column;
-  width: 100%;
   border: 1px solid #C4D8EC;
   border-radius: 0.2em;
   margin: 0.5em;
@@ -50,12 +49,28 @@
   margin: 0.5em;
 }
 
+#namespaceOpen, #namespaceClose {
+  margin-top: 15px;
+}
+
+.NamespaceTitle {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+}
+
 .arrow {
-  margin-left: 0.5em;
   background: none;
   border: none;
   color: #C4D8EC;
   margin: 0.5em;
+}
+
+.arrow:hover {
+  filter: invert(25%);
+  cursor: pointer;
+  /* color: #34292A; */
+  /* border-color: #C4D8EC; */
 }
 
 .expandAll {
@@ -71,13 +86,15 @@
 .expandAll:hover {
   background: #34292A;
   color: #C4D8EC;
+  cursor: pointer;
 }
 
 .NamespaceContainer {
   display: flex;
   /* border: 1px solid black; */
   /* border-radius: 0.5em; */
-  /* flex-direction: column; */
+  width: 100%;
+  flex-direction: column;
   padding: 1em;
 }
 
@@ -96,14 +113,19 @@
 .ClusterObjects {
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+
+.NamelessContainer {
+  display: flex;
+  flex-direction: column;
 }
 
 .namespace-item {
   display: flex;
   font-size: large;
+  width: 100%;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
 }
 
 #name {
@@ -120,16 +142,21 @@
 }
 
 #Active {
+  display: flex;
   font-style: oblique;
   font-size: small;
   color: #75B2BF;
   margin: 0;
 }
 
-
-.deployment-item, .pod-item, .service-item {
+.deployment-item, .pod-item {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
+}
+
+.service-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .api-resources-container {

@@ -32,7 +32,6 @@ const Deployments = (props) => {
             {!open && <button className="arrow" onClick={() => setOpen(!open)}><BsFillCaretRightFill /></button>}
             <p> Deployments </p>
           </div>
-          <div className="ClusterObjects"></div>
           <div className="List">
             {open && deplsArr[0] &&
             <div>
