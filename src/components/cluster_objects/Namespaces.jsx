@@ -13,33 +13,6 @@ import { BsFillCaretRightFill } from 'react-icons/bs';
 
 const Namespaces = () => {
   
-  const dispatch = useDispatch();
-
-  useEffect( () => {
-
-    ipcRenderer.send('load:namespaces');
-    const namespaceEvtTgt = ipcRenderer.on('get:namespaces', (e, data) => {
-      dispatch(addNamespaces(data));
-    });
-
-    ipcRenderer.send('load:deployments');
-    const deploymentEvtTgt = ipcRenderer.on('get:deployments', (e, data) => {
-      dispatch(addDeployments(data));
-      console.log("here: ", e);
-    });
-
-    ipcRenderer.send('load:pods');
-    const podEvtTgt = ipcRenderer.on('get:pods', (e, data) => {
-      dispatch(addPods(data));
-    });
-
-    ipcRenderer.send('load:services');
-    const serviceEvtTgt = ipcRenderer.on('get:services', (e, data) => {
-      dispatch(addServices(data));
-    });
-
-  }, []);
-
   const [open, setOpen] = useState(false);
   const [allOpen, setAllOpen] = useState(false);
 
@@ -76,10 +49,14 @@ const Namespaces = () => {
                     {allOpen && <Services openState={allOpen} key={`services${idx}`} namespace={namespace.name}/>}
                     {open && !allOpen && <Services openState={allOpen} key={`services${idx}`} namespace={namespace.name}/>}
                   </div>
-                );
-              }
+                  <Deployments namespace={namespace.name}/>
+                  <Pods namespace={namespace.name}/>
+                  <Services namespace={namespace.name}/>
+                </div>
+              );
             }
-            )}
+          }
+          )}
           </div>
         </div>
     </div>

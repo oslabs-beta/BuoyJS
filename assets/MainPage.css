@@ -60,20 +60,21 @@
   padding: 4px;
 
   background: #C4D8EC;
-  color: #fff;
+  color: #34292A;
 }
 
 .menuTabs .menuTab:hover {
-  color: #34292A;
+  background: #34292A;
+  color: #C4D8EC;
   width: 100%;
 }
 
 .menuTabs .menuTab.active {
-  color: #C4D8EC;
+  color: #75B2BF;
   background: #34292A;
 }
 
 .menuTabs .menuTab.active:hover {
-  color: #C4D8EC;
+  color: #75B2BF;
   background: #34292A;
 }
