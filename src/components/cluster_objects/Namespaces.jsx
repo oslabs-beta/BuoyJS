@@ -21,10 +21,10 @@ const Namespaces = () => {
         <div className="ClusterObjectsContainer">
           <div className="PrimaryClusterObjectsHeader">
             <p id="currNamespaces"> Current Namespaces </p>
-            {!open && <button class="arrow" id="namespaceOpen" onClick={() => setOpen(!open)}><BsFillCaretRightFill /></button>}
-            {open && <button class="arrow" id="namespaceClose" onClick={() => setOpen(!open)}><BsFillCaretDownSquareFill /></button>}
-            {allOpen && <button class="expandAll" onClick={() => setAllOpen(!allOpen)}>Collapse All</button>}
-            {!allOpen && <button class="expandAll" onClick={() => setAllOpen(!allOpen)}>Expand All</button>}
+            {!open && <button className="arrow" id="namespaceOpen" onClick={() => setOpen(!open)}><BsFillCaretRightFill /></button>}
+            {open && <button className="arrow" id="namespaceClose" onClick={() => setOpen(!open)}><BsFillCaretDownSquareFill /></button>}
+            {allOpen && <button className="expandAll" onClick={() => setAllOpen(!allOpen)}>Collapse All</button>}
+            {!allOpen && <button className="expandAll" onClick={() => setAllOpen(!allOpen)}>Expand All</button>}
 
           </div>
           <div className="ClusterObjects">
@@ -48,7 +48,6 @@ const Namespaces = () => {
 
                     {allOpen && <Services openState={allOpen} key={`services${idx}`} namespace={namespace.name}/>}
                     {open && !allOpen && <Services openState={allOpen} key={`services${idx}`} namespace={namespace.name}/>}
-                  </div>
                   <Deployments namespace={namespace.name}/>
                   <Pods namespace={namespace.name}/>
                   <Services namespace={namespace.name}/>

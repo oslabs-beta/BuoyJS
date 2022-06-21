@@ -16,7 +16,7 @@ const Pods = (props) => {
   const podsArr = [];
   for (let i = 0; i < name_spaces.length; i++) {
     if (name_spaces[i].name === props.namespace) {
-      for (let j = 0; j < name_spaces[i].deployments.length; j++) {
+      for (let j = 0; j < name_spaces[i].pods.length; j++) {
         podsArr.push(<Pod id={j} name={name_spaces[i].pods[j].name} status={name_spaces[i].pods[j].status} podIP={name_spaces[i].pods[j].podIP} key={`podsBox-${i}${j}`}/>);
       }
     }
@@ -27,8 +27,8 @@ const Pods = (props) => {
         <div className="ClusterObjectsContainer">
           <div className="ClusterObjectsHeader">
             <p> Pods </p>
-            {!open && <button class="arrow" onClick={() => setOpen(!open)}><BsFillCaretRightFill /></button>}
-            {open && <button class="arrow" onClick={() => setOpen(!open)}><BsFillCaretDownSquareFill /></button>}
+            {!open && <button className="arrow" onClick={() => setOpen(!open)}><BsFillCaretRightFill /></button>}
+            {open && <button className="arrow" onClick={() => setOpen(!open)}><BsFillCaretDownSquareFill /></button>}
           </div>
           <div className="ClusterObjects"></div>
           <div>

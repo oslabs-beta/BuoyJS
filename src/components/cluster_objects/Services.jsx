@@ -27,8 +27,8 @@ const Services = (props) => {
         <div className="ClusterObjectsContainer">
           <div className="ClusterObjectsHeader">
             <p> Services </p>
-            {!open && <button class="arrow" onClick={() => setOpen(!open)}><BsFillCaretRightFill /></button>}
-            {open && <button class="arrow" onClick={() => setOpen(!open)}><BsFillCaretDownSquareFill /></button>}
+            {!open && <button className="arrow" onClick={() => setOpen(!open)}><BsFillCaretRightFill /></button>}
+            {open && <button className="arrow" onClick={() => setOpen(!open)}><BsFillCaretDownSquareFill /></button>}
           </div>
           <div className="ClusterObjects"></div>
           <div>
