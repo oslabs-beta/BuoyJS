@@ -6,6 +6,8 @@ import { addNamespaces, addDeployments, addPods, addServices, selectNamespaces }
 import Deployments from './Deployments.jsx';
 import Pods from './Pods.jsx';
 import Services from './Services.jsx';
+import { BsFillCaretDownSquareFill } from 'react-icons/bs';
+import { BsFillCaretRightFill } from 'react-icons/bs';
 
 
 
@@ -45,10 +47,11 @@ const Namespaces = () => {
     <div className="ClustersContainer1">
         <div className="ClusterObjectsContainer">
           <div className="PrimaryClusterObjectsHeader">
-            <p> Current Namespaces </p>
-            <button id="testButton" onClick={() => setOpen(!open)}>Open</button>
-            {allOpen && <button id="collapseAll" onClick={() => setAllOpen(!allOpen)}>Collapse All</button>}
-            {!allOpen && <button id="expandAll" onClick={() => setAllOpen(!allOpen)}>Expand All</button>}
+            <p id="currNamespaces"> Current Namespaces </p>
+            {!open && <button class="arrow" id="namespaceOpen" onClick={() => setOpen(!open)}><BsFillCaretRightFill /></button>}
+            {open && <button class="arrow" id="namespaceClose" onClick={() => setOpen(!open)}><BsFillCaretDownSquareFill /></button>}
+            {allOpen && <button class="expandAll" onClick={() => setAllOpen(!allOpen)}>Collapse All</button>}
+            {!allOpen && <button class="expandAll" onClick={() => setAllOpen(!allOpen)}>Expand All</button>}
 
           </div>
           <div className="ClusterObjects">

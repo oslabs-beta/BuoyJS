@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectNamespaces } from '../../reducers/clustersSlice';
 import Pod from './Pod.jsx';
+import { BsFillCaretDownSquareFill } from 'react-icons/bs';
+import { BsFillCaretRightFill } from 'react-icons/bs';
 
 const Pods = (props) => {
 
@@ -25,7 +27,8 @@ const Pods = (props) => {
         <div className="ClusterObjectsContainer">
           <div className="ClusterObjectsHeader">
             <p> Pods </p>
-            <button id="testButton" onClick={() => setOpen(!open)}>Open</button>
+            {!open && <button class="arrow" onClick={() => setOpen(!open)}><BsFillCaretRightFill /></button>}
+            {open && <button class="arrow" onClick={() => setOpen(!open)}><BsFillCaretDownSquareFill /></button>}
           </div>
           <div className="ClusterObjects"></div>
           <div>

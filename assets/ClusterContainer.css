@@ -34,8 +34,10 @@
   font-variant-caps: small-caps;
 }
 
-#testButton {
-  margin-left: 10em;
+.arrow {
+  margin-left: 0.5em;
+  background: none;
+  border: none;
 }
 
 .NamespaceContainer {
