@@ -49,6 +49,9 @@
   margin: 0.5em;
 }
 
+#testButton {
+}
+
 #namespaceOpen, #namespaceClose {
   margin-top: 15px;
 }

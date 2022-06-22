@@ -1,0 +1,108 @@
+.clustersCardsContainer {
+  width: 100%;
+  padding: 2em;
+  
+}
+.clustersCardsContainer .clustersCardsContentCx{
+
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBox {
+  position: relative;
+  width: 16rem;
+  height: 20rem;
+  margin: 10px;
+  transition: 0.5s;
+  text-align: center;
+
+  box-shadow: rgba(148, 176, 200, 0.15) 0px 2px 8px;
+}
+
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBox .nsCardFrontBox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 2em;
+
+  background-color: #C4D8EC;
+}
+
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBox .nsCardFrontBox .nsFrontName {
+  color: #3D3337;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBox .nsCardFrontBox .nsFrontStatus {
+  color: #4EA65D;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 0.7rem;
+}
+
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBox .nsCardBackBox
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 1rem;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background-color: #3D3337;
+  color: #C4D8EC;
+  letter-spacing: 1px;
+  opacity: 0;
+}
+
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBox .nsCardBackBox .nsCardBackButtonCx {
+  text-align: right;
+}
+
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBox .nsCardBackBox .nsCardBackMaximize {
+  all: unset;
+  color: #C4D8EC;
+}
+
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBox .nsCardBackBox .nsBackAttribute {
+  color: #C4D8EC;
+  text-transform: uppercase;
+  font-weight: 200;
+  font-size: 0.7rem;
+}
+
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBox .nsCardBackBox .nsBackValue {
+  color: #57D0E9;
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+
+
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBox .nsCardBackBox:hover
+{
+  opacity: 1;
+}
+
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBox .nsCardBackBox ul {
+  list-style: none;
+}
+
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBox .nsCardFrontBox .svgContainer {
+  width: 12rem;
+  height: 12rem;
+  display: inline-block;
+  margin: auto;
+}
