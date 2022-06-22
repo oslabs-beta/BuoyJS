@@ -4,7 +4,96 @@
 
 .contentContainer {
   display: flex;
+  flex-direction: column;
   width: 100%;
+}
+
+.newTopMenuBar {
+  display: flex;
+  width: 100%;
+  gap: 29.5em;
+  position: fixed;
+}
+
+/* #BuoyNameTopMenu {
+  display: flex;
+  align-self: center;
+  justify-self: center;
+} */
+
+.TopMenuButtons {
+  display: flex;
+  margin-left: 0.5em;
+  margin-top: 0.3em;
+  align-items: center;
+  gap: 0.3em;
+}
+
+#closeAppButton, #minimizeAppButton, #maximizeAppButton {
+  background: none;
+  border: none;
+  height: 12px;
+  width: 12px;
+  color: rgb(40, 40, 40);
+}
+
+#closeAppButton:hover {
+  color: rgb(185, 49, 49);
+}
+
+#minimizeAppButton:hover {
+  color: rgb(236, 236, 35);
+}
+
+#maximizeAppButton:hover {
+  color: rgb(49, 185, 58)
+}
+
+.clusterTabButtons {
+  display: flex;
+  width: 30%;
+  align-self: center;
+  justify-content: center;
+  gap: 11.5em;
+  margin-top: 0.3em;
+}
+
+#cardView {
+  display: flex;
+  gap: 0.3em;
+}
+
+#changeClusterViewCard {
+  justify-content: center;
+  background: none;
+  border: none;
+  height: 3em;
+}
+
+#changeClusterViewGrid {
+  justify-content: center;
+  background: none;
+  border: none;
+  height: 2.8em;
+}
+
+#currentClusterViewCard {
+  background: none;
+  border: none;
+  height: 3em;
+  color: rgb(203, 229, 237)
+}
+
+#currentClusterViewGrid {
+  background: none;
+  border: none;
+  height: 2.8em;
+  color: rgb(203, 229, 237)
+}
+
+#changeClusterViewCard:hover, #changeClusterViewGrid:hover, #currentClusterViewCard:hover, #currentClusterViewGrid:hover {
+  filter: invert(15%);
+  cursor: pointer;
 }
 
 .toggleMenu {

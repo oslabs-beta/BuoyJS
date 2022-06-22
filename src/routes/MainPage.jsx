@@ -8,6 +8,14 @@ import ControlPlaneAPI from '../containers/control_plane/ControlPlaneAPI.jsx';
 import ControlPlaneScheduler from '../containers/control_plane/ControlPlaneScheduler.jsx';
 import ControllerManager from '../containers/control_plane/ControllerManager.jsx';
 
+import { CgCardSpades } from 'react-icons/cg';
+import { BsGrid3X3 } from 'react-icons/bs';
+
+import { AiFillCloseCircle } from 'react-icons/ai';
+import { BsArrowUpRightCircleFill } from 'react-icons/bs';
+import { AiOutlineMinusCircle } from 'react-icons/ai';
+import { BsFillCircleFill } from 'react-icons/bs';
+
 const MainPage = () => {
 
   const [ active, setActive ] = useState({ currentTab: "clustersTab", prevTab: "clustersTab"});
@@ -49,7 +57,13 @@ const MainPage = () => {
     
   }
 
+  // const closeApp = () => {
+  //   ipcRenderer.send("close-app", true);
+  // }
+
   useEffect( () => { onTabClick() }, [ active ]);
+
+  const [ clustersTab, changeTab ] = useState(false);
 
   return (
     <div className="mainPage">
@@ -101,10 +115,45 @@ const MainPage = () => {
         
         </div>
 
+        <div className="newTopMenuBar">
+
+          <div className="TopMenuButtons">
+
+            <button id="closeAppButton"><BsFillCircleFill size="lg"/></button>
+            <button id="minimizeAppButton"><BsFillCircleFill size="lg"/></button>
+            <button id="maximizeAppButton"><BsFillCircleFill size="lg"/></button>
+
+          </div>
+          {/* <p id="BuoyNameTopMenu"> Buoy </p> */}
+        </div>
+
+        <div className="clusterTabButtons">
+          {clustersTab && active.currentTab === 'clustersTab' && <button id="changeClusterViewCard" onClick={ () => changeTab(!clustersTab) }>
+            <CgCardSpades size="lg"/>
+            <span id="cardView"><p>CARD</p><p>VIEW</p></span>
+            </button>}
+          {clustersTab && active.currentTab === 'clustersTab' && <button id="currentClusterViewGrid">
+            <BsGrid3X3 size="lg"/>
+            <span id="cardView"><p>GRID</p><p>VIEW</p></span>
+            </button>}
+
+          {!clustersTab && active.currentTab === 'clustersTab' && <button id="currentClusterViewCard">
+            <CgCardSpades size="lg"/>
+            <span id="cardView"><p>CARD</p><p>VIEW</p></span>
+            </button>}
+          {!clustersTab && active.currentTab === 'clustersTab' && <button id="changeClusterViewGrid" onClick={ () => changeTab(!clustersTab) }>
+            <BsGrid3X3 size="lg"/>
+            <span id="cardView"><p>GRID</p><p>VIEW</p></span>
+            </button>}
+        </div>
+
+
         <React.Fragment>
-          { active.currentTab === 'clustersTab' && <ClustersCardsContainer/> }
-          { active.currentTab === 'clustersTab' && <ClustersContainer/> }
+          { active.currentTab === 'clustersTab' && !clustersTab && <ClustersCardsContainer/> }
+          { active.currentTab === 'clustersTab' && clustersTab && <ClustersContainer/> }
+
           { active.currentTab === 'resourcesTab' && <ResourcesContainer/> }
+
           { active.currentTab === 'controlPlaneTab' && <ControlPlaneAPI /> }
           { active.currentTab === 'controlPlaneTab' && <ControlPlaneScheduler /> }
           { active.currentTab === 'controlPlaneTab' && <ControllerManager /> }
@@ -113,6 +162,7 @@ const MainPage = () => {
       </div>
     </div>
   );
+
 };
 
 export default MainPage;
