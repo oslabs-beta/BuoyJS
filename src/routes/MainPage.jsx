@@ -11,10 +11,11 @@ import ControllerManager from '../containers/control_plane/ControllerManager.jsx
 import { CgCardSpades } from 'react-icons/cg';
 import { BsGrid3X3 } from 'react-icons/bs';
 
-import { AiFillCloseCircle } from 'react-icons/ai';
-import { BsArrowUpRightCircleFill } from 'react-icons/bs';
-import { AiOutlineMinusCircle } from 'react-icons/ai';
+// import { AiFillCloseCircle } from 'react-icons/ai';
+// import { BsArrowUpRightCircleFill } from 'react-icons/bs';
+// import { AiOutlineMinusCircle } from 'react-icons/ai';
 import { BsFillCircleFill } from 'react-icons/bs';
+import { ipcRenderer } from 'electron';
 
 const MainPage = () => {
 
@@ -57,9 +58,9 @@ const MainPage = () => {
     
   }
 
-  // const closeApp = () => {
-  //   ipcRenderer.send("close-app", true);
-  // }
+  const closeApp = () => {
+    ipcRenderer.send("close-app", true);
+  }
 
   useEffect( () => { onTabClick() }, [ active ]);
 
