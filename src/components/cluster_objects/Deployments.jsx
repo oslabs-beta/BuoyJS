@@ -16,7 +16,8 @@ const Deployments = (props) => {
                 return namespace.deployments.map( (deployment, idx) => {
                   return (
                     <div key={`${deployment.name}${idx}`} className="deployment-item">
-                    <span id="deplname">{deployment.name}</span><span id="deplrepl">Replicas: {deployment.replicas}</span>
+                    <span id="deplname">{deployment.name}</span>
+                    <span id="deplrepl">Replicas: {deployment.replicas}</span>
                     </div>
                   )
                 })

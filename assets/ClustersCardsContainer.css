@@ -22,6 +22,15 @@
   box-shadow: rgba(148, 176, 200, 0.15) 0px 2px 8px;
 }
 
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBox.active{
+  position: fixed;
+  z-index: 100;
+  height: 80%;
+  width: 80%;
+
+  box-shadow: rgba(148, 176, 200, 0.15) 0px 2px 8px;
+}
+
 .clustersCardsContainer .clustersCardsContentCx .namespaceCardBox .nsCardFrontBox {
   position: absolute;
   top: 0;
@@ -68,11 +77,14 @@
   opacity: 0;
 }
 
-.clustersCardsContainer .clustersCardsContentCx .namespaceCardBox .nsCardBackBox .nsCardBackButtonCx {
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBox .nsCardBackBox .nsCardBackButtonCx,
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBox .nsCardExpandedBox .nsCardBackButtonCx
+{
   text-align: right;
 }
 
-.clustersCardsContainer .clustersCardsContentCx .namespaceCardBox .nsCardBackBox .nsCardBackMaximize {
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBox .nsCardBackBox .nsCardBackMaximize,
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBox .nsCardExpandedBox, .nsCardBackMaximize {
   all: unset;
   color: #C4D8EC;
 }
@@ -90,7 +102,6 @@
   font-size: 1.2rem;
 }
 
-
 .clustersCardsContainer .clustersCardsContentCx .namespaceCardBox .nsCardBackBox:hover
 {
   opacity: 1;
@@ -105,4 +116,101 @@
   height: 12rem;
   display: inline-block;
   margin: auto;
+}
+
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBox .nsCardExpandedBox
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  justify-content: flex-start;
+  z-index: 1000;
+
+  background-color: #3D3337;
+  color: #C4D8EC;
+  letter-spacing: 1px;
+
+  overflow: scroll;
+}
+.dimmer {
+  z-index: -100;
+}
+.dimmer.active{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0, 0.6);  ;
+}
+
+.nsCardExpandedContent {
+  display: flex;
+}
+
+.objectCardExpandHeader {
+  color: #6AA5E0;
+  font-weight: 800;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.objectsCardInfoCx {
+  width: 100%
+}
+
+.objectCardInfo {
+  
+  background-color: #224960;
+  color: #C4D8EC;
+
+  padding: 0.5rem;
+  position: absolute;
+  z-index: -100;
+  opacity: 0;
+}
+
+.objectCardName {
+  text-align: left;
+  font-weight: 200;
+  margin: 8px;
+}
+
+.objectCardName:hover {
+  font-weight: 500;
+  color: #9EF3EB
+}
+
+.objectCardInfo.active {
+  opacity: 1;
+  z-index: 100;
+}
+.objectCardInfo ul {
+  list-style: none;
+  text-align: left;
+}
+
+.deplsCardInfoCx,
+.podsCardInfoCx,
+.servicesCardInfoCx
+{
+  width: 100%;
+}
+
+.objectCardInfoProp{
+  font-weight: 200;
+  font-size: 80%;
+  color: #C4D8EC;
+}
+
+.objectCardInfoAttr {
+  font-weight: 400;
+  font-size: 90%;
+  color: #E7C29A;
 }
