@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DeploymentsCard from './DeploymentsCard.jsx';
 import PodsCard from './PodsCard.jsx';
 import ServicesCard from './ServicesCard.jsx';
+import nsAnimation from '../../../assets/icons/namespace.json';
+import lottie from 'lottie-web';
 
 const NamespaceCard = (props) => {
 
@@ -22,6 +24,18 @@ const NamespaceCard = (props) => {
   }
 
   const NsFrontBack = () => {
+    
+    useEffect( () => {
+      lottie.loadAnimation(
+        {
+          container: document.getElementById(`${props.namespace.name}`),
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          animationData: nsAnimation
+        });
+    }, []);
+
     return (
     <React.Fragment>
       <div className="nsCardFrontBox">
@@ -38,6 +52,7 @@ const NamespaceCard = (props) => {
           onMaximizeButtonClick(event);
         }}>
         <i className="fa-solid fa-window-maximize"></i></button></div>
+        <div id={`${props.namespace.name}`}className='nsAnimation'></div>
         <ul>
           <li><span className="nsBackAttribute">Name: </span><span className="nsBackValue">{props.namespace.name}</span></li>
           <li><span className="nsBackAttribute">Status: </span><span className="nsBackValue">{props.namespace.status}</span></li>
@@ -59,7 +74,8 @@ const NamespaceCard = (props) => {
             onClick={ (event) => {
               (active) ? setActive(false) : setActive(true);
               onMaximizeButtonClick(event);
-            }}><i className="fa-solid fa-window-maximize"></i></button>
+            }}>
+            <i className="fa-solid fa-window-maximize"></i></button>
         </div>
         <div className="nsCardExpandedContent">
           <DeploymentsCard namespace={props.namespace} />

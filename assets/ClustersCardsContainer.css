@@ -96,6 +96,11 @@
   cursor: pointer;
 }
 
+.nsAnimation {
+  width: 100%;
+  height: 40%;
+}
+
 .clustersCardsContainer .clustersCardsContentCx .namespaceCardBox .nsCardBackBox .nsBackAttribute {
   color: black;
   text-transform: uppercase;
