@@ -21,26 +21,81 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  background-color: #34292A;
+  border: 1px solid gray;
+  /* border-radius: 1em; */
+  box-shadow: 3px 3px 8px 3px gray;
+  margin: 2em;
+  color: #C4D8EC;
+}
+
+.ClustersContainer2 {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #C4D8EC;
+  border-radius: 0.2em;
+  margin: 0.5em;
 }
 
 .PrimaryClusterObjectsHeader {
   display: flex;
-  border: 1px solid black;
-  border-radius: 0.5em;
-  justify-content: center;
+  /* border: 1px solid black; */
+  /* border-radius: 0.5em; */
+  justify-content: flex-start;
   align-items: center;
   font-size: x-large;
   font-weight: bold;
   font-variant-caps: small-caps;
+  margin: 0.5em;
+}
+
+#namespaceOpen, #namespaceClose {
+  margin-top: 15px;
+}
+
+.NamespaceTitle {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+.arrow {
+  background: none;
+  border: none;
+  color: #C4D8EC;
+  margin: 0.5em;
+}
+
+.arrow:hover {
+  filter: invert(25%);
+  cursor: pointer;
+  /* color: #34292A; */
+  /* border-color: #C4D8EC; */
+}
+
+.expandAll {
+  margin: 2em;
+  background: #C4D8EC;
+  color: #34292A;
+  border: none;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  box-shadow: 2px 2px 6px 2px black;
+}
+
+.expandAll:hover {
+  background: #34292A;
+  color: #C4D8EC;
+  cursor: pointer;
 }
 
 .NamespaceContainer {
   display: flex;
-  border: 1px solid black;
-  border-radius: 0.5em;
+  /* border: 1px solid black; */
+  /* border-radius: 0.5em; */
+  width: 100%;
   flex-direction: column;
-  align-items: center;
-  padding: 2em;
+  padding: 1em;
 }
 
 .ClusterObjectsContainer {
@@ -50,8 +105,7 @@
 
 .ClusterObjectsHeader {
   display: flex;
-  justify-content: center;
-  align-self: flex-start;
+  align-items: center;
   font-weight: bold;
   font-variant-caps: small-caps;
 }
@@ -59,35 +113,50 @@
 .ClusterObjects {
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+
+.NamelessContainer {
+  display: flex;
+  flex-direction: column;
 }
 
 .namespace-item {
   display: flex;
-  flex-direction: column;
   font-size: large;
+  width: 100%;
+  justify-content: space-between;
   align-items: center;
 }
 
 #name {
-  color: steelblue;
   font-size: x-large;
   font-variant-caps: all-small-caps;
   font-weight: bold;
   margin: 0;
 }
 
+.List {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2em;
+}
+
 #Active {
+  display: flex;
   font-style: oblique;
   font-size: small;
-  color: rgb(118, 181, 131);
+  color: #75B2BF;
   margin: 0;
 }
 
-
-.deployment-item, .pod-item, .service-item {
+.deployment-item, .pod-item {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
+}
+
+.service-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .api-resources-container {
@@ -114,3 +183,5 @@
 
   overflow: scroll
 }
+
+

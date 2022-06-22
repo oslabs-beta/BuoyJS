@@ -98,12 +98,12 @@ const MainPage = () => {
           > 
             <i className="fa-solid fa-triangle-exclamation fa-2x"></i>
           </button>
-          
+        
         </div>
 
         <React.Fragment>
-          { active.currentTab === 'clustersTab' && <ClustersCardsContainer/> }
-          { /* active.currentTab === 'clustersTab' && <ClustersContainer/> */ }
+          {/* { active.currentTab === 'clustersTab' && <ClustersCardsContainer/> } */}
+          { active.currentTab === 'clustersTab' && <ClustersContainer/> }
           { active.currentTab === 'resourcesTab' && <ResourcesContainer/> }
           { active.currentTab === 'controlPlaneTab' && <ControlPlaneAPI /> }
           { active.currentTab === 'controlPlaneTab' && <ControlPlaneScheduler /> }
