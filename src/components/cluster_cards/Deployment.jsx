@@ -18,7 +18,7 @@ const Deployment = (props) => {
       <div className="objectCardInfo">
         <ul>
           <li>
-            <span className="objectCardInfoProp">Replicas:</span> 
+            <span className="objectCardInfoProp">Replicas: </span> 
             <span className="objectCardInfoAttr">{ props.replicas }</span></li>
         </ul>
       </div>
