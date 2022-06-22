@@ -7,9 +7,9 @@ import Namespaces from '../components/cluster_objects/Namespaces.jsx';
 const ClustersContainer = () => {
   return (
     <div className="clusterContainer">
-      <div className="ApdexHeaderBox">
-        <h1>Apdex Score</h1>
-      </div>
+      {/* <div className="ApdexHeaderBox"> */}
+        {/* <h1>Apdex Score</h1> */}
+      {/* </div> */}
       <Namespaces />
       <ApiResources />
     </div>
