@@ -24,28 +24,32 @@
 .TopMenuButtons {
   display: flex;
   margin-left: 0.5em;
-  margin-top: 0.3em;
+  margin-top: 0.5em;
   align-items: center;
-  gap: 0.3em;
+  gap: 0.4em;
 }
 
 #closeAppButton, #minimizeAppButton, #maximizeAppButton {
-  background: none;
+  background: rgb(40, 40, 40);
+  border-radius: 0.6em;
   border: none;
-  height: 12px;
-  width: 12px;
+  height: 14px;
+  width: 14px;
   color: rgb(40, 40, 40);
 }
 
 #closeAppButton:hover {
+  background: none;
   color: rgb(185, 49, 49);
 }
 
 #minimizeAppButton:hover {
+  background: none;
   color: rgb(236, 236, 35);
 }
 
 #maximizeAppButton:hover {
+  background: none;
   color: rgb(49, 185, 58)
 }
 
@@ -68,6 +72,7 @@
   background: none;
   border: none;
   height: 3em;
+  color: rgb(146, 146, 146);
 }
 
 #changeClusterViewGrid {
@@ -75,24 +80,25 @@
   background: none;
   border: none;
   height: 2.8em;
+  color: rgb(146, 146, 146);
 }
 
 #currentClusterViewCard {
   background: none;
   border: none;
   height: 3em;
-  color: rgb(203, 229, 237)
+  color: rgb(203, 229, 237);
 }
 
 #currentClusterViewGrid {
   background: none;
   border: none;
   height: 2.8em;
-  color: rgb(203, 229, 237)
+  color: rgb(203, 229, 237);
 }
 
 #changeClusterViewCard:hover, #changeClusterViewGrid:hover, #currentClusterViewCard:hover, #currentClusterViewGrid:hover {
-  filter: invert(15%);
+  filter: invert(50%);
   cursor: pointer;
 }
 
@@ -101,7 +107,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-
+  z-index: 4;
   position: fixed;
   top: 40%;
   

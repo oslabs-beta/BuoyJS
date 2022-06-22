@@ -11,10 +11,10 @@ import ControllerManager from '../containers/control_plane/ControllerManager.jsx
 import { CgCardSpades } from 'react-icons/cg';
 import { BsGrid3X3 } from 'react-icons/bs';
 
-// import { AiFillCloseCircle } from 'react-icons/ai';
-// import { BsArrowUpRightCircleFill } from 'react-icons/bs';
-// import { AiOutlineMinusCircle } from 'react-icons/ai';
-import { BsFillCircleFill } from 'react-icons/bs';
+import { AiFillCloseCircle } from 'react-icons/ai';
+import { BsArrowUpRightCircleFill } from 'react-icons/bs';
+import { AiOutlineMinusCircle } from 'react-icons/ai';
+// import { BsFillCircleFill } from 'react-icons/bs';
 import { ipcRenderer } from 'electron';
 
 const MainPage = () => {
@@ -24,12 +24,12 @@ const MainPage = () => {
   function toggleMenuOn() {
     const menu = document.querySelector('.menuTabs');
     menu.classList.add('active');
-  }
+  };
 
   function toggleMenuOff() {
     const menu = document.querySelector('.menuTabs');
     menu.classList.remove('active');
-  }
+  };
 
   function toggleMenuNameOn(event) {
     const nameMapping = {
@@ -42,12 +42,12 @@ const MainPage = () => {
     const spanText = document.createElement('span');
     spanText.innerHTML = nameMapping[event.currentTarget.id];
     tab.appendChild(spanText);
-  }
+  };
 
   function toggleMenuNameOff(event) {
     const tab = document.getElementById(event.currentTarget.id);
     tab.removeChild(tab.lastChild);
-  }
+  };
 
   function onTabClick() {
     const prevTab = document.getElementById(active.prevTab);
@@ -56,11 +56,19 @@ const MainPage = () => {
     prevTab.classList.toggle('active');
     currentTab.classList.toggle('active');
     
-  }
+  };
 
   const closeApp = () => {
-    ipcRenderer.send("close-app", true);
-  }
+    ipcRenderer.send('close-app');
+  };
+
+  const minimizeApp = () => {
+    ipcRenderer.send('minimize-app');
+  };
+
+  const maximizeApp = () => {
+    ipcRenderer.send('maximize-app');
+  };
 
   useEffect( () => { onTabClick() }, [ active ]);
 
@@ -120,9 +128,9 @@ const MainPage = () => {
 
           <div className="TopMenuButtons">
 
-            <button id="closeAppButton"><BsFillCircleFill size="lg"/></button>
-            <button id="minimizeAppButton"><BsFillCircleFill size="lg"/></button>
-            <button id="maximizeAppButton"><BsFillCircleFill size="lg"/></button>
+            <button id="closeAppButton" onClick={() => closeApp()}><AiFillCloseCircle size="lg"/></button>
+            <button id="minimizeAppButton" onClick={() => minimizeApp()}><AiOutlineMinusCircle size="lg"/></button>
+            <button id="maximizeAppButton" onClick={() => maximizeApp()}><BsArrowUpRightCircleFill size="lg"/></button>
 
           </div>
           {/* <p id="BuoyNameTopMenu"> Buoy </p> */}

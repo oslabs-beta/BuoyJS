@@ -2,6 +2,7 @@ const path = require('path')
 const url = require('url')
 const { app, BrowserWindow } = require('electron')
 const KubeClient = require('./kubeclient/kubeClient')
+const { ipcMain } = require('electron');
 
 let mainWindow
 
@@ -79,6 +80,17 @@ function createMainWindow() {
 
 	mainWindow.on('closed', () => (mainWindow = null))
 }
+ipcMain.on('close-app', (evt, arg) => {
+	app.quit()
+});
+
+ipcMain.on('minimize-app', (evt, arg) => {
+	mainWindow.minimize();
+});
+
+ipcMain.on('maximize-app', (evt, arg) => {
+	mainWindow.maximize();
+});
 
 app.on('ready', createMainWindow)
 
