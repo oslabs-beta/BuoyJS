@@ -1,0 +1,33 @@
+.AppHeader {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  align-items: center;
+  background-color: #75B2BF;
+  color: #34292A;
+  padding: 0.5em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+
+}
+
+#namespace-table {
+  border: 1px solid #34292A;
+}
+
+tr {
+
+}
+
+th, td {
+  padding: 1em;
+  border: 1px solid #34292A;
+}
+
+td {
+  text-align: center;
+}
+
+#table-title {
+  font-size: small;
+}

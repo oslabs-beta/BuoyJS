@@ -116,8 +116,3 @@ const MainPage = () => {
 };
 
 export default MainPage;
-
-/*
-<button
-            
-          */
