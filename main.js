@@ -19,6 +19,8 @@ function createMainWindow() {
 		width: 1100,
 		height: 800,
 		show: false,
+		autoHideMenuBar: true,
+		frame: false,
 		webPreferences: {
 		
 			nodeIntegration: true,
