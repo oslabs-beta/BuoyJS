@@ -25,6 +25,7 @@
 
   font-weight: 900;
   color: #34292A;
+  z-index: 1000;
 }
 
 .toggleMenu:hover {
@@ -40,6 +41,7 @@
   
   min-width: 2.5rem;
   left: -100%;
+  z-index: 1000;
 }
 
 .menuTabs.active {

@@ -6,6 +6,10 @@
   font-family: 'Noto Sans', sans-serif;
 }
 
+body {
+  background-color: #224960;
+}
+
 /*
 html, body {
   height: 100%;
