@@ -1,0 +1,63 @@
+.AppHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #75B2BF;
+  color: #34292A;
+  padding: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+
+}
+
+#overview {
+  font-variant-caps: small-caps;
+  font-weight: bold;
+}
+
+td {
+  padding: 0.5em;
+  background-color: #C4D8EC;
+  min-width: 2em;
+  max-width: 8em;
+  text-align: center;
+}
+
+#objectcount {
+  font-size: large;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  margin: 0.5em;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  background-color: #34292A;
+  color: #C4D8EC;
+  font-size: small;
+}
+
+#leftTT {
+  top: 105%;
+  right: 105%;
+}
+
+#centerTT {
+  top: 105%;
+  right: 105%;
+}
+
+#rightTT {
+  top: 105%;
+  left: 105%;
+}
