@@ -18,10 +18,10 @@ const Pod = (props) => {
       <div className="objectCardInfo">
         <ul>
             <li>
-              <span className="objectCardInfoProp">Status:</span>
+              <span className="objectCardInfoProp">Status: </span>
               <span className="objectCardInfoAttr">{ props.status }</span></li>
             <li>
-              <span className="objectCardInfoProp">IP:</span> 
+              <span className="objectCardInfoProp">IP: </span> 
               <span className="objectCardInfoAttr">{ props.podIP }</span></li>
         </ul>
       </div>

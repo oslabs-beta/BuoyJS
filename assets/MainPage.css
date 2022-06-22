@@ -16,20 +16,20 @@
   position: fixed;
   top: 40%;
   
-  background-color: #C4D8EC;
-  border: 0.1rem #C4D8EC solid;
+  background-color: #F7FAF7;
+  border: 0.1rem F7FAF7 solid;
   border-radius: 0.5rem;
 
   height: 20%;
   width: 0.5rem; 
 
   font-weight: 900;
-  color: #34292A;
+  color: #252CA0;
   z-index: 1000;
 }
 
 .toggleMenu:hover {
-  color: #C4D8EC;
+  color: #F7FAF7;
 }
 
 .menuTabs {
@@ -61,22 +61,22 @@
   width: 2.5rem;
   padding: 4px;
 
-  background: #C4D8EC;
-  color: #34292A;
+  background: #F7FAF7;
+  color: #252CA0;
 }
 
 .menuTabs .menuTab:hover {
-  background: #34292A;
-  color: #C4D8EC;
+  background: #252CA0;
+  color: #F7FAF7;
   width: 100%;
 }
 
 .menuTabs .menuTab.active {
-  color: #75B2BF;
-  background: #34292A;
+  color: #F7FAF7;
+  background: #252CA0;
 }
 
 .menuTabs .menuTab.active:hover {
-  color: #75B2BF;
-  background: #34292A;
+  color: #F7FAF7;
+  background: #252CA0;
 }
