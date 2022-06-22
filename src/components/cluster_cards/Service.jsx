@@ -32,15 +32,15 @@ const Service = (props) => {
       <div className="objectCardInfo">
         <ul>
           <li>
-            <span className="objectCardInfoProp">Type:</span>
+            <span className="objectCardInfoProp">Type: </span>
             <span className="objectCardInfoAttr">{ props.type }</span>
           </li>
           <li>
-            <span className="objectCardInfoProp">IP:</span>
+            <span className="objectCardInfoProp">IP: </span>
             <span className="objectCardInfoAttr">{ props.clusterIP }</span>
           </li>
           <li>
-            <span className="objectCardInfoProp">Ports:</span>
+            <span className="objectCardInfoProp">Ports: </span>
             <span className="objectCardInfoAttr">
               { props.ports.map( (portInfo) => {
                 return (
