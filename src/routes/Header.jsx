@@ -30,18 +30,22 @@ const Header = () => {
 
   return (
     <div className="AppHeader">
-      <p>Namespaces Overview: </p>
+      <h1 id="overview">Namespace</h1>
       <table id="namespace-table">
-        <tr id ="table-title">
-          <th>Total objects</th>
-          <th>Assigned to namespace</th>
-          <th>Unassigned</th>
-        </tr>
         <tbody>
           <tr id = "table-counts">
-            <td>{objectCount}</td>
-            <td>{remainderCount}</td>
-            <td>{nullCount}</td>
+            <td className="tooltip">
+              {remainderCount}
+              <span className="tooltiptext" id="leftTT">Objects assigned to namespace</span>
+            </td>
+            <td className="tooltip" id="objectcount">
+              <strong>{objectCount}</strong>
+              <span className="tooltiptext" id="centerTT">Total objects</span>
+            </td>
+            <td className="tooltip">
+              {nullCount}
+              <span className="tooltiptext" id="rightTT">Unassigned objects</span>
+            </td>
           </tr>
         </tbody>
       </table>
