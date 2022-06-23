@@ -8,14 +8,14 @@ import { loadKubeClientData } from '../controllers/loadKubeClientData';
 import Frame from './routes/Frame.jsx';
 import HomePage from './routes/HomePage.jsx';
 import MainPage from './routes/MainPage.jsx';
-import Header from './routes/Header.jsx';
 
 // imports css 
 import '../assets/Frame.css';
 import '../assets/HomePage.css';
 import '../assets/MainPage.css';
 import '../assets/resources.css';
-import '../assets/ClusterContainer.css';
+import '../assets/ClustersContainer.css';
+import '../assets/ClusterDetailsContainer.css';
 import '../assets/ClustersCardsContainer.css'
 import '../assets/ControlPlaneAPI.css';
 import '../assets/ControlPlaneScheduler.css';
@@ -38,7 +38,6 @@ const App = () => {
 			<Frame />
 			{/* <Route path="/" element={<HomePage />} /> */}
 			{/* <Route path="resources" element={<SecondPage />} /> */}
-			<Header />
 			<MainPage />
 			{/* <HomePage /> */}
 		</div>

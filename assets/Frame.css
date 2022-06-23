@@ -3,6 +3,11 @@
 {
   width: 100;
   opacity: 0;
+  padding: 0.4rem;
+}
+.frameSeparator {
+  padding: 0;
+  margin: 0;
 }
 .frameBar {
   position: fixed;
@@ -27,16 +32,24 @@
   font-size: 0.8em;
 }
 
+.frameBar .frameButtons {
+  display: flex;
+}
+
+.frameBar .frameButtonCx
+{
+  z-index: 1000;
+}
+
 .frameBar .frameButtons #closeAppButton,
 .frameBar .frameButtons #minimizeAppButton,
 .frameBar .frameButtons #maximizeAppButton
 {
-  border-radius: 0.6em;
-  border: none;
+  all: unset;
   height: 14px;
   width: 14px;
-  margin: 0.15rem;
   background: (none);
+  margin: 0.15em;
 
   -webkit-app-region: no-drag;
 }

@@ -1,0 +1,61 @@
+.clustersContentCx {
+  margin: 0;
+  padding: 0;
+}
+.clusterTabButtons {
+  display: flex;
+  justify-content: center;
+}
+
+#changeClusterViewBtn {
+  all: unset;
+  color: rgb(146, 146, 146);
+}
+
+#changeClusterViewBtn:hover {
+  all: unset;
+  color: #3FBCEB;
+}
+
+/*
+
+#cardView {
+  display: flex;
+  gap: 0.3em;
+}
+
+#changeClusterViewCard {
+  justify-content: center;
+  background: none;
+  border: none;
+  height: 3em;
+  color: rgb(146, 146, 146);
+}
+
+#changeClusterViewGrid {
+  justify-content: center;
+  background: none;
+  border: none;
+  height: 2.8em;
+  color: rgb(146, 146, 146);
+}
+
+#currentClusterViewCard {
+  background: none;
+  border: none;
+  height: 3em;
+  color: rgb(203, 229, 237);
+}
+
+#currentClusterViewGrid {
+  background: none;
+  border: none;
+  height: 2.8em;
+  color: rgb(203, 229, 237);
+}
+
+#changeClusterViewCard:hover, #changeClusterViewGrid:hover, #currentClusterViewCard:hover, #currentClusterViewGrid:hover {
+  filter: invert(50%);
+  cursor: pointer;
+}
+*/

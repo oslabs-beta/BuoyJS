@@ -7,54 +7,6 @@
   flex-direction: column;
   width: 100%;
 }
-.clusterTabButtons {
-  display: flex;
-  width: 30%;
-  align-self: center;
-  justify-content: center;
-  gap: 11.5em;
-  margin-top: 0.3em;
-}
-
-#cardView {
-  display: flex;
-  gap: 0.3em;
-}
-
-#changeClusterViewCard {
-  justify-content: center;
-  background: none;
-  border: none;
-  height: 3em;
-  color: rgb(146, 146, 146);
-}
-
-#changeClusterViewGrid {
-  justify-content: center;
-  background: none;
-  border: none;
-  height: 2.8em;
-  color: rgb(146, 146, 146);
-}
-
-#currentClusterViewCard {
-  background: none;
-  border: none;
-  height: 3em;
-  color: rgb(203, 229, 237);
-}
-
-#currentClusterViewGrid {
-  background: none;
-  border: none;
-  height: 2.8em;
-  color: rgb(203, 229, 237);
-}
-
-#changeClusterViewCard:hover, #changeClusterViewGrid:hover, #currentClusterViewCard:hover, #currentClusterViewGrid:hover {
-  filter: invert(50%);
-  cursor: pointer;
-}
 
 .toggleMenu {
 

@@ -32,25 +32,40 @@ const Frame = () => {
     </div>
     <div className="frameBar">
       <div className="frameTitle">Buoy</div>
-      <div className="frameButtons"
-          onMouseEnter={ () => { setActive(true); console.log(active); }}
-          onMouseLeave={ () => { setActive(false); console.log(active); }}
-      >
-        <button 
-          id="closeAppButton" 
-          onClick={() => closeApp()}>
-          {active ? <AiFillCloseCircle /> : <GiPlainCircle />}
-        </button>
-        <button 
-          id="minimizeAppButton" 
-          onClick={() => minimizeApp()}>
-          {active ? <AiFillMinusCircle /> : <GiPlainCircle />}
-        </button>
-        <button 
-          id="maximizeAppButton"
-          onClick={() => maximizeApp()}>
-          {active ? <BsArrowUpRightCircleFill /> : <GiPlainCircle />}
-        </button>
+      <div className="frameButtons">
+        <div className="frameButtonCx"
+          onMouseEnter={ () => { setActive(true); }}
+          onMouseLeave={ () => { setActive(false); }}
+        >
+          <button 
+            id="closeAppButton" 
+            onClick={() => closeApp()}
+          >
+            {active ? <AiFillCloseCircle /> : <GiPlainCircle />}
+          </button>
+        </div>
+        <div className="frameButtonCx"
+          onMouseEnter={ () => { setActive(true); }}
+          onMouseLeave={ () => { setActive(false); }}
+        >
+          <button 
+            id="minimizeAppButton" 
+            onClick={() => minimizeApp()}
+          >
+            {active ? <AiFillMinusCircle /> : <GiPlainCircle />}
+          </button>
+        </div>
+        <div className="frameButtonCx"
+          onMouseEnter={ () => { setActive(true); }}
+          onMouseLeave={ () => { setActive(false); }}
+        >
+          <button 
+            id="maximizeAppButton"
+            onClick={() => maximizeApp()}
+          >
+            {active ? <BsArrowUpRightCircleFill /> : <GiPlainCircle />}
+          </button>
+        </div>
       </div>
     </div>
   </React.Fragment>
