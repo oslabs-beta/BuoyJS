@@ -7,10 +7,6 @@ const ClustersCardsContainer = () => {
 
   return (
     <div className="clustersCardsContainer">
-      clustersCardsContainer
-      <div>
-        <div>Current Namespaces: { useSelector(selectNamespaces).length - 1 }</div>
-      </div>
       <div className="clustersCardsContentCx">
         { useSelector(selectNamespaces).map(namespace => {
           return <NamespaceCard key={namespace.name} namespace={namespace} />

@@ -6,15 +6,21 @@
   font-family: 'Noto Sans', sans-serif;
 }
 
+body {
+  background-color: #03021E;
+}
+
 /*
 html, body {
   height: 100%;
 }
-/*
+*/
+
 .App {
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -23,4 +29,3 @@ root {
   width: 100%;
   height: 100%;
 }
-*/
