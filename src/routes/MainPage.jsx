@@ -11,11 +11,6 @@ import ControllerManager from '../containers/control_plane/ControllerManager.jsx
 import { CgCardSpades } from 'react-icons/cg';
 import { BsGrid3X3 } from 'react-icons/bs';
 
-import { AiFillCloseCircle } from 'react-icons/ai';
-import { BsArrowUpRightCircleFill } from 'react-icons/bs';
-import { AiOutlineMinusCircle } from 'react-icons/ai';
-// import { BsFillCircleFill } from 'react-icons/bs';
-import { ipcRenderer } from 'electron';
 
 const MainPage = () => {
 
@@ -56,18 +51,6 @@ const MainPage = () => {
     prevTab.classList.toggle('active');
     currentTab.classList.toggle('active');
     
-  };
-
-  const closeApp = () => {
-    ipcRenderer.send('close-app');
-  };
-
-  const minimizeApp = () => {
-    ipcRenderer.send('minimize-app');
-  };
-
-  const maximizeApp = () => {
-    ipcRenderer.send('maximize-app');
   };
 
   useEffect( () => { onTabClick() }, [ active ]);
@@ -124,17 +107,6 @@ const MainPage = () => {
         
         </div>
 
-        <div className="newTopMenuBar">
-
-          <div className="TopMenuButtons">
-
-            <button id="closeAppButton" onClick={() => closeApp()}><AiFillCloseCircle size="lg"/></button>
-            <button id="minimizeAppButton" onClick={() => minimizeApp()}><AiOutlineMinusCircle size="lg"/></button>
-            <button id="maximizeAppButton" onClick={() => maximizeApp()}><BsArrowUpRightCircleFill size="lg"/></button>
-
-          </div>
-          {/* <p id="BuoyNameTopMenu"> Buoy </p> */}
-        </div>
 
         <div className="clusterTabButtons">
           {clustersTab && active.currentTab === 'clustersTab' && <button id="changeClusterViewCard" onClick={ () => changeTab(!clustersTab) }>

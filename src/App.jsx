@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
-
-// import pages
-// import ClustersPage from './routes/ClustersPage.jsx';
-import HomePage from './routes/HomePage.jsx';
-import MainPage from './routes/MainPage.jsx';
-import Header from './routes/Header.jsx';
-
 import { Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loadKubeClientData } from '../controllers/loadKubeClientData';
 
+// import pages
+// import ClustersPage from './routes/ClustersPage.jsx';
+import Frame from './routes/Frame.jsx';
+import HomePage from './routes/HomePage.jsx';
+import MainPage from './routes/MainPage.jsx';
+import Header from './routes/Header.jsx';
 
 // imports css 
+import '../assets/Frame.css';
 import '../assets/HomePage.css';
 import '../assets/MainPage.css';
 import '../assets/resources.css';
@@ -35,11 +35,12 @@ const App = () => {
 	return (
 		
 		<div className="App">
-					{/* <Route path="/" element={<HomePage />} /> */}
-					{/* <Route path="resources" element={<SecondPage />} /> */}
-					<Header />
-					<MainPage />
-					{/* <HomePage /> */}
+			<Frame />
+			{/* <Route path="/" element={<HomePage />} /> */}
+			{/* <Route path="resources" element={<SecondPage />} /> */}
+			<Header />
+			<MainPage />
+			{/* <HomePage /> */}
 		</div>
 	);
 };
