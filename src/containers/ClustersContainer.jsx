@@ -1,17 +1,25 @@
-import React from 'react';
-import ApiResources from '../components/cluster_objects/ApiResources.jsx';
-import Namespaces from '../components/cluster_objects/Namespaces.jsx';
-
-// import { ipcRenderer } from 'electron';
+import React, { useState } from 'react'
+import ClustersCardsContainer from '../containers/ClustersCardsContainers.jsx';
+import ClustersDetailsContainer from '../containers/ClustersDetailsContainer.jsx';
+import Header from '../components/Header.jsx';
+import { AiFillCodeSandboxCircle } from 'react-icons/ai';
+import { BsFillFilterCircleFill } from 'react-icons/bs';
 
 const ClustersContainer = () => {
+
+  const [ clustersTab, changeTab ] = useState(false);
+
   return (
-    <div className="clusterContainer">
-      {/* <div className="ApdexHeaderBox"> */}
-        {/* <h1>Apdex Score</h1> */}
-      {/* </div> */}
-      <Namespaces />
-      <ApiResources />
+    <div className="clustersContentCx">
+      <Header />
+      <div className="clusterTabButtons">
+        <button id="changeClusterViewBtn" onClick={ () => changeTab(!clustersTab) }>
+          { clustersTab ? <AiFillCodeSandboxCircle size="1.2em"/> : <BsFillFilterCircleFill size="1.2em" />}
+        </button>
+      </div>
+
+      { !clustersTab && <ClustersCardsContainer/>}
+      { clustersTab && <ClustersDetailsContainer/>}
     </div>
   );
 }

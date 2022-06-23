@@ -1,7 +1,6 @@
 .clustersCardsContainer {
   width: 100%;
-  padding: 2em;
-  
+  padding: 1em 2em 2em 2em;
 }
 .clustersCardsContainer .clustersCardsContentCx{
 
@@ -27,6 +26,7 @@
   z-index: 100;
   height: 80%;
   width: 80%;
+  margin-top: -8em;
   transition: 0.5s;
   box-shadow: rgba(148, 176, 200, 0.15) 0px 2px 8px;
 }
@@ -96,6 +96,11 @@
   cursor: pointer;
 }
 
+.nsAnimation {
+  width: 100%;
+  height: 40%;
+}
+
 .clustersCardsContainer .clustersCardsContentCx .namespaceCardBox .nsCardBackBox .nsBackAttribute {
   color: black;
   text-transform: uppercase;
@@ -147,7 +152,7 @@
   z-index: -100;
 }
 .dimmer.active{
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 100;
