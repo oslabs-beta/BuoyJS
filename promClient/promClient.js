@@ -20,14 +20,15 @@ class PromClient{
    * @param { BrowserWindow } window 
    */
     constructor(window) {
-        /*
+        
         this.cpuQ = (label, value) => {return `100 - (avg by (node) (rate(container_cpu_usage_seconds_total{${label}=${value}}[1m])) * 100)`}
         this.memQ = (label, value) => {return `sum(container_memory_working_set_bytes{${label}="${value}"} / container_memory_usage_bytes{${label}="${value}})`}
-        //this.nginxLatencyQ = (label, value) => {return `controller_upstream_server_response_latency_ms_count[15ms]{${label}=${value}}`}
+        this.nginxLatencyQ = (label, value) => {return `controller_upstream_server_response_latency_ms_count[15ms]{${label}=${value}}`}
+        this.nginxErrorRateQ = (label, value) => {return '100 - (nginx_connections_accepted[5m] / nginx_http_requests_total[5m]) * 100'}
         this.customQueries = {}
         this.endpoint = "https://localhost:9090"
         this.baseUrl = "/api/v1"
-        */
+        
 
         this.window = window;
         
