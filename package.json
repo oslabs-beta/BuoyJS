@@ -7,7 +7,8 @@
     "build": "webpack",
     "client": "webpack serve --mode=development",
     "server": "electron .",
-    "dev": "concurrently \"npm run client\" \"wait-on http://localhost:8080 && npm run server\""
+    "dev": "concurrently \"npm run client\" \"wait-on http://localhost:8080 && npm run server\"",
+    "test": "jest --verbose"
   },
   "repository": {
     "type": "git",
@@ -19,12 +20,22 @@
     "url": "https://github.com/oslabs-beta/NY33Group3/issues"
   },
   "homepage": "https://github.com/oslabs-beta/NY33Group3#readme",
+  "jest": {
+    "testEnvironment": "jest-environment-jsdom",
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-dom/extend-expect"
+    ]
+  },
   "dependencies": {
     "@kubernetes/client-node": "^0.16.3",
     "@reduxjs/toolkit": "^1.8.2",
+    "@testing-library/jest-dom": "^5.15.0",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^13.5.0",
     "concurrently": "^7.2.2",
     "electron": "^19.0.4",
     "electron-packager": "^15.5.1",
+    "jest-environment-jsdom": "^27.3.1",
     "lottie-web": "^5.9.4",
     "path-browserify": "^1.0.1",
     "react": "^18.2.0",
@@ -33,8 +44,10 @@
     "react-redux": "^8.0.2",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
+    "react-test-utils": "^0.0.1",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
+    "regenerator-runtime": "^0.13.9",
     "sass": "^1.52.3",
     "wait-on": "^6.0.1"
   },
@@ -43,12 +56,17 @@
     "@babel/plugin-proposal-class-properties": "^7.17.12",
     "@babel/preset-env": "^7.18.2",
     "@babel/preset-react": "^7.17.12",
+    "babel-jest": "^23.6.0",
     "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.1",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^27.3.1",
+    "jest-puppeteer": "^3.4.0",
+    "react-test-renderer": "^18.2.0",
     "sass-loader": "^13.0.0",
     "style-loader": "^3.3.1",
+    "supertest": "^3.3.0",
     "webpack": "^5.73.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.9.2"
