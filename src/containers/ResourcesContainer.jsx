@@ -20,12 +20,8 @@ const ResourcesContainer = props => {
   //      setApiResources(data);
   //    });
 
-  useEffect(() => {
-		//dispatch(getCpuUsage(testQuery()))
-	}, []);
-
   let cpu;
-  useSelector(selectCpuUsage => cpu = selectCpuUsage.network.CpuUsage)
+  //useSelector(selectCpuUsage => cpu = selectCpuUsage.network.CpuUsage)
 
   return (
     <div className="ResourcesContainer">

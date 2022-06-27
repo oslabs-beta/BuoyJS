@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loadKubeClientData } from '../controllers/loadKubeClientData';
-
+import { loadPromClientData } from '../controllers/loadPromClientData';
 
 // import pages
 // import ClustersPage from './routes/ClustersPage.jsx';
@@ -30,6 +30,7 @@ const App = () => {
 	useEffect(() => {
 
 		loadKubeClientData(dispatch);
+		loadPromClientData(dispatch);
 
 	}, []);
 
