@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 // import containers
-import ClustersCardsContainer from '../containers/ClustersCardsContainers.jsx';
 import ClustersContainer from '../containers/ClustersContainer.jsx';
 import ResourcesContainer from '../containers/ResourcesContainer.jsx';
 import ControlPlaneAPI from '../containers/control_plane/ControlPlaneAPI.jsx';
@@ -15,12 +14,12 @@ const MainPage = () => {
   function toggleMenuOn() {
     const menu = document.querySelector('.menuTabs');
     menu.classList.add('active');
-  }
+  };
 
   function toggleMenuOff() {
     const menu = document.querySelector('.menuTabs');
     menu.classList.remove('active');
-  }
+  };
 
   function toggleMenuNameOn(event) {
     const nameMapping = {
@@ -33,12 +32,12 @@ const MainPage = () => {
     const spanText = document.createElement('span');
     spanText.innerHTML = nameMapping[event.currentTarget.id];
     tab.appendChild(spanText);
-  }
+  };
 
   function toggleMenuNameOff(event) {
     const tab = document.getElementById(event.currentTarget.id);
     tab.removeChild(tab.lastChild);
-  }
+  };
 
   function onTabClick() {
     const prevTab = document.getElementById(active.prevTab);
@@ -47,7 +46,7 @@ const MainPage = () => {
     prevTab.classList.toggle('active');
     currentTab.classList.toggle('active');
     
-  }
+  };
 
   useEffect( () => { onTabClick() }, [ active ]);
 
@@ -98,13 +97,11 @@ const MainPage = () => {
           > 
             <i className="fa-solid fa-triangle-exclamation fa-2x"></i>
           </button>
-          
         </div>
-
         <React.Fragment>
-          { active.currentTab === 'clustersTab' && <ClustersCardsContainer/> }
-          { /* active.currentTab === 'clustersTab' && <ClustersContainer/> */ }
+          { active.currentTab === 'clustersTab' &&  <ClustersContainer /> }
           { active.currentTab === 'resourcesTab' && <ResourcesContainer/> }
+
           { active.currentTab === 'controlPlaneTab' && <ControlPlaneAPI /> }
           { active.currentTab === 'controlPlaneTab' && <ControlPlaneScheduler /> }
           { active.currentTab === 'controlPlaneTab' && <ControllerManager /> }
@@ -117,8 +114,3 @@ const MainPage = () => {
 };
 
 export default MainPage;
-
-/*
-<button
-            
-          */

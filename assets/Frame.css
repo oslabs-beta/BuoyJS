@@ -1,0 +1,70 @@
+.frameSeparator,
+.frameSeparator button
+{
+  width: 100;
+  opacity: 0;
+  padding: 0.4rem;
+}
+.frameSeparator {
+  padding: 0;
+  margin: 0;
+}
+.frameBar {
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  padding: 0.4rem;
+  
+  background-color: #03021E;
+  user-select: none;
+  -webkit-app-region: drag;
+}
+.frameBar .frameTitle {
+  position: absolute;
+  z-index: 100;
+  text-align: center;
+  width: 100%;
+  color: #8284AF;
+
+  font-size: 0.8em;
+}
+
+.frameBar .frameButtons {
+  display: flex;
+}
+
+.frameBar .frameButtonCx
+{
+  z-index: 1000;
+}
+
+.frameBar .frameButtons #closeAppButton,
+.frameBar .frameButtons #minimizeAppButton,
+.frameBar .frameButtons #maximizeAppButton
+{
+  all: unset;
+  height: 14px;
+  width: 14px;
+  background: (none);
+  margin: 0.15em;
+
+  -webkit-app-region: no-drag;
+}
+
+.frameBar .frameButtons #closeAppButton
+{
+  color: #FF605C;
+}
+
+.frameBar .frameButtons #minimizeAppButton
+{
+  color: #FFBD44;
+}
+
+.frameBar .frameButtons #maximizeAppButton
+{
+  color: #00CA4E;
+}
