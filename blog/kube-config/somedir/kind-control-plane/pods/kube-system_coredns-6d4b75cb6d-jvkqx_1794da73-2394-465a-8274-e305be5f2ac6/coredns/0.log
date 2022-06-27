@@ -1,8 +1,0 @@
-2022-06-21T23:02:22.907890431Z stdout F .:53
-2022-06-21T23:02:22.912075959Z stdout F [INFO] plugin/reload: Running configuration MD5 = db32ca3650231d74073ff4cf814959a7
-2022-06-21T23:02:22.912125691Z stdout F CoreDNS-1.8.6
-2022-06-21T23:02:22.912138236Z stdout F linux/amd64, go1.17.1, 13a9191
-2022-06-21T23:23:31.538275203Z stdout F [WARNING] plugin/health: Local health request to "http://:8080/health" took more than 1s: 1.123872283s
-2022-06-21T23:24:51.656166564Z stdout F [WARNING] plugin/health: Local health request to "http://:8080/health" took more than 1s: 1.114272605s
-2022-06-21T23:24:53.968962611Z stdout F [WARNING] plugin/health: Local health request to "http://:8080/health" took more than 1s: 1.423710302s
-2022-06-21T23:39:27.132752373Z stdout F [WARNING] plugin/health: Local health request to "http://:8080/health" took more than 1s: 1.287298839s

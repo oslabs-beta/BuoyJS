@@ -18,7 +18,7 @@ spec:
     - action: labeldrop
       regex: (pod|service|endpoint|namespace)
     scheme: https
-    scrapeTimeout: 30s
+    scrapeTimeout: 90s
     tlsConfig:
       insecureSkipVerify: true
   - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token

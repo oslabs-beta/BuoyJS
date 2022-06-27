@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loadKubeClientData } from '../controllers/loadKubeClientData';
 
+
 // import pages
 // import ClustersPage from './routes/ClustersPage.jsx';
 import Frame from './routes/Frame.jsx';
@@ -31,6 +32,12 @@ const App = () => {
 		loadKubeClientData(dispatch);
 
 	}, []);
+
+	// useEffect(() => {
+	
+	// 	loadPromClientData(dispatch);
+	
+	// }, []);
 
 	return (
 		
