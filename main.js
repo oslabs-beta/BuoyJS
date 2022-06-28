@@ -58,7 +58,7 @@ function createMainWindow() {
 	*/
 
 	new KubeClient(mainWindow);
-	//new PromClient(mainWindow);
+	new PromClient(mainWindow);
 
 	console.log("Please run");
 	mainWindow.loadURL(indexPath)

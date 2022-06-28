@@ -6,8 +6,8 @@ import CpuUsage from '../components/CpuUsage.jsx';
 import ClusterResourcesDisplay from '../components/ClusterResourcesDisplay.jsx';
 import { loadPromClientData } from '../../controllers/loadPromClientData.js';
 import { ipcRenderer } from 'electron';
-import { testQuery } from '../../promClient/promClient.js'
-import { getCpuUsage, selectCpuUsage } from '../reducers/networkSlice.js';
+import { cpuUseQuery } from '../../promClient/promClient.js'
+import { getCpuUsage, selectCpuUsage, selectMemUsage, selectNetwork } from '../reducers/networkSlice.js';
 
 // not sure if we'll be getting cpu/mem data via state or somewhere else ...
   // need to pass props into components whenever this is resolved.
@@ -20,23 +20,19 @@ const ResourcesContainer = props => {
   //      setApiResources(data);
   //    });
 
-  useEffect(() => {
-		//dispatch(getCpuUsage(testQuery()))
-	}, []);
-
-  let cpu;
-  useSelector(selectCpuUsage => cpu = selectCpuUsage.network.CpuUsage)
+  const cpuUsage = useSelector(selectCpuUsage)
+  const memUsage = useSelector(selectMemUsage)
+  const { totalMem, totalCpu } = useSelector(selectNetwork)
 
   return (
     <div className="ResourcesContainer">
       <div className="CpuMemoryContainer">
-        <button id="TESTbutton" onClick={() => console.log(props)}></button>
-        <TotalCpuMemory />
-        <MemUsage />
-        <CpuUsage />
+        <TotalCpuMemory totalMem={totalMem} totalCpu={totalCpu}/>
+        <MemUsage memUsage={memUsage} />
+        <CpuUsage cpuUsage={cpuUsage} />
       </div>
       <div className="ClusterResourcesContainer">
-        <ClusterResourcesDisplay  />
+        <ClusterResourcesDisplay />
       </div>
     </div>
   );

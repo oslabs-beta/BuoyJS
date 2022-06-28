@@ -1,8 +1,6 @@
 const k8s = require('@kubernetes/client-node');
 const { ipcMain } = require('electron');
 const { exec, spawn } = require('child_process');
-const { Children } = require('react');
-
 
 /*
 Class for kubernetes client for retrieving similar information to kubectl

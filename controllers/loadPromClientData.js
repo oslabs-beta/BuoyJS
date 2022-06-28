@@ -6,7 +6,22 @@ export const loadPromClientData = (dispatch) => {
     console.log('in loadPromClientData');
     ipcRenderer.send('load:cpu-usage');
     ipcRenderer.on('get:cpu-usage', (e, data) => {
-      console.log(data);
+      dispatch(getCpuUsage(data));
+    });
+
+    ipcRenderer.send('load:mem-usage');
+    ipcRenderer.on('get:mem-usage', (e, data) => {
+      dispatch(getMemUsage(data));
+    });
+
+    ipcRenderer.send('load:cpu-total');
+    ipcRenderer.on('get:cpu-total', (e, data) => {
+      dispatch(getTotalCpu(data));
+    });
+
+    ipcRenderer.send('load:mem-total');
+    ipcRenderer.on('get:mem-total', (e, data) => {
+    dispatch(getTotalMem(data));
     });
 }
 
