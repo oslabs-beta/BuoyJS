@@ -23,7 +23,7 @@ const ResourcesContainer = props => {
   const cpuUsage = useSelector(selectCpuUsage)
   const memUsage = useSelector(selectMemUsage)
   const { totalMem, totalCpu } = useSelector(selectNetwork)
-
+  console.log('in rscontainer', totalMem)
   return (
     <div className="ResourcesContainer">
       <div className="CpuMemoryContainer">

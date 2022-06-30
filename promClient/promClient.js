@@ -2,13 +2,11 @@
 const { ipcMain } = require('electron');
 const fetch = require('node-fetch');
 
-
-
-// const prom = new PrometheusDriver({
-//     endpoint: "https://localhost:9090",
-//     baseUrl: "/api/v1"
-// })
-// let query = 'sum(rate(container_cpu_usage_seconds_total{node="monitoring-worker", id="/"}[10m])) by (node)'
+// Note: Remember to make functionality that allows custom queries, otherwise likely not feasible to collect big 4
+// Note: Remember to rewrite the cpu/mem queries to allow selection by namespace/node, as it stands they only collect
+//       aggregate of all containers across cluster except for totalCpu which returns cpu for single container which 
+//       only works for practice clusters running on a single machine
+// Note: Refactor query functions (helper function?)
 
 class PromClient{
 
@@ -39,17 +37,6 @@ class PromClient{
         this.totalCpuQuery();
         this.totalMemQuery();
     }
-
-    // async query(query, qtype = 'query'){
-    //     const rawRes = await fetch(prom.endpoint + prom.baseUrl + qtype + '?query=' + query);
-    //     const res = await rawRes.json()
-    // if (res.status === success) {
-    //     return res.data.value[1]
-    // }
-    // }
-    // createQuery(name, string, qtype){
-    //     this.customQueries[name] = [string, qtype]
-    // }
 
     cpuUseQuery(){
         ipcMain.on('load:cpu-usage', async () => {

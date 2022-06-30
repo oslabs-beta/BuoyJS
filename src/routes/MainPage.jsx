@@ -6,6 +6,7 @@ import ResourcesContainer from '../containers/ResourcesContainer.jsx';
 import ControlPlaneAPI from '../containers/control_plane/ControlPlaneAPI.jsx';
 import ControlPlaneScheduler from '../containers/control_plane/ControlPlaneScheduler.jsx';
 import ControllerManager from '../containers/control_plane/ControllerManager.jsx';
+import AlertContainer from '../containers/AlertContainer.jsx';
 
 const MainPage = () => {
 
@@ -105,7 +106,7 @@ const MainPage = () => {
           { active.currentTab === 'controlPlaneTab' && <ControlPlaneAPI /> }
           { active.currentTab === 'controlPlaneTab' && <ControlPlaneScheduler /> }
           { active.currentTab === 'controlPlaneTab' && <ControllerManager /> }
-          {/* { active === 'alertsTab' && <TestContainer4/> } */}
+          { active.currentTab === 'alertsTab' && <AlertContainer /> } 
         </React.Fragment>
       </div>
     </div>
