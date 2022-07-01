@@ -4,7 +4,7 @@ import { selectNamespaces } from '../reducers/clustersSlice';
 import NamespaceCard from '../components/cluster_cards/NamespaceCard.jsx';
 
 const ClustersCardsContainer = () => {
-
+  
   return (
     <div className="clustersCardsContainer">
       <div className="clustersCardsContentCx">
