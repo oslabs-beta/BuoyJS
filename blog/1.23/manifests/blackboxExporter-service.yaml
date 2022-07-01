@@ -16,7 +16,6 @@ spec:
   - name: probe
     port: 19115
     targetPort: http
-  - na
   selector:
     app.kubernetes.io/component: exporter
     app.kubernetes.io/name: blackbox-exporter
