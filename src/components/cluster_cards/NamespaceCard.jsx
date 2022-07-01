@@ -45,7 +45,7 @@ const NamespaceCard = (props) => {
         <span className="nsFrontName">{ props.namespace.name ? props.namespace.name : 'Unassigned Objects' }</span>
         <span className="nsFrontStatus">{props.namespace.status}</span>
       </div>
-      <div className="nsCardBackBox">
+      <div className="nsCardBackBox" data-testid="nsBack">
       <div className="nsCardBackButtonCx"><button className="nsCardBackMaximize" 
         onClick={ (event) => {
           (active) ? setActive(false) : setActive(true);

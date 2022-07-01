@@ -24,8 +24,7 @@
     "testEnvironment": "jest-environment-jsdom",
     "setupFilesAfterEnv": [
       "@testing-library/jest-dom/extend-expect"
-    ],
-     "moduleNameMapper": { "\\.(css|less)$": "<rootDir>/assets/__mocks__/styleMock.js" }
+    ]
   },
   "dependencies": {
     "@kubernetes/client-node": "^0.16.3",
@@ -62,6 +61,7 @@
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.1",
     "html-webpack-plugin": "^5.5.0",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^27.3.1",
     "jest-canvas-mock": "^2.4.0",
     "jest-css-modules-transform": "^4.4.2",
