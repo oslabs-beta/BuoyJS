@@ -1,10 +1,12 @@
 import { createSlice, current } from '@reduxjs/toolkit';
+import produce from 'immer';
 
 export const clustersSlice = createSlice({
 
   name: "clusters",
 
   initialState: {
+    nodes: {},
     namespaces: [
       {
         creationTime: undefined,
@@ -66,9 +68,19 @@ export const clustersSlice = createSlice({
       while(podIdx < action.payload.length) {
         state.namespaces[0].pods.push(action.payload[podIdx]);
         podIdx++;
-      }
+      } 
       console.log('in addPod', current(state.namespaces));
     },
+
+    addNodes: (state, action) => {
+      //Object.assign({}, state, { nodes: action.payload });
+
+      for ( const key in action.payload ) {
+        state.nodes[key] = action.payload[key];
+      }
+      console.log('in addNodes', current(state.nodes));
+    },
+
     addServices: (state, action) => {
       state.totalObjects += action.payload.length;
       
@@ -92,6 +104,7 @@ export const clustersSlice = createSlice({
 });
 
 export const { 
+  addNodes,
   addNamespaces,
   addDeployments,
   addPods,
@@ -100,6 +113,7 @@ export const {
 
 export const selectKubeObjects = (state) => state.clusters;
 export const selectNamespaces = (state) => state.clusters.namespaces;
+export const selectNodes = (state) => state.clusters.nodes;
 
 export default clustersSlice.reducer;
 

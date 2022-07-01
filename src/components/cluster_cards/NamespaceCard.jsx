@@ -16,12 +16,13 @@ const NamespaceCard = (props) => {
     dimmer.classList.toggle('active');
   }
 
+  /*
   const onDimmerClick = () => {
     const cardContainer = document.querySelector('.namespaceCardBox.active')
     const dimmer = document.querySelector('.dimmer');
     cardContainer.classList.remove('active');
     dimmer.classList.remove('active');
-  }
+  }*/
 
   const NsFrontBack = () => {
     

@@ -1,5 +1,5 @@
 import { ipcRenderer } from "electron";
-import { addNamespaces, addDeployments, addPods, addServices} from '../src/reducers/clustersSlice';
+import { addNodes, addNamespaces, addDeployments, addPods, addServices} from '../src/reducers/clustersSlice';
 
 export const loadKubeClientData = (dispatch) => {
 
@@ -17,6 +17,11 @@ export const loadKubeClientData = (dispatch) => {
   ipcRenderer.send('load:pods');
   const podEvtTgt = ipcRenderer.on('get:pods', (e, data) => {
     dispatch(addPods(data));
+  });
+
+  ipcRenderer.send('load:nodes')
+  const nodeEvtTgt = ipcRenderer.on('get:nodes', (e, data) => {
+    dispatch(addNodes(data));
   });
 
   ipcRenderer.send('load:services');
