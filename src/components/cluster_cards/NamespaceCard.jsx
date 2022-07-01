@@ -53,7 +53,7 @@ const NamespaceCard = (props) => {
         }}>
         <i className="fa-solid fa-window-maximize"></i></button></div>
         <div id={`${props.namespace.name}`}className='nsAnimation'></div>
-        <ul>
+        <ul data-testid="nsList">
           <li><span className="nsBackAttribute">Name: </span><span className="nsBackValue">{props.namespace.name}</span></li>
           <li><span className="nsBackAttribute">Status: </span><span className="nsBackValue">{props.namespace.status}</span></li>
           <li><span className="nsBackAttribute">Deployments: </span><span className="nsBackValue">{props.namespace.deployments.length}</span></li>
@@ -68,7 +68,7 @@ const NamespaceCard = (props) => {
   const NsExpanded = (props) => {
     return (
     <React.Fragment>
-      <div className="nsCardExpandedBox">
+      <div className="nsCardExpandedBox" data-testid="expanded">
         <div className="nsCardBackButtonCx">
           <button className="nsCardBackMaximize" 
             onClick={ (event) => {

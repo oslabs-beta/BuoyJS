@@ -1,6 +1,6 @@
 import subject, { addNamespaces, addDeployments, addPods, addServices } from '../src/reducers/clustersSlice.js';
 
-describe('clustersSlice', () => {
+xdescribe('clustersSlice', () => {
   const state = {
     namespaces: [
       {
