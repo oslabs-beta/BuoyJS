@@ -1,9 +1,9 @@
 const path = require('path')
 const url = require('url')
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcRenderer } = require('electron')
 const KubeClient = require('./kubeclient/kubeClient')
 const { ipcMain } = require('electron');
-
+const PromClient = require('./promclient/promClient')
 let mainWindow
 
 let isDev = false
@@ -56,7 +56,10 @@ function createMainWindow() {
 		})
 	}
 	*/
+
 	new KubeClient(mainWindow);
+	new PromClient(mainWindow);
+
 	console.log("Please run");
 	mainWindow.loadURL(indexPath)
 
@@ -80,6 +83,11 @@ function createMainWindow() {
 
 	mainWindow.on('closed', () => (mainWindow = null))
 }
+
+ipcMain.on('load:cpu-usage', (evt, arg) =>{
+	//PromClient.testQuery()
+})
+
 ipcMain.on('close-app', (evt, arg) => {
 	app.quit()
 });
@@ -91,6 +99,10 @@ ipcMain.on('minimize-app', (evt, arg) => {
 ipcMain.on('maximize-app', (evt, arg) => {
 	mainWindow.maximize();
 });
+
+// ipcMain.on('get:cpuUsage', (evt, arg) => {
+// 	ipcRenderer.send
+// })
 
 app.on('ready', createMainWindow)
 

@@ -22,18 +22,21 @@
   border: 1px solid gray;
   border-radius: 1em;
   padding: 0.5em;
+  background-color: aliceblue;
 }
 
 .CpuUsageContainer {
   border: 1px solid gray;
   border-radius: 1em;
   padding: 0.5em;
+  background-color: aliceblue;
 }
 
 .MemUsageContainer {
   border: 1px solid gray;
   border-radius: 1em;
   padding: 0.5em;
+  background-color: aliceblue;
 }
 
 .ClusResDispContainer {
