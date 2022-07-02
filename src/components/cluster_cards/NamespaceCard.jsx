@@ -16,12 +16,13 @@ const NamespaceCard = (props) => {
     dimmer.classList.toggle('active');
   }
 
+  /*
   const onDimmerClick = () => {
     const cardContainer = document.querySelector('.namespaceCardBox.active')
     const dimmer = document.querySelector('.dimmer');
     cardContainer.classList.remove('active');
     dimmer.classList.remove('active');
-  }
+  }*/
 
   const NsFrontBack = () => {
     
@@ -90,10 +91,11 @@ const NamespaceCard = (props) => {
   return (
   <React.Fragment>
     <div className="dimmer"></div>
-    <div className="namespaceCardBox">
+    <div className="namespaceCardBoxCx">
       { active ? <NsExpanded namespace={props.namespace}/>: <NsFrontBack /> }
     </div>
-  </React.Fragment>);
+  </React.Fragment>
+  );
 
 }
 
