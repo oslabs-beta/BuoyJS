@@ -1,6 +1,8 @@
 const k8s = require('@kubernetes/client-node');
 const { ipcMain } = require('electron');
-const { exec, spawn } = require('child_process');
+const { exec } = require('child_process');
+const { ObjectSerializer } = require('@kubernetes/client-node');
+
 
 /*
 Class for kubernetes client for retrieving similar information to kubectl
@@ -21,6 +23,8 @@ class KubeClient {
     this.k8sAppsApi = kc.makeApiClient(k8s.AppsV1Api);
     this.window = window;
 
+    // node: node names
+    this.nodes = {};
     this.namespaces = [];
     this.deployments = [];
     this.pods = [];
@@ -29,12 +33,12 @@ class KubeClient {
 
     this.initializeNamespacesData = this.initializeNamespacesData.bind(this);
     this.initializeDeploymentsData = this.initializeDeploymentsData.bind(this);
-    this.initializePodsData = this.initializePodsData.bind(this);
+    this.initializePodsAndNodesData = this.initializePodsAndNodesData.bind(this);
     this.initializeServicesData = this.initializeServicesData.bind(this);
 
     this.initializeNamespacesData();
     this.initializeDeploymentsData();
-    this.initializePodsData();
+    this.initializePodsAndNodesData();
     this.initializeServicesData();
     this.initializeApiResourcesData();
   }
@@ -52,7 +56,7 @@ class KubeClient {
           status: namespace.status.phase,
         });
       });
-
+      
       this.namespaces.sort( (a,b) => a.name - b.name);
 
       ipcMain.on('load:namespaces', () => {
@@ -83,25 +87,38 @@ class KubeClient {
     });
   }
 
-  initializePodsData() {
+  initializePodsAndNodesData() {
     // get all local pods
     const podPromise = this.k8sCoreApi.listPodForAllNamespaces()
     .then( res => res.body)
     .then( data => {
       const items = data.items;
       items.map(pod => {
-        this.pods.push({
+
+        const podToPush = {
+          nodeName: pod.spec.nodeName,
           name: pod.metadata.name,
           namespace: pod.metadata.namespace,
           status: pod.status.phase,
           podIP: pod.status.podIP,
-        })
+        };
+
+        this.pods.push(podToPush);
+
+        Object.hasOwn(this.nodes, pod.spec.nodeName) ?
+        this.nodes[pod.spec.nodeName].push(podToPush):
+        this.nodes[pod.spec.nodeName] = [podToPush]
+
       });
 
       this.pods.sort( (a,b) => a.namespace - b.namespace);
 
       ipcMain.on('load:pods', () => {
         this.window.webContents.send('get:pods', this.pods);
+      });
+
+      ipcMain.on('load:nodes', () => {
+        this.window.webContents.send('get:nodes', this.nodes);
       });
     });
   }
