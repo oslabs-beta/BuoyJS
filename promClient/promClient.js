@@ -30,15 +30,34 @@ class PromClient{
         this.customQueries = {}
         this.endpoint = "http://localhost:9090"
         this.baseUrl = "/api/v1/"
-
+        this.target = ""
         this.window = window;
         
         this.channelArr = ['cpu-usage', 'mem-usage', 'cpu-total', 'mem-total'];
         this.queryArr = [this.cpuQ, this.memQ, this.totalCpuQ, this.totalMemQ]
         this.hardwareQueries = this.hardwareQueries.bind(this);
         this.hardwareQueries(this.channelArr, this.queryArr);
-    }
 
+        this.nwChannelArr = [];
+        this.nwQueryArr = [];
+        this.networkQueries = this.networkQueries.bind(this);
+        this.networkQueries(this.nwChannelArr, this.nwQueryArr)
+    }
+    networkQueries(channelArr, queryArr){
+        for (let i=0; i < queryArr.length; i++){
+            ipcMain.on(`load:${channelArr[i]}`, async () => {
+            try { 
+                const rawres = await fetch(this.endpoint + this.baseUrl + `probe?target=${this.target}&module=http_2xx` + queryArr[i]);
+                const res = await rawres.json();
+                const data = await res.data.result[0].value[1];
+                this.window.webContents.send(`get:${channelArr[i]}`, data);
+            }
+            catch(err) {
+                console.error('Error in Network Queries', err)
+            }
+        })
+      }
+    }
     hardwareQueries(channelArr, queryArr){
         for (let i=0; i < queryArr.length; i++){
             ipcMain.on(`load:${channelArr[i]}`, async () => {

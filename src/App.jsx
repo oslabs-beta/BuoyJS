@@ -33,16 +33,6 @@ const App = () => {
 		promClientListeners(dispatch);
 	}, [])
 
-
-	// setInterval(() => {
-	// 	loadPromClientData(dispatch)
-	// }, 15000)
-	// useEffect(() => {
-	
-	// 	loadPromClientData(dispatch);
-	
-	// }, []);
-
 	return (
 		
 		<div className="App">

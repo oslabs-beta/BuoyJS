@@ -1,3 +1,4 @@
+import { ipcRenderer } from 'electron';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { getPortNumber } from '../reducers/inputSlice';
@@ -35,7 +36,8 @@ const CustomQueryInput = props => {
       <h4>Enter TCP Port Number:</h4>
       <input id="customPort" placeholder="Enter Port Number" onChange={ portInput }/>
       <button id="customPortButton" onClick={() => {
-        dispatch(getPortNumber(customPort))  
+        ipcRenderer.send('add:prom-target', customPort);
+        dispatch(getPortNumber(customPort));  
         document.querySelector('#customPort').placeholder = `${customPort}`
         document.querySelector('#customPort').value = '';
         }} > Enter </button>
