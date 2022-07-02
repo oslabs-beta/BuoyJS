@@ -103,35 +103,3 @@ export const selectKubeObjects = (state) => state.clusters;
 export const selectNamespaces = (state) => state.clusters.namespaces;
 
 export default clustersSlice.reducer;
-
-
-/*
-
-const initialState = {
-  
-};
-
-
-const clustersReducer = (state = initialState, action) => {
-  
-  const { type, payload } = action;
-
-  switch(type) {
-    case ADD_NAMESPACE :
-      break;
-    case ADD_DEPLOYMENT:
-      break;
-    case ADD_POD:
-      break;
-    case ADD_SERVICE:
-      break;
-
-    default: {
-      return state;
-    }
-  }
-
-};
-
-export default clustersReducer;
-*/
