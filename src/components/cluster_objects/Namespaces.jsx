@@ -1,12 +1,8 @@
 import React from 'react';
-import { ipcRenderer } from 'electron';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addNamespaces, addDeployments, addPods, addServices, selectNamespaces } from '../../reducers/clustersSlice';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectNamespaces } from '../../reducers/clustersSlice';
 import Namespace from './Namespace.jsx';
-import { BsFillCaretDownFill } from 'react-icons/bs';
-import { BsFillCaretRightFill } from 'react-icons/bs';
-
 
 
 const Namespaces = () => {
@@ -31,20 +27,17 @@ const Namespaces = () => {
     }
   }
 
-
   return (
-    <div className="ClustersContainer1">
-      <div className="ClusterObjectsContainer">
-        <div className="PrimaryClusterObjectsHeader">
-          <p id="currNamespaces"> Current Namespaces </p>
-          {allOpen && <button className="expandAll" onClick={() => setAllOpen(!allOpen)}>Collapse All</button>}
-          {!allOpen && <button className="expandAll" onClick={() => setAllOpen(!allOpen)}>Expand All</button>}
-        </div>
-        <div className="ClusterObjects">
-          { namespaceArr }
-        </div>
+    <React.Fragment>
+      <div className="PrimaryClusterObjectsHeader">
+        <p id="currNamespaces">Namespaces </p>
+        {allOpen && <button className="expandAll" onClick={() => setAllOpen(!allOpen)}>Collapse All</button>}
+        {!allOpen && <button className="expandAll" onClick={() => setAllOpen(!allOpen)}>Expand All</button>}
       </div>
-    </div>
+      <div className="ClusterObjects">
+        { namespaceArr }
+      </div>
+    </React.Fragment>
   );
 
 }
