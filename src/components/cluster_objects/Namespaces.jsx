@@ -19,7 +19,15 @@ const Namespaces = () => {
 
   for (let i = 0; i < name_spaces.length; i++) {
     if (name_spaces[i].name) {
-      namespaceArr.push(<Namespace key={`${name_spaces[i].name}-${i}`} id={i} allOpen={allOpen} name={name_spaces[i].name} status={name_spaces[i].status}/>);
+      namespaceArr.push(
+        <Namespace 
+          key={`${name_spaces[i].name}-${i}`} 
+          id={i} 
+          allOpen={allOpen} 
+          name={name_spaces[i].name} 
+          status={name_spaces[i].status}
+        />
+      );
     }
   }
 

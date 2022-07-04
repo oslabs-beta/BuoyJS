@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectNamespaces } from '../../reducers/clustersSlice';
 import Pod from './Pod.jsx';
@@ -9,7 +9,11 @@ const Pods = (props) => {
 
   const { openState } = props; 
 
-  const [open, setOpen] = useState(openState);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    setOpen(openState);
+  }, [ openState ]);
 
   const name_spaces = useSelector(selectNamespaces);
 

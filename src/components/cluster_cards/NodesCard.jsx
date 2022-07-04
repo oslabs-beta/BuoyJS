@@ -13,7 +13,7 @@ const NodesCard = (props) => {
 
     cardContainer.classList.toggle('active');
     dimmer.classList.toggle('active');
-    
+
   }
 
   const NodeFrontBack = () => {
@@ -48,7 +48,6 @@ const NodesCard = (props) => {
   }
 
   const NodeExpanded = (props) => {
-    console.log(props.pods);
     return (
       <div className="nodeCardExpandedBox">
         <div className="nodeCardBackButtonCx">
@@ -67,6 +66,7 @@ const NodesCard = (props) => {
         <div className="ObjectCardContentCx">
         { props.pods.map ( pod => 
           <Pod
+            key={pod.name + pod.nodeName}
             name={pod.name}
             status={pod.status}
             podIP={pod.podIP}
