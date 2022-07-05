@@ -1,5 +1,4 @@
 import { createSlice, current } from '@reduxjs/toolkit';
-import { SiOpencollective } from 'react-icons/si';
 //const PromClient = require('.s/promClient/promClient.js')
 
 export const networkSlice = createSlice({
@@ -38,20 +37,46 @@ export const networkSlice = createSlice({
         })
         return {...state, nodeCpuUsage: recvNodeCpuUsage};
       } else {
-        state.nodeCpuUsage.map(node => {
-          console.log(`nodeName: ${node.nodeName} cpuUsage: ${node.cpuUsage[0]}`)
-        })
+
+        const nodeCpuUsage = current(state.nodeCpuUsage);
+
+        const newNodeCpuUsage = [];
+
+        // limit cpuUsage dataset to 25 per node
+        if (nodeCpuUsage[0].cpuUsage.length < 25) {
+          // for each node push new data
+          for (let i = 0; i < nodeCpuUsage.length; i++) {
+            const payloadNode = action.payload[i];
+            newNodeCpuUsage.push({
+              nodeName: payloadNode.nodeName,
+              cpuUsage: [...nodeCpuUsage[i].cpuUsage, payloadNode.cpuUsage ]
+            })
+          }
+          
+          return { ...state, nodeCpuUsage: newNodeCpuUsage};
+        // reached dataset Limit to 25 per node
+        } else {
+          // remove 1st element index & push new element in;
+          for (let i = 0; i < nodeCpuUsage.length; i++) {
+            const payloadNode = action.payload[i];
+            const shiftedArray = nodeCpuUsage[i].cpuUsage.slice(1);
+            newNodeCpuUsage.push({
+              nodeName: payloadNode.nodeName,
+              cpuUsage: [...shiftedArray, payloadNode.cpuUsage]
+            });
+          }
+
+          return { ...state, nodeCpuUsage: newNodeCpuUsage};
+        }
       }
     }
   },
-
 });
-
 
 export const selectCpuUsage = (state) => state.network.cpuUsage;
 export const selectMemUsage = (state) => state.network.memUsage;
 export const selectNetwork = (state) => state.network;
-export const selectNodeCpuUsage = (state) => state.nodeCpuUsage;
+export const selectNodeCpuUsage = (state) => state.network.nodeCpuUsage;
 export const { 
   getCpuUsage, 
   getMemUsage, 
