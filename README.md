@@ -1,50 +1,39 @@
+![Alligator](https://i.imgur.com/B6C1w2lt.png)
+
 # BuoyJS
+
 ## What is Buoy?
-### Buoy is a lightweight Desktop-App built in Electron.js that provides developers with a GUI for visualizing and managing their Kubernetes Clusters.
 
-### How to Install
-=======
-### Start by running
-```
-npm install
-```
-### to install dependencies.
+Buoy is a lightweight Desktop-App built in Electron.js that provides developers with a GUI for visualizing and managing their Kubernetes Clusters.
 
+## Installation
 
-## Main Clusters Workspace -
-#### Card View - easy to use, user-friendly way to access your current Namespaces. More effective at monitoring single Namespaces in a cluster.
-![MainPage-1-Cards](https://i.gyazo.com/c05674d41743755df96675f5661c3164.png)
+Please download Buoy from our [website].
 
-#### Grid View - To more efficiently monitor multiple different Namespaces simultaneously.
-![MainPage-1-Grid](https://i.gyazo.com/c05674d41743755df96675f5661c3164.png)
+## How it works
 
-## Resources Panel - 
-#### Monitor your CPU and Memory usage overall and per different Namespaces or Nodes.
+1. Upon opening the app, you will immediately be able to view information about your Kubernetes nodes and namespaces.
 
-## Alerting Panel - 
-#### Prometheus-based alerts to help user debugging during development.
+   **Card View:** easy to use, user-friendly way to access your current Namespaces. More effective at monitoring single Namespaces in a cluster.
 
-## The Team behind Buoy
+   ![MainPage-1-Cards](https://i.imgur.com/W8f8TGBl.png)
 
-### Joe Heinz
-## [LinkedIn](https://www.linkedin.com/in/joseph-heinz1/)
-## [github](https://github.com/jeheinz99)
+   **Grid View:** To more efficiently monitor multiple different Namespaces simultaneously.
 
-### Garrett Layden
-## [LinkedIn](https://www.linkedin.com/in/garrett-layden/)
-## [github](https://github.com/GarrettLayden)
+   ![MainPage-1-Grid](https://i.imgur.com/CpHUnSel.png)
 
-### Guo Hong Wu
-## [LinkedIn](https://www.linkedin.com/in/guo-hong-wu/)
-## [github](https://github.com/jorm7012)
+2. Toggle to the **resources** tab in the left navigation bar.
 
-### Jonah Hauanio
-## [LinkedIn](https://www.linkedin.com/in/jonah-hauanio-544593241/)
-## [github](https://github.com/JHauanio)
+   The resources panel allows you to monitor your total and segregated CPU and Memory usage.
 
-### Jenna Hamza
-## [LinkedIn](https://www.linkedin.com/in/jennahamza/)
-## [github](https://github.com/jhamza91)
+3. Toggle to the **alerts** tab.
 
-=======
-## Thanks for reading!
+   The Alerts Panel enables Prometheus-based alerts to help you monitor cluster health and more efficiently debug during development.
+
+## The Buoy Team
+
+- [Joe Heinz](https://github.com/jeheinz99)
+- [Garrett Layden](https://github.com/GarrettLayden)
+- [Guo Hong Wu](https://github.com/jorm7012)
+- [Jonah Hauanio](https://github.com/JHauanio)
+- [Jenna Hamza](https://github.com/jhamza91)
