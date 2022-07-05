@@ -39,7 +39,7 @@ const NodesCard = (props) => {
           <div className="nodeBackInfoCx">
             <ul>
               <li><span className="nodeBackAttribute">Name: </span><span className="nodeBackValue">{props.name}</span></li>
-              <li><span className="nodeBackAttribute">Status: </span><span className="nodeBackValue">{props.pods.length}</span></li>
+              <li><span className="nodeBackAttribute">Pods: </span><span className="nodeBackValue">{props.pods.length}</span></li>
             </ul>
           </div>
         </div>
