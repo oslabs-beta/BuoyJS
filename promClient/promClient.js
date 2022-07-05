@@ -43,7 +43,6 @@ class PromClient{
         this.networkQueries = this.networkQueries.bind(this);
         this.networkQueries(this.nwChannelArr, this.nwQueryArr)
 
-<<<<<<< HEAD
         this.customTypeArr = [];
         this.customQueryArr = [];
         this.getInput = this.getInput.bind(this);
@@ -51,10 +50,8 @@ class PromClient{
 
         this.customQueries = this.customQueries.bind(this);
         this.customQueries(this.customTypeArr, this.customQueryArr);
-=======
         this.getNodesCPUUsage = this.getNodesCPUUsage.bind(this);
         this.getNodesCPUUsage();
->>>>>>> development
     }
 
     getInput(){
