@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loadKubeClientData } from '../controllers/loadKubeClientData';
-import { loadPromClientData } from '../controllers/loadPromClientData';
+import { promClientListeners, promClientEmitters } from '../controllers/loadPromClientData';
 
 // import pages
 // import ClustersPage from './routes/ClustersPage.jsx';
@@ -27,20 +27,11 @@ const App = () => {
 
 	const dispatch = useDispatch();
 	
-	
+	promClientEmitters();
 	useEffect(() => {
 		loadKubeClientData(dispatch);
-		loadPromClientData(dispatch);
+		promClientListeners(dispatch);
 	}, [])
-
-	setInterval(() => {
-		loadPromClientData(dispatch)
-	}, 15000)
-	// useEffect(() => {
-	
-	// 	loadPromClientData(dispatch);
-	
-	// }, []);
 
 	return (
 		

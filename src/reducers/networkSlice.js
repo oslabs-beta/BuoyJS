@@ -13,12 +13,15 @@ export const networkSlice = createSlice({
 
   reducers: {
     getCpuUsage: (state, action) => {
-      return Object.assign({}, state, {cpuUsage: action.payload.value[1]});
+      console.log('getCpuUsage', action.payload)
+      return Object.assign({}, state, {cpuUsage: action.payload});
     },
     getMemUsage: (state, action) => {
-      return Object.assign({}, state, {memUsage: action.payload.value[1]});
+      console.log('get Mem Usage',action.payload)
+      return Object.assign({}, state, {memUsage: action.payload});
     },
     getTotalCpu: (state, action) => {
+      console.log(action.payload)
       return Object.assign({}, state, {totalCpu: action.payload});
     },
     getTotalMem: (state, action) => {

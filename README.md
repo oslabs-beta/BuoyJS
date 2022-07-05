@@ -3,6 +3,7 @@
 ### Buoy is a lightweight Desktop-App built in Electron.js that provides developers with a GUI for visualizing and managing their Kubernetes Clusters.
 
 ### How to Install
+=======
 ### Start by running
 ```
 npm install
@@ -45,4 +46,5 @@ npm install
 ## [LinkedIn](https://www.linkedin.com/in/jennahamza/)
 ## [github](https://github.com/jhamza91)
 
+=======
 ## Thanks for reading!

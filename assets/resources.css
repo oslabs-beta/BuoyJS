@@ -14,6 +14,9 @@
 
 .ClusterResourcesContainer {
   display: flex;
+  color: rgb(194, 207, 211);
+  align-items: center;
+  gap: 5em;
 }
 
 .TotalCpuMemoryContainer {
@@ -42,6 +45,7 @@
 .ClusResDispContainer {
   display: flex;
   flex-direction: column;
+  color: rgb(194, 207, 211);
 }
 
 .ClusResCardContainer {
@@ -51,8 +55,20 @@
   border-radius: 1em;
   padding: 1em;
   margin: 1em;
+  color: rgb(194, 207, 211);
 }
 
 .ResourcesList {
   list-style: none;
+}
+
+.CustomQueryInput {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#customQueryInput {
+  text-align: center;
+  width: 50%;
 }

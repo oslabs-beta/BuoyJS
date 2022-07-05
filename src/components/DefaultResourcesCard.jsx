@@ -2,11 +2,11 @@ import React from 'react';
 
 // where data coming from may not be props .... subject to change
 
-const ClusterResourcesCard = props => {
+const DefaultResourcesCard = props => {
   return (
     <div className="ClusResCardContainer">
       <div className="ResourceMetrics">
-        <h3>Cluster #{/*props.id*/}</h3>
+        <h3>Network Resources</h3>
         <ul className="ResourcesList">
           <li>Latency: <span>{/*props.latency*/}</span></li>
           <li>Requests per second: <span>{/*props.rps*/}</span></li>
@@ -14,9 +14,8 @@ const ClusterResourcesCard = props => {
           <li>Network saturation: <span>{/*props.networkSat*/}</span></li>
         </ul>
       </div>
-      <div className="ResourceGraphs"> Graphs </div>
     </div>
   );
 };
 
-export default ClusterResourcesCard;
+export default DefaultResourcesCard;
