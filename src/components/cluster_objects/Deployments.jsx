@@ -19,7 +19,6 @@ const Deployments = (props) => {
   }
 
   const { openState } = props;
-  console.log('openState', openState);
 
   const [open, setOpen] = useState(openState);
 

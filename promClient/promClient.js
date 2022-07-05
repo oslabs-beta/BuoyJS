@@ -34,7 +34,9 @@ class PromClient{
         this.window = window;
         
         this.channelArr = ['cpu-usage', 'mem-usage', 'cpu-total', 'mem-total'];
-        this.queryArr = [this.cpuQ, this.memQ, this.totalCpuQ, this.totalMemQ]
+        this.queryArr = [this.cpuQ, this.memQ, this.totalCpuQ, this.totalMemQ];
+        this.probeChannelArr = ['latency', 'error-rate', 'req-per-sec'];
+        this.probeQueryArr = [this.probeLatency, this.probeErrorRate, this.probeReqPerSec];
         this.hardwareQueries = this.hardwareQueries.bind(this);
         this.hardwareQueries(this.channelArr, this.queryArr);
 
@@ -43,14 +45,15 @@ class PromClient{
         this.networkQueries = this.networkQueries.bind(this);
         this.networkQueries(this.nwChannelArr, this.nwQueryArr)
     }
-    networkQueries(channelArr, queryArr){
-        for (let i=0; i < queryArr.length; i++){
-            ipcMain.on(`load:${channelArr[i]}`, async () => {
+    networkQueries(probeChannelArr, probeQueryArr){
+        for (let i=0; i < probeQueryArr.length; i++){
+            ipcMain.on(`load:${probeChannelArr[i]}`, async () => {
             try { 
-                const rawres = await fetch(this.endpoint + this.baseUrl + `probe?target=${this.target}&module=http_2xx` + queryArr[i]);
+                const rawres = await fetch(this.endpoint + this.baseUrl + `probe?target=${this.target}&module=http_2xx` + probeQueryArr[i]);
                 const res = await rawres.json();
-                const data = await res.data.result[0].value[1];
-                this.window.webContents.send(`get:${channelArr[i]}`, data);
+                console.log('network result:', res.data);
+                const data = await res.data.result
+                this.window.webContents.send(`get:${probeChannelArr[i]}`, data);
             }
             catch(err) {
                 console.error('Error in Network Queries', err)
@@ -75,13 +78,8 @@ class PromClient{
     }
 };
 
-//const test = new PromClient();
-
-
 // ipcRenderer.on = similar to eventListener, listend to endpoint defined with .send
 // ipcRenderer.send = similar to get req to ipcMain
 // useEffect with dispatch
 
-// sum(rate(container_cpu_usage_seconds_total
-// {node="monitoring-worker", id="/"}[10m])) by (node)
 module.exports = PromClient;

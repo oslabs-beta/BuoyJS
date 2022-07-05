@@ -1,5 +1,4 @@
-import { createSlice, current } from '@reduxjs/toolkit';
-//const PromClient = require('.s/promClient/promClient.js')
+import { createSlice } from '@reduxjs/toolkit';
 
 export const networkSlice = createSlice({
   name: "network",
@@ -9,24 +8,32 @@ export const networkSlice = createSlice({
     memUsage: 0,
     totalCpu: 0,
     totalMem: 0,
+    latency: 0,
+    errorRate: 0,
+    reqPerSec: 0
   },
 
   reducers: {
     getCpuUsage: (state, action) => {
-      console.log('getCpuUsage', action.payload)
       return Object.assign({}, state, {cpuUsage: action.payload});
     },
     getMemUsage: (state, action) => {
-      console.log('get Mem Usage',action.payload)
       return Object.assign({}, state, {memUsage: action.payload});
     },
     getTotalCpu: (state, action) => {
-      console.log(action.payload)
       return Object.assign({}, state, {totalCpu: action.payload});
     },
     getTotalMem: (state, action) => {
-      console.log(action.payload)
       return Object.assign({}, state, {totalMem: action.payload});
+    },
+    getLatency: (state, action) => {
+      return Object.assign({}, state, {latency: action.payload});
+    },
+    getErrorRate: (state, action) => {
+      return Object.assign({}, state, {errorRate: action.payload});
+    },
+    getReqPerSec: (state, action) => {
+      return Object.assign({}, state, {reqPerSec: action.payload});
     },
   },
 
@@ -36,5 +43,5 @@ export const networkSlice = createSlice({
 export const selectCpuUsage = (state) => state.network.cpuUsage;
 export const selectMemUsage = (state) => state.network.memUsage;
 export const selectNetwork = (state) => state.network; 
-export const { getCpuUsage, getMemUsage, getTotalCpu, getTotalMem } = networkSlice.actions;
+export const { getCpuUsage, getMemUsage, getTotalCpu, getTotalMem, getLatency, getErrorRate, getReqPerSec } = networkSlice.actions;
 export default networkSlice.reducer;
