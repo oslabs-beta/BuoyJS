@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { ipcRenderer } from 'electron';
+
 import { loadKubeClientData } from '../controllers/loadKubeClientData';
 import { promClientListeners, promClientEmitters } from '../controllers/loadPromClientData';
 
@@ -31,6 +33,7 @@ const App = () => {
 	useEffect(() => {
 		loadKubeClientData(dispatch);
 		promClientListeners(dispatch);
+
 	}, [])
 
 	return (
