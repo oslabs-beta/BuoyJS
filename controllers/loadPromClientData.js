@@ -26,6 +26,12 @@ export const promClientListeners = (dispatch) => {
     ipcRenderer.on('get:custom-metrics', (e, data) => {
       dispatch(getCustomMetrics(data));
     });
+
+    // getNodeCPU information
+		ipcRenderer.send('load:NodeCPUUsage');
+    ipcRenderer.on('get:NodeCPUUsage', (e, data) => { 
+      dispatch(setNodeCpuUsage(data));
+    });
 };
 
 export const promClientEmitters = () => {

@@ -20,7 +20,11 @@ const Services = (props) => {
     }
   }
 
-  const [open, setOpen] = useState(openState);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    setOpen(openState);
+  }, [ openState ]);
 
   return (
     <div className="ClustersContainer2">

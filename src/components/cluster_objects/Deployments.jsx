@@ -20,15 +20,31 @@ const Deployments = (props) => {
 
   const { openState } = props;
 
-  const [open, setOpen] = useState(openState);
+  const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+    setOpen(openState);
+  }, [ openState ]);
 
   return (
     <div className="ClustersContainer2">
         <div className="ClusterObjectsContainer">
           <div className="ClusterObjectsHeader">
-            {open && <button className="arrow" onClick={() => setOpen(!open)}><BsFillCaretDownFill /></button>}
-            {!open && <button className="arrow" onClick={() => setOpen(!open)}><BsFillCaretRightFill /></button>}
+            {open && 
+              <button 
+                className="arrow" 
+                onClick={() => setOpen(!open)}
+              >
+                <BsFillCaretDownFill />
+              </button>}
+            {!open && 
+              <button 
+                className="arrow" 
+                onClick={() => 
+                setOpen(!open)
+              }>
+                <BsFillCaretRightFill />
+              </button>}
             <p> Deployments </p>
           </div>
           <div className="List">

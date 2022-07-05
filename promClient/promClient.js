@@ -30,6 +30,7 @@ class PromClient{
         this.customQueries = {}
         this.endpoint = "http://localhost:9090"
         this.baseUrl = "/api/v1/"
+        this.queryPath = 'query?query=';
         this.target = ""
         this.window = window;
         
@@ -44,6 +45,9 @@ class PromClient{
         this.nwQueryArr = [];
         this.networkQueries = this.networkQueries.bind(this);
         this.networkQueries(this.nwChannelArr, this.nwQueryArr)
+
+        this.getNodesCPUUsage = this.getNodesCPUUsage.bind(this);
+        this.getNodesCPUUsage();
     }
     networkQueries(probeChannelArr, probeQueryArr){
         for (let i=0; i < probeQueryArr.length; i++){
@@ -75,6 +79,36 @@ class PromClient{
             }
         })
       }
+    }
+
+    getNodesCPUUsage() {
+        ipcMain.on('load:NodeCPUUsage', () => {
+            setInterval( async () => {
+                // array to hold list of nodes & their associated CPU usage
+                const nodeCPUUsageArr = [];
+
+                // fetch request to get CPU usage per node
+                const nodeCPUUsageQuery = `100 - (avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[1m])) * 100)`;
+                const queryRequestURI = this.endpoint + this.baseUrl + this.queryPath + nodeCPUUsageQuery;
+
+                const response = await fetch(queryRequestURI);
+                const responseJSON = await response.json();
+
+                // data.result holds our array of metrics
+                const results = responseJSON.data.result;
+
+                // map our results to an array
+                results.map( result => {
+                    nodeCPUUsageArr.push({
+                        nodeName: result.metric.instance,
+                        cpuUsage: Number(result.value[1]).toFixed(2)
+                    })
+                });
+
+                this.window.webContents.send('get:NodeCPUUsage', nodeCPUUsageArr);
+                
+            }, 3000)
+        });
     }
 };
 
