@@ -1,11 +1,8 @@
 import { ipcRenderer, ipcMain } from "electron";
 import { useDispatch } from "react-redux";
-<<<<<<< HEAD
 import { getCpuUsage, getMemUsage, getTotalCpu, getTotalMem } from "../src/reducers/networkSlice";
 import { getCustomQueries } from "../src/reducers/inputSlice";
-=======
 import { getCpuUsage, getMemUsage, getTotalCpu, getTotalMem, setNodeCpuUsage } from "../src/reducers/networkSlice";
->>>>>>> development
 
 export const promClientListeners = (dispatch) => {
     ipcRenderer.on('get:cpu-usage', (e, data) => {
