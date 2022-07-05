@@ -16,12 +16,13 @@ const NamespaceCard = (props) => {
     dimmer.classList.toggle('active');
   }
 
+  /*
   const onDimmerClick = () => {
     const cardContainer = document.querySelector('.namespaceCardBox.active')
     const dimmer = document.querySelector('.dimmer');
     cardContainer.classList.remove('active');
     dimmer.classList.remove('active');
-  }
+  }*/
 
   const NsFrontBack = () => {
     
@@ -45,7 +46,7 @@ const NamespaceCard = (props) => {
         <span className="nsFrontName">{ props.namespace.name ? props.namespace.name : 'Unassigned Objects' }</span>
         <span className="nsFrontStatus">{props.namespace.status}</span>
       </div>
-      <div className="nsCardBackBox">
+      <div className="nsCardBackBox" data-testid="nsBack">
       <div className="nsCardBackButtonCx"><button className="nsCardBackMaximize" 
         onClick={ (event) => {
           (active) ? setActive(false) : setActive(true);
@@ -53,7 +54,7 @@ const NamespaceCard = (props) => {
         }}>
         <i className="fa-solid fa-window-maximize"></i></button></div>
         <div id={`${props.namespace.name}`}className='nsAnimation'></div>
-        <ul>
+        <ul data-testid="nsList">
           <li><span className="nsBackAttribute">Name: </span><span className="nsBackValue">{props.namespace.name}</span></li>
           <li><span className="nsBackAttribute">Status: </span><span className="nsBackValue">{props.namespace.status}</span></li>
           <li><span className="nsBackAttribute">Deployments: </span><span className="nsBackValue">{props.namespace.deployments.length}</span></li>
@@ -68,7 +69,7 @@ const NamespaceCard = (props) => {
   const NsExpanded = (props) => {
     return (
     <React.Fragment>
-      <div className="nsCardExpandedBox">
+      <div className="nsCardExpandedBox" data-testid="expanded">
         <div className="nsCardBackButtonCx">
           <button className="nsCardBackMaximize" 
             onClick={ (event) => {
@@ -90,10 +91,11 @@ const NamespaceCard = (props) => {
   return (
   <React.Fragment>
     <div className="dimmer"></div>
-    <div className="namespaceCardBox">
+    <div className="namespaceCardBoxCx">
       { active ? <NsExpanded namespace={props.namespace}/>: <NsFrontBack /> }
     </div>
-  </React.Fragment>);
+  </React.Fragment>
+  );
 
 }
 

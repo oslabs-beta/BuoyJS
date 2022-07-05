@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { selectNamespaces } from '../../reducers/clustersSlice';
-import Pod from './Pod.jsx';
+import React, { useState, useEffect } from 'react'; 
 import { BsFillCaretDownFill } from 'react-icons/bs';
 import { BsFillCaretRightFill } from 'react-icons/bs';
+import NodePod from './NodePod.jsx';
 
-const Pods = (props) => {
+const NodePods = (props) => {
 
-  const { openState } = props; 
+  const { pods, openState } = props; 
 
   const [open, setOpen] = useState(false);
 
@@ -15,16 +13,14 @@ const Pods = (props) => {
     setOpen(openState);
   }, [ openState ]);
 
-  const name_spaces = useSelector(selectNamespaces);
-
-  const podsArr = [];
-  for (let i = 0; i < name_spaces.length; i++) {
-    if (name_spaces[i].name === props.namespace) {
-      for (let j = 0; j < name_spaces[i].pods.length; j++) {
-        podsArr.push(<Pod id={j} name={name_spaces[i].pods[j].name} status={name_spaces[i].pods[j].status} podIP={name_spaces[i].pods[j].podIP} key={`podsBox-${i}${j}`}/>);
-      }
-    }
-  }
+  const podsArr = pods.map( pod => {
+    return <NodePod 
+      key={`${pod.nodeName}${pod.name}`}
+      name={pod.name}
+      status={pod.status} 
+      podIP={pod.podIP}
+      />
+  });
 
   return (
     <div className="ClustersContainer2">
@@ -44,8 +40,7 @@ const Pods = (props) => {
         </div>
     </div>
   );
-
 }
 
 
-export default Pods;
+export default NodePods;

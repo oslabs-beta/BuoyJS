@@ -53,11 +53,15 @@
 #testButton {
 }
 
-#namespaceOpen, #namespaceClose {
+#namespaceOpen, #namespaceClose,
+#nodeOpen, #nodeClose
+{
   margin-top: 15px;
 }
 
-.NamespaceTitle {
+.NamespaceTitle,
+.NodeTitle
+{
   display: flex;
   align-items: center;
   /* justify-content: center; */
@@ -94,7 +98,8 @@
   cursor: pointer;
 }
 
-.NamespaceContainer {
+.NamespaceContainer,
+.NodeContainer {
   display: flex;
   /* border: 1px solid black; */
   /* border-radius: 0.5em; */
@@ -125,7 +130,9 @@
   flex-direction: column;
 }
 
-.namespace-item {
+.namespace-item,
+.node-item 
+{
   display: flex;
   font-size: large;
   width: 100%;
@@ -145,6 +152,7 @@
   flex-direction: column;
   font-size: small;
   margin-left: 2em;
+  padding-bottom: 1em;
 }
 
 #podrepl {
