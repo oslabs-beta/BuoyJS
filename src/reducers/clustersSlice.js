@@ -23,7 +23,7 @@ export const clustersSlice = createSlice({
 
   reducers: {
     addNamespaces: (state, action) => {
-      console.log(state, namespaces)
+      // console.log(state, namespaces)
       state.totalObjects += action.payload.length;
 
       action.payload.map( namespace =>
