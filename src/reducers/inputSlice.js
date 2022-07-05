@@ -6,30 +6,35 @@ export const inputSlice = createSlice({
 
   initialState: {
     portNumber: 8080,
-    query: "",
-    queryType: "query",
-    queryLabel: "",
+    customMetrics: [],
+    //queryType: [],
+    queryLabel: [],
   },
 
   reducers: {
     getPortNumber: (state, action) => {
       console.log('getPortNumber', action.payload)
+      
       return Object.assign({}, state, {portNumber: action.payload});
     },
-    getQuery: (state, action) => {
-      return Object.assign({}, state, {query: action.payload});
-    },
-    getQueryType: (state, action) => {
-      return Object.assign({}, state, {queryType: action.payload});
-    },
     getQueryLabel: (state, action) => {
-      return Object.assign({}, state, {queryLabel: action.payload});
+      return Object.assign({}, state, {
+        //query : [...state.query, action.payload.queryInput],
+        //queryType: [...state.queryType, action.payload.queryType],
+        queryLabel: [...state.queryLabel, action.payload]
+      });
     },
+    getCustomQueries: (state, action) => {
+      return Object.assign({}, state, {
+        //queryType : [...action.payload.queryType],
+        customMetrics : [...action.payload.customMetrics]
+      })
+    }
   },
 
 });
 
 
 export const selectInputs = (state) => state.input; 
-export const { getPortNumber, getQuery, getQueryType, getQueryLabel } = inputSlice.actions;
+export const { getPortNumber, getCustomQueries, getQueryType, getQueryLabel } = inputSlice.actions;
 export default inputSlice.reducer;

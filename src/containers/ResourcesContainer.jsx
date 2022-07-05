@@ -9,7 +9,7 @@ import { promClientEmitters } from '../../controllers/loadPromClientData.js';
 import { ipcRenderer } from 'electron';
 import { cpuUseQuery } from '../../promClient/promClient.js'
 import { getCpuUsage, selectCpuUsage, selectMemUsage, selectNetwork } from '../reducers/networkSlice.js';
-
+import { selectInputs } from '../reducers/inputSlice.js'
 // not sure if we'll be getting cpu/mem data via state or somewhere else ...
   // need to pass props into components whenever this is resolved.
 
@@ -26,6 +26,7 @@ const ResourcesContainer = props => {
   const cpuUsage = useSelector(selectCpuUsage)
   const memUsage = useSelector(selectMemUsage)
   const { totalMem, totalCpu } = useSelector(selectNetwork)
+  const { queryLabel, customMetrics } = useSelector(selectInputs)
   return (
     <div className="ResourcesContainer">
       <div className="CpuMemoryContainer">
@@ -35,7 +36,7 @@ const ResourcesContainer = props => {
       </div>
       <div className="ClusterResourcesContainer">
         <CustomQueryInput />
-        <ClusterResourcesDisplay />
+        <ClusterResourcesDisplay queryLabel={queryLabel} customMetrics={customMetrics} />
       </div>
     </div>
   );

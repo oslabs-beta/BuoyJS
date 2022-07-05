@@ -27,7 +27,6 @@ class PromClient{
         this.probeErrorRate = '100 - sum(rate(probe_success[10m]) * -100) by (env)'
         //this.probeSaturation = 
         this.probeReqPerSec = 'sum(probe_http_requests_count[1m]'
-        this.customQueries = {}
         this.endpoint = "http://localhost:9090"
         this.baseUrl = "/api/v1/"
         this.target = ""
@@ -38,11 +37,49 @@ class PromClient{
         this.hardwareQueries = this.hardwareQueries.bind(this);
         this.hardwareQueries(this.channelArr, this.queryArr);
 
-        this.nwChannelArr = [];
-        this.nwQueryArr = [];
+        this.nwChannelArr = ['latency', 'err-rate', 'req-freq'];
+        this.nwQueryArr = ['','',''];
         this.networkQueries = this.networkQueries.bind(this);
         this.networkQueries(this.nwChannelArr, this.nwQueryArr)
+
+        this.customTypeArr = [];
+        this.customQueryArr = [];
+        this.getInput = this.getInput.bind(this);
+        this.getInput();
+
+        this.customQueries = this.customQueries.bind(this);
+        this.customQueries(this.customTypeArr, this.customQueryArr);
     }
+
+    getInput(){
+        ipcMain.on('add:custom-query', (type, query) => {
+            this.customTypeArr.push(type);
+            this.customQueryArr.push(query);
+            console.log('in get input', this.customTypeArr, this.customQueryArr)
+        })
+    }
+
+    customQueries(type, query){
+        ipcMain.on(`load:custom-queries`, async () => {
+        const metrics = []
+        if (query.length > 0){
+        for (let i=0; i < query.length; i++){
+            try { 
+                const rawres = await fetch(this.endpoint + this.baseUrl + `${type[i]}?query=` + query[i]);
+                const res = await rawres.json();
+                const data = await res.data.result[0].value[1];
+                metrics.push(data)
+                //this.window.webContents.send(`get:custom-queries`, data);
+            }
+            catch(err) {
+                console.error('Error in Custom Queries: ', err)
+            };
+        };
+    }
+        this.window.webContents.send('get:custom-queries', metrics)
+    }); 
+    };
+
     networkQueries(channelArr, queryArr){
         for (let i=0; i < queryArr.length; i++){
             ipcMain.on(`load:${channelArr[i]}`, async () => {
@@ -53,7 +90,7 @@ class PromClient{
                 this.window.webContents.send(`get:${channelArr[i]}`, data);
             }
             catch(err) {
-                console.error('Error in Network Queries', err)
+                console.error('Error in Network Queries: ', err)
             }
         })
       }
