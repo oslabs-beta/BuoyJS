@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Deployments from './Deployments.jsx';
 import Pods from './Pods.jsx';
 import Services from './Services.jsx';
@@ -9,15 +9,30 @@ const Namespace = (props) => {
 
   const { name, status, allOpen, id } = props;
 
-  const [open, setOpen] = useState(allOpen);
+  const [open, setOpen] = useState(false);
+
+  useEffect( () => {
+    setOpen(allOpen);
+  }, [allOpen]);
 
   return (
     <div className="NamespaceContainer">
       <div className="namespace-item">
         <div className="NamespaceTitle">
-          {open && <button className="arrow" id="namespaceClose" onClick={() => setOpen(!open)}><BsFillCaretDownFill /></button>}
-          {allOpen && !open && <button className="arrow" id="namespaceClose" onClick={() => setOpen(!open)}><BsFillCaretDownFill /></button>}
-          {(!open && !allOpen) && <button className="arrow" id="namespaceOpen" onClick={() => setOpen(!open)}><BsFillCaretRightFill /></button>}
+          {open
+            ? <button 
+              className="arrow" 
+              id="namespaceClose" 
+              onClick={() => setOpen(!open)}>
+                <BsFillCaretDownFill />
+            </button>
+            : <button 
+            className="arrow" 
+            id="namespaceOpen" 
+            onClick={() => setOpen(!open)}>
+              <BsFillCaretRightFill />
+            </button>
+          }
           <p id="name">{name}</p>
         </div>
         <p id={`${status}`}>{status}</p> 

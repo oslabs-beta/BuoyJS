@@ -59,9 +59,10 @@ function createMainWindow() {
 
 	new KubeClient(mainWindow);
 	new PromClient(mainWindow);
+	// const promClient = new PromClient(mainWindow);
 
 	console.log("Please run");
-	mainWindow.loadURL(indexPath)
+	mainWindow.loadURL(indexPath);
 
 	// Don't show until we are ready and loaded
 	mainWindow.once('ready-to-show', () => {
@@ -84,9 +85,10 @@ function createMainWindow() {
 	mainWindow.on('closed', () => (mainWindow = null))
 }
 
-ipcMain.on('load:cpu-usage', (evt, arg) =>{
-	//PromClient.testQuery()
-})
+// ipcMain.on('add:prom-target', (evt, arg) =>{
+// 	console.log('arg passed in:', arg)
+// 	promClient.target = arg
+// })
 
 ipcMain.on('close-app', (evt, arg) => {
 	app.quit()
@@ -117,6 +119,7 @@ app.on('activate', () => {
 		createMainWindow()
 	}
 })
+
 
 // Stop error
 app.allowRendererProcessReuse = true

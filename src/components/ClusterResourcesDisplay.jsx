@@ -1,5 +1,6 @@
 import React from 'react';
-import ClusterResourcesCard from './ClusterResourcesCard.jsx';
+import DefaultResourcesCard from './DefaultResourcesCard.jsx';
+import CustomResourcesCard from './CustomResourcesCard.jsx'
 
   // again, not sure where cluster resource data will be coming from
     // will need to insert props into components once resolved.
@@ -25,8 +26,8 @@ const ClusterResourcesDisplay = props => {
   return (
     <div className="ClusResDispContainer">
       <h2>Cluster Resources</h2>
-      <ClusterResourcesCard />      {/*<--- for now*/} 
-      <ClusterResourcesCard /> 
+      <DefaultResourcesCard />      {/*<--- for now*/} 
+      <CustomResourcesCard /> 
       {/* {clusterResources} */}    {/*<--- eventually*/} 
     </div>
   )
