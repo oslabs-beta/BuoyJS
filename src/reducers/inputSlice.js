@@ -13,8 +13,6 @@ export const inputSlice = createSlice({
 
   reducers: {
     getPortNumber: (state, action) => {
-      console.log('getPortNumber', action.payload)
-      
       return Object.assign({}, state, {portNumber: action.payload});
     },
     getQueryLabel: (state, action) => {

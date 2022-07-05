@@ -11,7 +11,6 @@ export const loadKubeClientData = (dispatch) => {
   ipcRenderer.send('load:deployments');
   const deploymentEvtTgt = ipcRenderer.on('get:deployments', (e, data) => {
     dispatch(addDeployments(data));
-    console.log("here: ", e);
   });
 
   ipcRenderer.send('load:pods');
