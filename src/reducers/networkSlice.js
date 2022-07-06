@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 
 /**
  * Function to modularize the parsing of incoming resource data associated with Nodes. Each data point should have the format:
@@ -177,6 +177,7 @@ export const selectNodeCpuColors = (state) => state.network.nodeCpuColors;
 export const selectNodeMemoryUsage = (state) => state.network.nodeMemoryUsage;
 export const selectNodeMemoryTimestamp = (state) => state.network.nodeMemoryTimestamp;
 export const selectNodeMemoryColors = (state) => state.network.nodeMemoryColors;
+
 export const { 
   getCpuUsage, 
   getMemUsage, 
@@ -193,7 +194,6 @@ export const {
   getLatency,
   getErrorRate,
   getReqPerSec,
-  setNodeCpuUsage
 
 } = networkSlice.actions;
 export default networkSlice.reducer;

@@ -16,16 +16,16 @@ const NodeChartsContainer = () => {
   
   return (
     <div>
-      <div class="chartContentCx">
-        <div class="chartHeader">Node CPU Usage</div>
+      <div className="chartContentCx">
+        <div className="chartHeader">Node CPU Usage</div>
         <NodeResourceChart 
           nodeResourceUsage={nodeCpuUsage} 
           nodeResourceTimestamp={nodeCpuTimestamp}
           colorArr={cpuColorArr}
         />
       </div>
-      <div class="chartContentCx">
-        <div class="chartHeader">Node Memory Usage</div>
+      <div className="chartContentCx">
+        <div className="chartHeader">Node Memory Usage</div>
         <NodeResourceChart 
           nodeResourceUsage={nodeMemoryUsage}
           nodeResourceTimestamp={nodeMemoryTimestamp}

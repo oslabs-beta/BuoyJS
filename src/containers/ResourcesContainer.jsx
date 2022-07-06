@@ -9,7 +9,6 @@ import CustomQueryInput from '../components/CustomQueryInput.jsx';
 
 import { getCpuUsage, selectCpuUsage, selectMemUsage, selectNetwork } from '../reducers/networkSlice.js';
 import NodeChartsContainer from '../components/resources/NodeChartsContainer.jsx';
-
 // not sure if we'll be getting cpu/mem data via state or somewhere else ...
   // need to pass props into components whenever this is resolved.
 
@@ -20,9 +19,6 @@ const ResourcesContainer = props => {
   //    ipcRenderer.on('get:apiResources', (e, data) => {
   //      setApiResources(data);
   //    });
-  useEffect( 
-	() => promClientEmitters()
-  ,[]);
 
   const cpuUsage = useSelector(selectCpuUsage)
   const memUsage = useSelector(selectMemUsage)
@@ -38,9 +34,8 @@ const ResourcesContainer = props => {
       </div>
       <div className="ClusterResourcesContainer">
         <CustomQueryInput />
-        <ClusterResourcesDisplay />
+        { (queryLabel.length > 0) && <ClusterResourcesDisplay labels={queryLabel} metrics={customMetrics} /> }
       </div>
-      <ClusterResourcesDisplay labels={queryLabel} metrics={customMetrics} />
       <div>
         <NodeChartsContainer />
       </div>
