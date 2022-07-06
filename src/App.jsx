@@ -24,6 +24,7 @@ import '../assets/ControlPlaneAPI.css';
 import '../assets/ControlPlaneScheduler.css';
 import '../assets/ControllerManager.css';
 import '../assets/Header.css';
+import '../assets/NodeChartsContainer.css';
 
 const App = () => {
 

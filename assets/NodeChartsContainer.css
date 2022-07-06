@@ -1,0 +1,11 @@
+.chartContentCx {
+  padding: 0.5em;
+}
+
+.chartHeader {
+  color: white;
+  text-shadow: 0 0 1px black, 0 0 2px black, 0 0 1px black, 0 0 1px black;
+  background: linear-gradient(to right, #647BE5, #3FBCEB);
+  padding: 0.5em;
+}
+

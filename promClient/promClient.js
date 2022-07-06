@@ -55,6 +55,10 @@ class PromClient{
         this.customQueries(this.customTypeArr, this.customQueryArr);
         this.getNodesCPUUsage = this.getNodesCPUUsage.bind(this);
         this.getNodesCPUUsage();
+
+        this.getNodesMemoryUsagePercent = this.getNodesMemoryUsagePercent.bind(this);
+        this.getNodesMemoryUsagePercent();
+
         this.getPortNumber = this.getPortNumber.bind(this);
         this.getPortNumber();
     }
@@ -141,7 +145,7 @@ class PromClient{
 
                 // fetch request to get CPU usage per node
                 const nodeCPUUsageQuery = `100 - (avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[1m])) * 100)`;
-                const queryRequestURI = this.endpoint + this.baseUrl + this.queryPath + nodeCPUUsageQuery;
+                const queryRequestURI = this.endpoint + this.baseUrl + this.queryPath + encodeURIComponent(nodeCPUUsageQuery);
 
                 const response = await fetch(queryRequestURI);
                 const responseJSON = await response.json();
@@ -152,17 +156,50 @@ class PromClient{
                 // map our results to an array
                 results.map( result => {
                     nodeCPUUsageArr.push({
-                        nodeName: result.metric.instance,
-                        cpuUsage: Number(result.value[1]).toFixed(2)
+                        name: result.metric.instance,
+                        resourceUsage: Number(result.value[1]).toFixed(2)
                     })
                 });
 
                 this.window.webContents.send('get:NodeCPUUsage', nodeCPUUsageArr);
+            }, 2000)
             }
             catch (err) {
                 console.error('Error in Nodes CPU Usage:', err)
             }
         });
+    }
+
+    getNodesMemoryUsagePercent() {
+        ipcMain.on('load:NodeMemoryUsagePercent', () => {
+            setInterval( async () => {
+
+                const nodeMemoryUsageArr = [];
+
+                // current Memory Usage per node
+                const nodeMemoryUsageQuery = `100 * (1 - (node_memory_MemFree_bytes + node_memory_Cached_bytes + node_memory_Buffers_bytes) / node_memory_MemTotal_bytes)`;
+
+                const queryRequestURI = this.endpoint + this.baseUrl + this.queryPath + encodeURIComponent(nodeMemoryUsageQuery);
+
+                const response = await fetch(queryRequestURI);
+                const responseJSON = await response.json();     
+                
+                // data.result holds our array of metrics
+                const results = responseJSON.data.result;
+
+                results.map( result => {
+                    nodeMemoryUsageArr.push(
+                        {
+                            name: result.metric.instance,
+                            resourceUsage: Number(result.value[1]).toFixed(2)
+                        }
+                    )
+                });
+
+                this.window.webContents.send('get:NodeMemoryUsagePercent', nodeMemoryUsageArr);
+            
+            }, 2000)
+        })
     }
 };
 
