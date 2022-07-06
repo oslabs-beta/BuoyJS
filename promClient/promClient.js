@@ -128,6 +128,7 @@ class PromClient{
                 const rawres = await fetch(this.endpoint + this.baseUrl + 'query?query=' + queryArr[i]);
                 const res = await rawres.json();
                 const data = await res.data.result[0].value[1];
+
                 this.window.webContents.send(`get:${channelArr[i]}`, data);
             }
             catch(err) {
@@ -139,34 +140,36 @@ class PromClient{
 
     getNodesCPUUsage() {
         ipcMain.on('load:NodeCPUUsage', async () => {
-            try {
-                // array to hold list of nodes & their associated CPU usage
-                const nodeCPUUsageArr = [];
+            setInterval( 
+                async () => {
+                    try {
+                        // array to hold list of nodes & their associated CPU usage
+                        const nodeCPUUsageArr = [];
 
-                // fetch request to get CPU usage per node
-                const nodeCPUUsageQuery = `100 - (avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[1m])) * 100)`;
-                const queryRequestURI = this.endpoint + this.baseUrl + this.queryPath + encodeURIComponent(nodeCPUUsageQuery);
+                        // fetch request to get CPU usage per node
+                        const nodeCPUUsageQuery = `100 - (avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[1m])) * 100)`;
+                        const queryRequestURI = this.endpoint + this.baseUrl + this.queryPath + encodeURIComponent(nodeCPUUsageQuery);
 
-                const response = await fetch(queryRequestURI);
-                const responseJSON = await response.json();
+                        const response = await fetch(queryRequestURI);
+                        const responseJSON = await response.json();
 
-                // data.result holds our array of metrics
-                const results = responseJSON.data.result;
+                        // data.result holds our array of metrics
+                        const results = responseJSON.data.result;
 
-                // map our results to an array
-                results.map( result => {
-                    nodeCPUUsageArr.push({
-                        name: result.metric.instance,
-                        resourceUsage: Number(result.value[1]).toFixed(2)
-                    })
-                });
+                        // map our results to an array
+                        results.map( result => {
+                            nodeCPUUsageArr.push({
+                                name: result.metric.instance,
+                                resourceUsage: Number(result.value[1]).toFixed(2)
+                            })
+                        });
 
-                this.window.webContents.send('get:NodeCPUUsage', nodeCPUUsageArr);
-            }, 2000)
-            }
-            catch (err) {
-                console.error('Error in Nodes CPU Usage:', err)
-            }
+                        this.window.webContents.send('get:NodeCPUUsage', nodeCPUUsageArr);
+                    } catch (err) {
+                        console.error('Error in Nodes CPU Usage:', err);
+                    }
+                }, 2000);
+
         });
     }
 

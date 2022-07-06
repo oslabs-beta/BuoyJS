@@ -34,7 +34,7 @@ const App = () => {
 	useEffect(() => {
 		promClientListeners(dispatch);
 		loadKubeClientData(dispatch);
-	    promClientEmitters();
+	  promClientEmitters();	
 	}, [])
 
 	return (
