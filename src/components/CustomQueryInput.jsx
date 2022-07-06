@@ -1,7 +1,7 @@
 import { ipcRenderer } from 'electron';
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { getPortNumber } from '../reducers/inputSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPortNumber, getQueryLabel } from '../reducers/inputSlice';
 const CustomQueryInput = props => {
 
 // query itself
@@ -21,10 +21,16 @@ const CustomQueryInput = props => {
       return customQueryInput;
     };
 
-    let customQueryInputLabel;
+  let customQueryLabel;
     const queryInputLabel = e => {
-      customQueryInputLabel = e.target.value;
-      return customQueryInputLabel;
+      customQueryLabel = e.target.value;
+      return customQueryLabel;
+    };
+
+  let customQueryType = 'query'
+    const queryType = e => {
+      customQueryType = e.target.value;
+      return customQueryType
     };
 
     const dispatch = useDispatch()
@@ -46,7 +52,7 @@ const CustomQueryInput = props => {
       <input id="customQuery" placeholder="Enter custom Query String" onChange={ queryInput } required/>
 
       <h4>Enter Query Type:</h4>
-      <select id="customQueryType">
+      <select id="customQueryType" onChange={ queryType }>  //revisit
         <option value="query"> query </option>
         <option value="query_range"> query_range </option>
       </select>
@@ -54,7 +60,10 @@ const CustomQueryInput = props => {
       <h4>Enter Label:</h4>
       <input id="customQueryLabel" placeholder="Name Your Query" onChange={ queryInputLabel } required/>
 
-      <button id="customQueryButton" onClick={() => console.log('clicked')} > Enter </button>
+      <button id="customQueryButton" onClick={() => {
+        ipcRenderer.send('add:custom-query', customQueryType, customQueryInput)
+        dispatch(getQueryLabel(customQueryLabel))
+      }} > Enter </button>
 
     </div>
 
