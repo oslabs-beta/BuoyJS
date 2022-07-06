@@ -1,6 +1,18 @@
 import { ipcRenderer, ipcMain } from "electron";
 import { useDispatch } from "react-redux";
-import { getCpuUsage, getMemUsage, getTotalCpu, getTotalMem, setNodeCpuUsage } from "../src/reducers/networkSlice";
+import { getCpuUsage, getMemUsage, getTotalCpu, getTotalMem, setNodeCpuColors, setNodeCpuTimestamp, setNodeCpuUsage } from "../src/reducers/networkSlice";
+
+// timestamp function for all data retrieval
+const getCurrentTimeUTC = () => {
+
+  const currentTime = new Date().getTime();
+  const seconds = Math.floor((currentTime / 1000) % 60);
+  const minutes = Math.floor((currentTime / 1000 / 60) % 60);
+  const hours = Math.floor((currentTime  / 1000 / 3600 ) % 24);
+  const time = `${ hours > 9 ? hours : '0' + String(hours)}:${minutes > 9 ? minutes : '0' + String(minutes) }:${seconds > 9 ? seconds : '0' + String(seconds)} UTC`
+
+  return time;
+}
 
 export const promClientListeners = (dispatch) => {
     ipcRenderer.on('get:cpu-usage', (e, data) => {
@@ -18,9 +30,26 @@ export const promClientListeners = (dispatch) => {
 
     // getNodeCPU information
 		ipcRenderer.send('load:NodeCPUUsage');
-    ipcRenderer.on('get:NodeCPUUsage', (e, data) => { 
+    ipcRenderer.on('get:NodeCPUUsage', (e, data) => {
+
+      // get currentTime
+      const time = getCurrentTimeUTC();
+
+      dispatch(setNodeCpuTimestamp(time));
       dispatch(setNodeCpuUsage(data));
+      dispatch(setNodeCpuColors());
     });
+
+     // getNodeMemory information
+		ipcRenderer.send('load:NodeMemoryUsagePercent');
+    ipcRenderer.on('get:NodeMemoryUsagePercent', (e, data) => {
+
+      // get currentTime
+      const time = getCurrentTimeUTC();
+      dispatch()
+
+    });
+
 };
 
 export const promClientEmitters = () => {

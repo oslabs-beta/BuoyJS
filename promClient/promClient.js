@@ -46,6 +46,9 @@ class PromClient{
 
         this.getNodesCPUUsage = this.getNodesCPUUsage.bind(this);
         this.getNodesCPUUsage();
+
+        this.getNodesMemoryUsagePercent = this.getNodesMemoryUsagePercent.bind(this);
+        this.getNodesMemoryUsagePercent();
     }
     networkQueries(channelArr, queryArr){
         for (let i=0; i < queryArr.length; i++){
@@ -86,7 +89,7 @@ class PromClient{
 
                 // fetch request to get CPU usage per node
                 const nodeCPUUsageQuery = `100 - (avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[1m])) * 100)`;
-                const queryRequestURI = this.endpoint + this.baseUrl + this.queryPath + nodeCPUUsageQuery;
+                const queryRequestURI = this.endpoint + this.baseUrl + this.queryPath + encodeURIComponent(nodeCPUUsageQuery);
 
                 const response = await fetch(queryRequestURI);
                 const responseJSON = await response.json();
@@ -103,9 +106,42 @@ class PromClient{
                 });
 
                 this.window.webContents.send('get:NodeCPUUsage', nodeCPUUsageArr);
+
                 
-            }, 3000)
+            }, 2000)
         });
+    }
+
+    getNodesMemoryUsagePercent() {
+        ipcMain.on('load:NodeMemoryUsagePercent', () => {
+            setInterval( async () => {
+
+                const CPUMemoryUsageArr = [];
+
+                // current Memory Usage per node
+                const nodeMemoryUsageQuery = `100 * (1 - (node_memory_MemFree_bytes + node_memory_Cached_bytes + node_memory_Buffers_bytes) / node_memory_MemTotal_bytes)`;
+
+                const queryRequestURI = this.endpoint + this.baseUrl + this.queryPath + encodeURIComponent(nodeMemoryUsageQuery);
+
+                const response = await fetch(queryRequestURI);
+                const responseJSON = await response.json();     
+                
+                // data.result holds our array of metrics
+                const results = responseJSON.data.result;
+
+                results.map( result => {
+                    CPUMemoryUsageArr.push(
+                        {
+                            nodeName: result.metric.instance,
+                            memoryUsage: Number(result.value[1]).toFixed(2)
+                        }
+                    )
+                })
+
+                this.window.webContents.send('get:NodeMemoryUsagePercent', nodeCPUUsageArr);
+            
+            }, 2000)
+        })
     }
 };
 

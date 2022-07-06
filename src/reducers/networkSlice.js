@@ -9,7 +9,15 @@ export const networkSlice = createSlice({
     memUsage: 0,
     totalCpu: 0,
     totalMem: 0,
+    
     nodeCpuUsage: [],
+    nodeCpuTimestamp: [],
+    nodeCpuColors: [],
+
+    nodeMemoryUsage: [],
+    nodeMemoryTimestamp: [],
+    ndoeMemoryColors: [],
+
   },
 
   reducers: {
@@ -29,6 +37,7 @@ export const networkSlice = createSlice({
       console.log(action.payload)
       return Object.assign({}, state, {totalMem: action.payload});
     },
+
     setNodeCpuUsage: (state, action) => {
       // if we have a blank slate, insert incoming data as part of state
       if (state.nodeCpuUsage.length === 0) {
@@ -39,7 +48,6 @@ export const networkSlice = createSlice({
       } else {
 
         const nodeCpuUsage = current(state.nodeCpuUsage);
-
         const newNodeCpuUsage = [];
 
         // limit cpuUsage dataset to 25 per node
@@ -69,19 +77,58 @@ export const networkSlice = createSlice({
           return { ...state, nodeCpuUsage: newNodeCpuUsage};
         }
       }
-    }
-  },
+    },
+    setNodeCpuTimestamp: (state, action) => {
+      // timestamp result for our chart
+      if (state.nodeCpuTimestamp.length < 25) {
+        const newTimestampArr = [...state.nodeCpuTimestamp, action.payload];
+        return { ...state, nodeCpuTimestamp: newTimestampArr}
+      } else {
+        const shiftedArray = current(state.nodeCpuTimestamp).slice(1);
+        shiftedArray.push(action.payload);
+        return { ...state, nodeCpuTimestamp: shiftedArray}
+      }
+    },
+    // set colors for the node CPU graphs
+    setNodeCpuColors: (state, action) => {
+      const nodeNum = state.nodeCpuUsage.length;
+      const colorCount = state.nodeCpuColors.length;
+
+      const newColors = [];
+      // assign each node a random color
+      if (colorCount < nodeNum) {
+
+        let colorsToAdd = nodeNum - colorCount;
+        while(colorsToAdd > 0) {
+          const r = Math.floor(Math.random() * 255);
+          const g = Math.floor(Math.random() * 255);
+          const b = Math.floor(Math.random() * 255);
+
+          newColors.push({
+            borderColor: `rgb(${r}, ${g}, ${b})`,
+            backgroundColor: `rgba(${r}, ${g}, ${b}, 0.5)`
+          });
+          colorsToAdd--;
+        }
+      }
+      return { ...state, nodeCpuColors: [...state.nodeCpuColors, ...newColors]};
+    },
+  }
 });
 
 export const selectCpuUsage = (state) => state.network.cpuUsage;
 export const selectMemUsage = (state) => state.network.memUsage;
 export const selectNetwork = (state) => state.network;
 export const selectNodeCpuUsage = (state) => state.network.nodeCpuUsage;
+export const selectNodeCpuTimestamp = (state) => state.network.nodeCpuTimestamp;
+export const selectNodeCpuColors = (state) => state.network.nodeCpuColors;
 export const { 
   getCpuUsage, 
   getMemUsage, 
   getTotalCpu, 
   getTotalMem,
-  setNodeCpuUsage
+  setNodeCpuUsage,
+  setNodeCpuTimestamp,
+  setNodeCpuColors,
 } = networkSlice.actions;
 export default networkSlice.reducer;
