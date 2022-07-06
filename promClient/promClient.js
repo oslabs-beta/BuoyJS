@@ -30,6 +30,7 @@ class PromClient{
         this.endpoint = "http://localhost:9090"
         this.baseUrl = "/api/v1/"
         this.queryPath = 'query?query=';
+ 
         this.target = ""
         this.window = window;
         
@@ -54,24 +55,30 @@ class PromClient{
         this.customQueries(this.customTypeArr, this.customQueryArr);
         this.getNodesCPUUsage = this.getNodesCPUUsage.bind(this);
         this.getNodesCPUUsage();
+        this.getPortNumber = this.getPortNumber.bind(this);
+        this.getPortNumber();
     }
 
     getInput(){
-        ipcMain.on('add:custom-query', (type, query) => {
+        ipcMain.on('add:custom-query', (e, type, query) => {
+            console.log('in get input', type, query)
+
             this.customTypeArr.push(type);
             this.customQueryArr.push(query);
-            console.log('in get input', this.customTypeArr, this.customQueryArr)
         })
     }
 
     customQueries(type, query){
+        console.log('in custom queries', type, query);
         ipcMain.on(`load:custom-queries`, async () => {
-        const metrics = []
+        const metrics = [];
         if (query.length > 0){
         for (let i=0; i < query.length; i++){
             try { 
+                console.log('hello there', this.endpoint + this.baseUrl + `${type[i]}?query=` + query[i])
                 const rawres = await fetch(this.endpoint + this.baseUrl + `${type[i]}?query=` + query[i]);
                 const res = await rawres.json();
+                console.log('hello again', res.data.result[0])
                 const data = await res.data.result[0].value[1];
                 metrics.push(data)
                 //this.window.webContents.send(`get:custom-queries`, data);
@@ -81,12 +88,21 @@ class PromClient{
             };
         };
     }
-        this.window.webContents.send('get:custom-queries', metrics)
+        this.window.webContents.send('get:custom-queries', metrics);
     }); 
     };
+
+    getPortNumber() {
+      ipcMain.on('get:prom-target', (e, data) => {
+         this.target = `${data}`;
+        });  
+      return;  
+    }
+
     networkQueries(probeChannelArr, probeQueryArr){
         for (let i=0; i < probeQueryArr.length; i++){
             ipcMain.on(`load:${probeChannelArr[i]}`, async () => {
+            if (target.length === 0) return;
             try { 
                 const rawres = await fetch(this.endpoint + this.baseUrl + `probe?target=${this.target}&module=http_2xx` + probeQueryArr[i]);
                 const res = await rawres.json();
@@ -100,6 +116,7 @@ class PromClient{
         })
       }
     }
+
     hardwareQueries(channelArr, queryArr){
         for (let i=0; i < queryArr.length; i++){
             ipcMain.on(`load:${channelArr[i]}`, async () => {
@@ -117,8 +134,8 @@ class PromClient{
     }
 
     getNodesCPUUsage() {
-        ipcMain.on('load:NodeCPUUsage', () => {
-            setInterval( async () => {
+        ipcMain.on('load:NodeCPUUsage', async () => {
+            try {
                 // array to hold list of nodes & their associated CPU usage
                 const nodeCPUUsageArr = [];
 
@@ -141,8 +158,10 @@ class PromClient{
                 });
 
                 this.window.webContents.send('get:NodeCPUUsage', nodeCPUUsageArr);
-                
-            }, 3000)
+            }
+            catch (err) {
+                console.error('Error in Nodes CPU Usage:', err)
+            }
         });
     }
 };

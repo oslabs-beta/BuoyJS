@@ -10,7 +10,7 @@ export const networkSlice = createSlice({
     totalMem: 0,
     latency: 0,
     errorRate: 0,
-    reqPerSec: 0
+    reqPerSec: 0,
     nodeCpuUsage: [],
   },
 
@@ -63,6 +63,9 @@ export const {
   getMemUsage, 
   getTotalCpu, 
   getTotalMem,
+  getLatency,
+  getErrorRate,
+  getReqPerSec,
   setNodeCpuUsage
 } = networkSlice.actions;
 export default networkSlice.reducer;

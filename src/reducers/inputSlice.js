@@ -23,9 +23,10 @@ export const inputSlice = createSlice({
       });
     },
     getCustomQueries: (state, action) => {
+      console.log(state.customMetrics)
       return Object.assign({}, state, {
         //queryType : [...action.payload.queryType],
-        customMetrics : [...action.payload.customMetrics]
+        customMetrics : [...action.payload]
       })
     }
   },
@@ -34,5 +35,5 @@ export const inputSlice = createSlice({
 
 
 export const selectInputs = (state) => state.input; 
-export const { getPortNumber, getCustomQueries, getQueryType, getQueryLabel } = inputSlice.actions;
+export const { getPortNumber, getCustomQueries, getQueryLabel } = inputSlice.actions;
 export default inputSlice.reducer;

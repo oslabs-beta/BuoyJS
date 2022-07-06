@@ -27,7 +27,7 @@ const ClusterResourcesDisplay = props => {
     <div className="ClusResDispContainer">
       <h2>Cluster Resources</h2>
       <DefaultResourcesCard />      {/*<--- for now*/} 
-      <CustomResourcesCard /> 
+      <CustomResourcesCard labels={props.labels} metrics={props.metrics}/> 
       {/* {clusterResources} */}    {/*<--- eventually*/} 
     </div>
   )

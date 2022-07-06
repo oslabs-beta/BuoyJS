@@ -27,7 +27,7 @@ const CustomQueryInput = props => {
       return customQueryLabel;
     };
 
-  let customQueryType;
+  let customQueryType = 'query'
     const queryType = e => {
       customQueryType = e.target.value;
       return customQueryType
