@@ -35,6 +35,8 @@ const ResourcesContainer = props => {
       <div className="ClusterResourcesContainer">
         <CustomQueryInput />
         <ClusterResourcesDisplay />
+      </div>
+      <div>
         <NodeChartsContainer />
       </div>
     </div>

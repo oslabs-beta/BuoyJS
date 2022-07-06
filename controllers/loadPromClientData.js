@@ -1,6 +1,6 @@
 import { ipcRenderer, ipcMain } from "electron";
 import { useDispatch } from "react-redux";
-import { getCpuUsage, getMemUsage, getTotalCpu, getTotalMem, setNodeCpuColors, setNodeCpuTimestamp, setNodeCpuUsage } from "../src/reducers/networkSlice";
+import { getCpuUsage, getMemUsage, getTotalCpu, getTotalMem, setNodeCpuColors, setNodeCpuTimestamp, setNodeCpuUsage, setNodeMemoryColors, setNodeMemoryTimestamp, setNodeMemoryUsage } from "../src/reducers/networkSlice";
 
 // timestamp function for all data retrieval
 const getCurrentTimeUTC = () => {
@@ -47,6 +47,9 @@ export const promClientListeners = (dispatch) => {
       // get currentTime
       const time = getCurrentTimeUTC();
 
+      dispatch(setNodeMemoryTimestamp(time));
+      dispatch(setNodeMemoryUsage(data));
+      dispatch(setNodeMemoryColors());
     });
 
 };
