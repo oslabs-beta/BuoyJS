@@ -46,7 +46,6 @@ export const promClientListeners = (dispatch) => {
 
       // get currentTime
       const time = getCurrentTimeUTC();
-      dispatch()
 
     });
 

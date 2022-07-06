@@ -1,6 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { selectNodeCpuColors, selectNodeCpuTimestamp, selectNodeCpuUsage } from '../../reducers/networkSlice';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -24,18 +22,15 @@ ChartJS.register(
   Legend,
 );
 
-
-const NodeCPUChart = () => {
+const NodeResourceChart = (props) => {
   
-  const nodeCpuUsage = useSelector(selectNodeCpuUsage);
-  const nodeCpuTimestamp = useSelector(selectNodeCpuTimestamp);
+  const { nodeResourceUsage, nodeResourceTimestamp, colorArr } = props;
   const datasets = [];
-  const colorArr = useSelector(selectNodeCpuColors);
   
-  nodeCpuUsage.map( (node, idx) => {
+  nodeResourceUsage.map( (node, idx) => {
     datasets.push({
-      label: node.nodeName,
-      data: node.cpuUsage,
+      label: node.name,
+      data: node.resourceUsage,
       borderColor: colorArr[idx].borderColor,
       backgroundColor: colorArr[idx].backgroundColor,
       borderWidth: 1,
@@ -46,7 +41,7 @@ const NodeCPUChart = () => {
     <div>
       <Line
         data={{
-          labels: nodeCpuTimestamp,
+          labels: nodeResourceTimestamp,
           datasets: datasets,
         }}
         height={400}
@@ -56,4 +51,4 @@ const NodeCPUChart = () => {
   );
 };
 
-export default NodeCPUChart;
+export default NodeResourceChart;

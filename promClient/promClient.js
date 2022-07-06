@@ -100,8 +100,8 @@ class PromClient{
                 // map our results to an array
                 results.map( result => {
                     nodeCPUUsageArr.push({
-                        nodeName: result.metric.instance,
-                        cpuUsage: Number(result.value[1]).toFixed(2)
+                        name: result.metric.instance,
+                        resourceUsage: Number(result.value[1]).toFixed(2)
                     })
                 });
 
@@ -116,7 +116,7 @@ class PromClient{
         ipcMain.on('load:NodeMemoryUsagePercent', () => {
             setInterval( async () => {
 
-                const CPUMemoryUsageArr = [];
+                const nodeMemoryUsageArr = [];
 
                 // current Memory Usage per node
                 const nodeMemoryUsageQuery = `100 * (1 - (node_memory_MemFree_bytes + node_memory_Cached_bytes + node_memory_Buffers_bytes) / node_memory_MemTotal_bytes)`;
@@ -130,15 +130,15 @@ class PromClient{
                 const results = responseJSON.data.result;
 
                 results.map( result => {
-                    CPUMemoryUsageArr.push(
+                    nodeMemoryUsageArr.push(
                         {
-                            nodeName: result.metric.instance,
-                            memoryUsage: Number(result.value[1]).toFixed(2)
+                            name: result.metric.instance,
+                            resourceUsage: Number(result.value[1]).toFixed(2)
                         }
                     )
-                })
+                });
 
-                this.window.webContents.send('get:NodeMemoryUsagePercent', nodeCPUUsageArr);
+                this.window.webContents.send('get:NodeMemoryUsagePercent', nodeMemoryUsageArr);
             
             }, 2000)
         })

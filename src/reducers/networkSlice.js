@@ -1,6 +1,99 @@
 import { createSlice, current } from '@reduxjs/toolkit';
 //const PromClient = require('.s/promClient/promClient.js')
 
+/**
+ * Function to modularize the parsing of incoming resource data associated with Nodes. Each data point should have the format:
+ * {
+ *  name: value
+ *  resourceUsage: value
+ * }
+ * @param {*} nodeUsageArr 
+ * @param {*} data 
+ * @returns 
+ */
+const getNodeResourceUsageArr = (nodeUsageArr, data) => {
+  // if we have a blank slate, insert incoming data as part of state
+
+  if (nodeUsageArr.length === 0) {
+    const recvNodeUsage = data.map(node => {
+      return { name: node.name, resourceUsage: [node.resourceUsage] }
+    })
+    return recvNodeUsage;
+  } else {
+
+    const newNodeResourceUsage = [];
+    // limit resourceUsage dataset to 25 per node
+    if (nodeUsageArr[0].resourceUsage.length < 25) {
+      // for each node push new data
+      for (let i = 0; i < nodeUsageArr.length; i++) {
+        const payloadNode = data[i];
+        newNodeResourceUsage.push({
+          name: payloadNode.name,
+          resourceUsage: [...nodeUsageArr[i].resourceUsage, payloadNode.resourceUsage ]
+        })
+      }
+      
+      return newNodeResourceUsage;
+    // reached dataset Limit to 25 per node
+    } else {
+      // remove 1st element index & push new element in;
+      for (let i = 0; i < nodeUsageArr.length; i++) {
+        const payloadNode = data[i];
+        const shiftedArray = nodeUsageArr[i].resourceUsage.slice(1);
+        newNodeResourceUsage.push({
+          name: payloadNode.name,
+          resourceUsage: [...shiftedArray, payloadNode.resourceUsage]
+        });
+      }
+      
+      return newNodeResourceUsage;
+    }
+  }
+}
+
+const getNodeResourceTimestamp = (getNodeResourceTimestampArr, time) => {
+  // timestamp result for our chart
+  if (getNodeResourceTimestampArr.length < 25) {
+    const newTimestampArr = [...getNodeResourceTimestampArr, time];
+    return newTimestampArr;
+  } else {
+    const shiftedArray = getNodeResourceTimestampArr.slice(1);
+    shiftedArray.push(time);
+    return shiftedArray;
+  }
+}
+
+/**
+ * Functions to generate colors for each particular resources within our render graphs
+ * 
+ * @param {array} resourceArr 
+ * @param {array} colorArr 
+ * @returns {array} newColors - return colors to be added for graphs
+ */
+const getColorsArr = (resourceArr, colorArr) => {
+    const resourceNum = resourceArr.length;
+    const colorCount = colorArr.length;
+
+    const newColors = [];
+    // assign each node a random color
+    if (colorCount < resourceNum) {
+
+    let colorsToAdd = resourceNum - colorCount;
+    while(colorsToAdd > 0) {
+      const r = Math.floor(Math.random() * 255);
+      const g = Math.floor(Math.random() * 255);
+      const b = Math.floor(Math.random() * 255);
+
+      newColors.push({
+        borderColor: `rgb(${r}, ${g}, ${b})`,
+        backgroundColor: `rgba(${r}, ${g}, ${b}, 0.5)`
+      });
+      colorsToAdd--;
+    }
+  }
+  return newColors;
+}
+
 export const networkSlice = createSlice({
   name: "network",
 
@@ -16,7 +109,7 @@ export const networkSlice = createSlice({
 
     nodeMemoryUsage: [],
     nodeMemoryTimestamp: [],
-    ndoeMemoryColors: [],
+    nodeMemoryColors: [],
 
   },
 
@@ -38,81 +131,33 @@ export const networkSlice = createSlice({
       return Object.assign({}, state, {totalMem: action.payload});
     },
 
-    setNodeCpuUsage: (state, action) => {
-      // if we have a blank slate, insert incoming data as part of state
-      if (state.nodeCpuUsage.length === 0) {
-        const recvNodeCpuUsage = action.payload.map(node => {
-          return { nodeName: node.nodeName, cpuUsage: [node.cpuUsage] }
-        })
-        return {...state, nodeCpuUsage: recvNodeCpuUsage};
-      } else {
-
-        const nodeCpuUsage = current(state.nodeCpuUsage);
-        const newNodeCpuUsage = [];
-
-        // limit cpuUsage dataset to 25 per node
-        if (nodeCpuUsage[0].cpuUsage.length < 25) {
-          // for each node push new data
-          for (let i = 0; i < nodeCpuUsage.length; i++) {
-            const payloadNode = action.payload[i];
-            newNodeCpuUsage.push({
-              nodeName: payloadNode.nodeName,
-              cpuUsage: [...nodeCpuUsage[i].cpuUsage, payloadNode.cpuUsage ]
-            })
-          }
-          
-          return { ...state, nodeCpuUsage: newNodeCpuUsage};
-        // reached dataset Limit to 25 per node
-        } else {
-          // remove 1st element index & push new element in;
-          for (let i = 0; i < nodeCpuUsage.length; i++) {
-            const payloadNode = action.payload[i];
-            const shiftedArray = nodeCpuUsage[i].cpuUsage.slice(1);
-            newNodeCpuUsage.push({
-              nodeName: payloadNode.nodeName,
-              cpuUsage: [...shiftedArray, payloadNode.cpuUsage]
-            });
-          }
-
-          return { ...state, nodeCpuUsage: newNodeCpuUsage};
-        }
-      }
+    setNodeCpuUsage: (state, action) => {      
+      const newNodeCpuUsage = getNodeResourceUsageArr(current(state.nodeCpuUsage), action.payload);
+      return { ...state, nodeCpuUsage: newNodeCpuUsage };
     },
     setNodeCpuTimestamp: (state, action) => {
-      // timestamp result for our chart
-      if (state.nodeCpuTimestamp.length < 25) {
-        const newTimestampArr = [...state.nodeCpuTimestamp, action.payload];
-        return { ...state, nodeCpuTimestamp: newTimestampArr}
-      } else {
-        const shiftedArray = current(state.nodeCpuTimestamp).slice(1);
-        shiftedArray.push(action.payload);
-        return { ...state, nodeCpuTimestamp: shiftedArray}
-      }
+      const newTimestampArr = getNodeResourceTimestamp(current(state.nodeCpuTimestamp), action.payload);
+      return { ...state, nodeCpuTimestamp: newTimestampArr}
     },
     // set colors for the node CPU graphs
     setNodeCpuColors: (state, action) => {
-      const nodeNum = state.nodeCpuUsage.length;
-      const colorCount = state.nodeCpuColors.length;
-
-      const newColors = [];
-      // assign each node a random color
-      if (colorCount < nodeNum) {
-
-        let colorsToAdd = nodeNum - colorCount;
-        while(colorsToAdd > 0) {
-          const r = Math.floor(Math.random() * 255);
-          const g = Math.floor(Math.random() * 255);
-          const b = Math.floor(Math.random() * 255);
-
-          newColors.push({
-            borderColor: `rgb(${r}, ${g}, ${b})`,
-            backgroundColor: `rgba(${r}, ${g}, ${b}, 0.5)`
-          });
-          colorsToAdd--;
-        }
-      }
+      const newColors = getColorsArr(current(state.nodeCpuUsage), current(state.nodeCpuColors));
       return { ...state, nodeCpuColors: [...state.nodeCpuColors, ...newColors]};
     },
+
+    setNodeMemoryUsage: (state, action) => {
+      const newNodeMemoryUsage = getNodeResourceUsageArr(current(state.nodeMemoryUsage), action.payload);
+      return { ...state, nodeMemoryUsage: newNodeMemoryUsage}
+    },
+    setNodeMemoryTimestamp: (state, action) => {
+      const newTimestampArr = getNodeResourceTimestamp(current(state.nodeMemoryTimestamp), action.payload);
+      return { ...state, nodeMemoryTimestamp: newTimestampArr}
+    },
+    setNodeMemoryColors: (state, action) => {
+      const newColors = getColorsArr(current(state.nodeMemoryUsage), current(state.nodeMemoryColors));
+      return { ...state, nodeMemoryColors: [...state.nodeMemoryColors, ...newColors]};
+    },
+
   }
 });
 
@@ -122,6 +167,9 @@ export const selectNetwork = (state) => state.network;
 export const selectNodeCpuUsage = (state) => state.network.nodeCpuUsage;
 export const selectNodeCpuTimestamp = (state) => state.network.nodeCpuTimestamp;
 export const selectNodeCpuColors = (state) => state.network.nodeCpuColors;
+export const selectNodeMemoryUsage = (state) => state.network.nodeMemoryUsage;
+export const selectNodeMemoryTimestamp = (state) => state.network.nodeMemoryTimestamp;
+export const selectNodeMemoryColors = (state) => state.network.nodeMemoryColors;
 export const { 
   getCpuUsage, 
   getMemUsage, 
@@ -130,5 +178,8 @@ export const {
   setNodeCpuUsage,
   setNodeCpuTimestamp,
   setNodeCpuColors,
+  setNodeMemoryUsage,
+  setNodeMemoryTimestamp,
+  setNodeMemoryColors,
 } = networkSlice.actions;
 export default networkSlice.reducer;
