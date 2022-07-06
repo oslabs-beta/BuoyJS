@@ -1,5 +1,4 @@
-import { createSlice, current } from '@reduxjs/toolkit';
-//const PromClient = require('.s/promClient/promClient.js')
+import { createSlice } from '@reduxjs/toolkit';
 
 /**
  * Function to modularize the parsing of incoming resource data associated with Nodes. Each data point should have the format:
@@ -102,7 +101,11 @@ export const networkSlice = createSlice({
     memUsage: 0,
     totalCpu: 0,
     totalMem: 0,
-    
+
+    latency: 0,
+    errorRate: 0,
+    reqPerSec: 0,
+
     nodeCpuUsage: [],
     nodeCpuTimestamp: [],
     nodeCpuColors: [],
@@ -115,22 +118,26 @@ export const networkSlice = createSlice({
 
   reducers: {
     getCpuUsage: (state, action) => {
-      console.log('getCpuUsage', action.payload)
       return Object.assign({}, state, {cpuUsage: action.payload});
     },
     getMemUsage: (state, action) => {
-      console.log('get Mem Usage',action.payload)
       return Object.assign({}, state, {memUsage: action.payload});
     },
     getTotalCpu: (state, action) => {
-      console.log(action.payload)
       return Object.assign({}, state, {totalCpu: action.payload});
     },
     getTotalMem: (state, action) => {
-      console.log(action.payload)
       return Object.assign({}, state, {totalMem: action.payload});
     },
-
+    getLatency: (state, action) => {
+      return Object.assign({}, state, {latency: action.payload});
+    },
+    getErrorRate: (state, action) => {
+      return Object.assign({}, state, {errorRate: action.payload});
+    },
+    getReqPerSec: (state, action) => {
+      return Object.assign({}, state, {reqPerSec: action.payload});
+    },
     setNodeCpuUsage: (state, action) => {      
       const newNodeCpuUsage = getNodeResourceUsageArr(current(state.nodeCpuUsage), action.payload);
       return { ...state, nodeCpuUsage: newNodeCpuUsage };
@@ -175,11 +182,18 @@ export const {
   getMemUsage, 
   getTotalCpu, 
   getTotalMem,
+  
   setNodeCpuUsage,
   setNodeCpuTimestamp,
   setNodeCpuColors,
   setNodeMemoryUsage,
   setNodeMemoryTimestamp,
   setNodeMemoryColors,
+  
+  getLatency,
+  getErrorRate,
+  getReqPerSec,
+  setNodeCpuUsage
+
 } = networkSlice.actions;
 export default networkSlice.reducer;

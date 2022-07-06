@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import TotalCpuMemory from '../components/TotalCpuMemory.jsx';
 import MemUsage from '../components/MemUsage.jsx';
 import CpuUsage from '../components/CpuUsage.jsx';
+import { selectInputs } from '../reducers/inputSlice.js';
 import ClusterResourcesDisplay from '../components/ClusterResourcesDisplay.jsx';
 import CustomQueryInput from '../components/CustomQueryInput.jsx';
 
@@ -19,12 +20,15 @@ const ResourcesContainer = props => {
   //    ipcRenderer.on('get:apiResources', (e, data) => {
   //      setApiResources(data);
   //    });
-	// setTimeout(() => {
-  //   promClientEmitters()}, 15000)
-  
+  useEffect( 
+	() => promClientEmitters()
+  ,[]);
+
   const cpuUsage = useSelector(selectCpuUsage)
   const memUsage = useSelector(selectMemUsage)
   const { totalMem, totalCpu } = useSelector(selectNetwork)
+  const { queryLabel, customMetrics } = useSelector(selectInputs)
+
   return (
     <div className="ResourcesContainer">
       <div className="CpuMemoryContainer">
@@ -36,6 +40,7 @@ const ResourcesContainer = props => {
         <CustomQueryInput />
         <ClusterResourcesDisplay />
       </div>
+      <ClusterResourcesDisplay labels={queryLabel} metrics={customMetrics} />
       <div>
         <NodeChartsContainer />
       </div>

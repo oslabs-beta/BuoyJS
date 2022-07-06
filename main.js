@@ -61,7 +61,6 @@ function createMainWindow() {
 	new PromClient(mainWindow);
 	// const promClient = new PromClient(mainWindow);
 
-	console.log("Please run");
 	mainWindow.loadURL(indexPath);
 
 	// Don't show until we are ready and loaded
@@ -86,7 +85,6 @@ function createMainWindow() {
 }
 
 // ipcMain.on('add:prom-target', (evt, arg) =>{
-// 	console.log('arg passed in:', arg)
 // 	promClient.target = arg
 // })
 

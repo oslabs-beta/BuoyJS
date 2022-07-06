@@ -31,7 +31,6 @@ export const clustersSlice = createSlice({
         // state.namespaces = [...state.namespaces, { ...namespace, deployment: [], pods: [], services: []}]
         state.namespaces.push({ ...namespace, deployments: [], pods: [], services: []})
       );
-      console.log('in addNamespace: ', current(state.namespaces));
     },
     addDeployments: (state, action) => {
       state.totalObjects += action.payload.length;
@@ -50,7 +49,6 @@ export const clustersSlice = createSlice({
         state.namespaces[0].deployments.push(action.payload[deplIdx]);
         deplIdx++;
       }
-      console.log('in addDeployment', current(state.namespaces));
     },
     addPods: (state, action) => {
       state.totalObjects += action.payload.length;
@@ -68,8 +66,8 @@ export const clustersSlice = createSlice({
       while(podIdx < action.payload.length) {
         state.namespaces[0].pods.push(action.payload[podIdx]);
         podIdx++;
-      } 
-      console.log('in addPod', current(state.namespaces));
+      }
+
     },
 
     addNodes: (state, action) => {
@@ -98,7 +96,6 @@ export const clustersSlice = createSlice({
         state.namespaces[0].services.push(action.payload[serviceIdx]);
         serviceIdx++;
       }
-      console.log('in addService', current(state.namespaces));
     },
   },
 });
