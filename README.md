@@ -26,7 +26,7 @@ Please download Buoy from our [website](www.buoy.dev).
 
    The resources panel allows you to monitor your total and segregated CPU and Memory usage.
 
-   ![Resources](https://i.imgur.com/seauw6wl.gif)
+   ![Resources](https://i.imgur.com/seauw6w.gif)
 
 3. Toggle to the **alerts** tab.
 
