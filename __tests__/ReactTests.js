@@ -1,3 +1,13 @@
+/**
+ * ************************************
+ *
+ * @module ReactTests.js
+ * @author team Buoy
+ * @description React Component testing
+ *
+ * ************************************
+ */
+
 import React from 'React';
 import userEvent from '@testing-library/user-event'
 import { render, screen, fireEvent } from '@testing-library/react';

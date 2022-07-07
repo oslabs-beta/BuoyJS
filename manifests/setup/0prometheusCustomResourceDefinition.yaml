@@ -103,7 +103,8 @@ spec:
                 required:
                 - key
                 type: object
-              additionalScrapeConfigs:
+              additionalScrapeConfigs: 
+                
                 description: 'AdditionalScrapeConfigs allows specifying a key of a
                   Secret containing additional Prometheus scrape configurations. Scrape
                   configurations specified are appended to the configurations generated

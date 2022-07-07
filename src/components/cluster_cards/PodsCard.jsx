@@ -1,3 +1,13 @@
+/**
+ * ************************************
+ *
+ * @module PodsCard.jsx
+ * @author team Buoy
+ * @description React Component for rendering Pod components in Clusters card
+ *
+ * ************************************
+ */
+
 import React from 'react';
 import Pod from './Pod.jsx';
 
@@ -21,8 +31,6 @@ const PodsCard = (props) => {
       </div>
     </div>
   );
-
-}
-
+};
 
 export default PodsCard;

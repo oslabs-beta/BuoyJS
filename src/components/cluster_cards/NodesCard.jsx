@@ -1,3 +1,13 @@
+/**
+ * ************************************
+ *
+ * @module NodesCard.jsx
+ * @author team Buoy
+ * @description React Component for rendering Node components in Clusters card
+ *
+ * ************************************
+ */
+
 import React, { useState } from 'react';
 import { SiHashnode } from 'react-icons/si';
 import Pod from './Pod.jsx';
@@ -14,7 +24,7 @@ const NodesCard = (props) => {
     cardContainer.classList.toggle('active');
     dimmer.classList.toggle('active');
 
-  }
+  };
 
   const NodeFrontBack = () => {
     return (
@@ -45,7 +55,7 @@ const NodesCard = (props) => {
         </div>
       </React.Fragment>
     );
-  }
+  };
 
   const NodeExpanded = (props) => {
     return (
@@ -75,7 +85,7 @@ const NodesCard = (props) => {
         </div>
       </div>
     );
-  }
+  };
 
   return (
     <React.Fragment>
@@ -85,6 +95,6 @@ const NodesCard = (props) => {
       </div>
     </React.Fragment>
   );
-}
+};
 
 export default NodesCard;

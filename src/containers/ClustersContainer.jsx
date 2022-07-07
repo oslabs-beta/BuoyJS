@@ -1,4 +1,14 @@
-import React, { useState } from 'react'
+/**
+ * ************************************
+ *
+ * @module ClustersContainer.jsx
+ * @author team Buoy
+ * @description React Component for rendering Card-view or Grid-view Components
+ *
+ * ************************************
+ */
+
+import React, { useState } from 'react';
 import ClustersCardsContainer from '../containers/ClustersCardsContainers.jsx';
 import ClustersDetailsContainer from '../containers/ClustersDetailsContainer.jsx';
 import Header from '../components/Header.jsx';
@@ -22,6 +32,6 @@ const ClustersContainer = () => {
       { clustersTab && <ClustersDetailsContainer/>}
     </div>
   );
-}
+};
 
 export default ClustersContainer;

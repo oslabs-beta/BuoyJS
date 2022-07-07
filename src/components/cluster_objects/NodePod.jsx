@@ -1,3 +1,13 @@
+/**
+ * ************************************
+ *
+ * @module NodePod.jsx
+ * @author team Buoy
+ * @description React Component for displaying node pod information 
+ *
+ * ************************************
+ */
+
 import React from 'react';
 
 const NodePod = (props) => {

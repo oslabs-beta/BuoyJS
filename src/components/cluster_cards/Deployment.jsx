@@ -1,3 +1,13 @@
+/**
+ * ************************************
+ *
+ * @module Deployment.jsx
+ * @author team Buoy
+ * @description React Component for rendering deployment info in Clusters cards
+ *
+ * ************************************
+ */
+
 import React from 'react';
 
 const Deployment = (props) => {  
@@ -5,12 +15,12 @@ const Deployment = (props) => {
   const toggleDetailsOn = (event) => {
     const details = event.currentTarget.parentElement.lastChild;
     details.classList.add('active');
-  }
+  };
 
   const toggleDetailsOff = (event) => {
     const details = event.currentTarget.lastChild;
     details.classList.remove('active');
-  }
+  };
 
   return (
     <div onMouseLeave={ toggleDetailsOff }>
@@ -24,13 +34,6 @@ const Deployment = (props) => {
       </div>
     </div>
   );
-}
-/*        
-  <li>
-    <span className="objectCardInfoProp">Name:</span>
-    <span className="objectCardInfoAttr">{ props.name}</span>
-  </li>
-*/
-
+};
 
 export default Deployment;

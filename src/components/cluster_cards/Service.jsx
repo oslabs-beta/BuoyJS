@@ -1,3 +1,13 @@
+/**
+ * ************************************
+ *
+ * @module Service.jsx
+ * @author team Buoy
+ * @description React Component for rendering Service info in Clusters card
+ *
+ * ************************************
+ */
+
 import React from 'react';
 
 const Service = (props) => {  
@@ -5,27 +15,13 @@ const Service = (props) => {
   const toggleDetailsOn = (event) => {
     const details = event.currentTarget.parentElement.lastChild;
     details.classList.add('active');
-  }
+  };
 
   const toggleDetailsOff = (event) => {
     const details = event.currentTarget.lastChild;
     details.classList.remove('active');
-  }
+  };
 
-  /*
-   <div className="servicesCardInfoCx">
-      <p className="objectCardExpandHeader">Services</p>
-      {
-        props.namespace.services.map( (service,idx) => {
-          return(
-            <div key={`${service.name}${idx}`} className="service-item">
-            <span>{service.name}</span> <span>{ service.type }</span> <span>{service.clusterIP}</span>
-            </div>
-          )
-        })
-      }
-    </div>
-  */
   return (
     <div onMouseLeave={ toggleDetailsOff }>
       <div className="objectCardName" onMouseOver={ toggleDetailsOn }>{props.name}</div>
@@ -53,14 +49,6 @@ const Service = (props) => {
       </div>
     </div>
   );
-
-}
-
-/*
-<li>
-  <span className="objectCardInfoProp">Name:</span>
-  <span className="objectCardInfoAttr">{ props.name}</span>
-</li>
-*/
+};
 
 export default Service;

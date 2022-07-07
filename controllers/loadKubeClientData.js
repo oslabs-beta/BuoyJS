@@ -1,6 +1,18 @@
+/**
+ * ************************************
+ *
+ * @module loadKubeClientData.js
+ * @author team Buoy
+ * @description Kubernetes Client data??
+ *
+ * ************************************
+ */
+
 import { ipcRenderer } from "electron";
 import { addNodes, addNamespaces, addDeployments, addPods, addServices} from '../src/reducers/clustersSlice';
 
+
+// sending Kubernetes client data to their respective channels
 export const loadKubeClientData = (dispatch) => {
 
   ipcRenderer.send('load:namespaces');

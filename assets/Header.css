@@ -18,7 +18,7 @@
   color: #03021E;
   padding: 0em 1em 1em 1em;
   margin-bottom: 1em;
-  width: 40%;
+  width: 16em;
   height: 8em;
 
 }
@@ -28,6 +28,7 @@
   font-variant-caps: small-caps;
   font-weight: bold;
   color: white;
+  margin-left: 0.4em;
   text-shadow: 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black;
 }
 

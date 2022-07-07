@@ -1,3 +1,13 @@
+/**
+ * ************************************
+ *
+ * @module CustomResourceListItem.jsx
+ * @author team Buoy
+ * @description React Component for listing custom user metrics items
+ *
+ * ************************************
+ */
+
 import React, { useEffect } from 'react';
 
 // where data coming from may not be props .... subject to change

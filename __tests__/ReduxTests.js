@@ -1,3 +1,13 @@
+/**
+ * ************************************
+ *
+ * @module ReduxTests.js
+ * @author team Buoy
+ * @description Redux Store, Slices, Actions testing
+ *
+ * ************************************
+ */
+
 import subject, { addNamespaces, addDeployments, addPods, addServices } from '../src/reducers/clustersSlice.js';
 import network, { getCpuUsage, getMemUsage, getTotalCpu, getTotalMem, setNodeCpuUsage } from '../src/reducers/networkSlice.js';
 import input, { getPortNumber, getQuery, getQueryType, getQueryLabel } from '../src/reducers/inputSlice.js';

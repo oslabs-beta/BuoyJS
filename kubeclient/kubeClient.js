@@ -1,8 +1,16 @@
+/**
+ * ************************************
+ *
+ * @module kubeClient.js
+ * @author team Buoy
+ * @description Sets up class for Kubernetes client listeners to fetch data using IPC
+ *
+ * ************************************
+ */
+
 const k8s = require('@kubernetes/client-node');
 const { ipcMain } = require('electron');
 const { exec } = require('child_process');
-const { ObjectSerializer } = require('@kubernetes/client-node');
-
 
 /*
 Class for kubernetes client for retrieving similar information to kubectl
