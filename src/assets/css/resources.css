@@ -1,0 +1,74 @@
+.ResourcesContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  /* justify-content: center; */
+}
+
+.CpuMemoryContainer {
+  display: flex;
+  gap: 2em;
+  margin: 2em;
+}
+
+.ClusterResourcesContainer {
+  display: flex;
+  color: rgb(194, 207, 211);
+  align-items: center;
+  gap: 5em;
+}
+
+.TotalCpuMemoryContainer {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
+  border-radius: 1em;
+  padding: 0.5em;
+  background-color: aliceblue;
+}
+
+.CpuUsageContainer {
+  border: 1px solid gray;
+  border-radius: 1em;
+  padding: 0.5em;
+  background-color: aliceblue;
+}
+
+.MemUsageContainer {
+  border: 1px solid gray;
+  border-radius: 1em;
+  padding: 0.5em;
+  background-color: aliceblue;
+}
+
+.ClusResDispContainer {
+  display: flex;
+  flex-direction: column;
+  color: rgb(194, 207, 211);
+}
+
+.ClusResCardContainer {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
+  border-radius: 1em;
+  padding: 1em;
+  margin: 1em;
+  color: rgb(194, 207, 211);
+}
+
+.ResourcesList {
+  list-style: none;
+}
+
+.CustomQueryInput {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#customQueryInput {
+  text-align: center;
+  width: 50%;
+}

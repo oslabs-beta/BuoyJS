@@ -1,0 +1,15 @@
+.CPSchedulerContainer {
+  display: flex;
+  border: 1px solid #000;
+  border-radius: 0.5em;
+  gap: 2em;
+  width: 90%;
+}
+
+.CPSchedulerContDiv {
+  display: flex;
+  width: 100%;
+  border: 1px solid #000;
+  align-items: center;
+  justify-content: center;
+}

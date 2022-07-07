@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxygen+Mono&display=swap');
+
+
+.clusterDetailsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 2em 2em 2em;
+}
+
+.ApdexHeaderBox {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  border-radius: 0.5em;
+  border: 1px solid #000;
+  background-color: white;
+}
+
+.ClustersContainer1 {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: white;
+  border: none;
+  border-radius: 0.3em;
+  /* box-shadow: 3px 3px 8px 3px gray; */
+  margin: 2em;
+  color: #03021E;
+}
+
+.ClustersContainer2 {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #1b2383;
+  border-radius: 0.2em;
+  margin: 0.5em;
+  color: #1b2383;
+}
+
+.PrimaryClusterObjectsHeader {
+  display: flex;
+  /* border: 1px solid black; */
+  /* border-radius: 0.5em; */
+  justify-content: flex-start;
+  align-items: center;
+  font-size: x-large;
+  font-weight: bold;
+  font-variant-caps: small-caps;
+  margin: 0.5em;
+}
+
+#testButton {
+}
+
+#namespaceOpen, #namespaceClose,
+#nodeOpen, #nodeClose
+{
+  margin-top: 15px;
+}
+
+.NamespaceTitle,
+.NodeTitle
+{
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+.arrow {
+  background: none;
+  border: none;
+  color: 34292A;
+  margin: 0.5em;
+}
+
+.arrow:hover {
+  filter: invert(25%);
+  cursor: pointer;
+  /* color: #34292A; */
+  /* border-color: #C4D8EC; */
+}
+
+.expandAll {
+  margin: 2em;
+  background: white;
+  border: 1px solid #1b2383;
+  color: #1b2383;
+  border-radius: 0.1em;
+  padding: 0.5em;
+  /* box-shadow: 2px 2px 6px 2px black; */
+}
+
+.expandAll:hover {
+  background: #1b2383;
+  color: white;
+  border: 1px solid #1b2383;
+  cursor: pointer;
+}
+
+.NamespaceContainer,
+.NodeContainer {
+  display: flex;
+  /* border: 1px solid black; */
+  /* border-radius: 0.5em; */
+  width: 100%;
+  flex-direction: column;
+  padding: 1em;
+}
+
+.ClusterObjectsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.ClusterObjectsHeader {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-variant-caps: small-caps;
+}
+
+.ClusterObjects {
+  display: flex;
+  flex-direction: column;
+}
+
+.NamelessContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.namespace-item,
+.node-item 
+{
+  display: flex;
+  font-size: large;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#name {
+  font-size: x-large;
+  font-variant-caps: all-small-caps;
+  font-weight: bold;
+  margin: 0;
+}
+
+.List {
+  display: flex;
+  flex-direction: column;
+  font-size: small;
+  margin-left: 2em;
+  padding-bottom: 1em;
+}
+
+#podrepl {
+  font-style: oblique;
+}
+
+#Active {
+  display: flex;
+  font-style: oblique;
+  font-size: small;
+  color: #75B2BF;
+  margin: 0;
+}
+
+.deployment-item, .pod-item {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+}
+
+.service-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.api-resources-container {
+  margin-bottom: 1rem;
+}
+
+.api-resources-header {
+  font-family: 'Oxygen Mono', monospace;
+  background: rgb(194, 207, 211);
+  padding: 0.4rem;
+}
+
+.api-resources-item {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.8rem;
+
+  color: white;
+  background-color: black;
+  
+  padding: 0.4rem;
+  width: 100%;
+
+  white-space: pre-wrap;
+
+  overflow: scroll
+}
+
+

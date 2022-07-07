@@ -1,0 +1,368 @@
+.clustersCardsContainer {
+  width: 100%;
+  padding: 1em 2em 2em 2em;
+}
+
+.nodesHeader, .nsHeader {
+  background: linear-gradient(to right, #647BE5, #3FBCEB);
+  padding: 4px;
+  font-weight: 700;
+  letter-spacing: 0.5em;
+  font-variant-caps: small-caps;
+
+  color: white;
+  text-shadow: 0 0 1px black, 0 0 2px black, 0 0 1px black, 0 0 1px black;
+  text-align: center;
+
+}
+.clustersCardsContainer .clustersCardsContentCx{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 1em;
+}
+
+/*
+namespaceCard styling
+*/
+
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBoxCx {
+  position: relative;
+  width: 16rem;
+  height: 20rem;
+  margin: 10px;
+  text-align: center;
+  background: linear-gradient(to right, #647BE5, #3FBCEB);
+  border-radius: 0.3em;
+  box-shadow: rgba(148, 176, 200, 0.15) 0px 2px 8px;
+}
+
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBoxCx.active,
+.nodeCardBoxBorder.active {
+  position: fixed;
+  text-align: center;
+  top: 8%;
+  z-index: 100;
+  height: 80%;
+  width: 80%;
+  transition: 0.5s;
+  box-shadow: rgba(148, 176, 200, 0.15) 0px 2px 8px;
+}
+
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBoxCx .nsCardFrontBox {
+  
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  width: 97%;
+  height: 97%;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 2em;
+  background-color: white;
+  border-radius: 0.3em;
+}
+
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBoxCx .nsCardFrontBox .nsFrontName {
+  color: #3D3337;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBoxCx .nsCardFrontBox .nsFrontStatus {
+  color: #4EA65D;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 0.7rem;
+}
+
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBoxCx .nsCardBackBox
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 1rem;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background-color: #F7FAF7;
+  border-radius: 0.3em;
+  letter-spacing: 1px;
+  opacity: 0;
+}
+
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBoxCx .nsCardBackBox .nsCardBackButtonCx,
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBoxCx .nsCardExpandedBox .nsCardBackButtonCx,
+.nodeCardBackButtonCx
+{
+  text-align: right;
+}
+
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBoxCx .nsCardBackBox .nsCardBackMaximize,
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBoxCx .nsCardExpandedBox, .nsCardBackMaximize,
+.nodeCardBackMaximize
+{
+  all: unset;
+  color: #272FA3;
+  cursor: pointer;
+}
+
+.nsAnimation {
+  width: 100%;
+  height: 40%;
+}
+
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBoxCx .nsCardBackBox .nsBackAttribute {
+  color: black;
+  text-transform: uppercase;
+  font-weight: 200;
+  font-size: 0.7rem;
+}
+
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBoxCx .nsCardBackBox .nsBackValue {
+  color: #272FA3;
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBoxCx .nsCardBackBox:hover
+{
+  opacity: 1;
+}
+
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBoxCx .nsCardBackBox ul {
+  list-style: none;
+}
+
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBoxCx .nsCardFrontBox .svgContainer {
+  width: 12rem;
+  height: 12rem;
+  display: inline-block;
+  margin: auto;
+}
+
+.clustersCardsContainer .clustersCardsContentCx .namespaceCardBoxCx .nsCardExpandedBox,
+.nodeCardExpandedBox
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  justify-content: flex-start;
+  z-index: 1000;
+
+  background-color: #F7FAF7;
+  letter-spacing: 1px;
+
+  overflow: scroll;
+}
+.dimmer {
+  z-index: -100;
+}
+.dimmer.active{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0, 0.6);
+}
+
+.nsCardExpandedContent,
+.nodeCardExpandedContent 
+{
+  display: flex;
+}
+
+.objectCardExpandHeader {
+  color: black;
+  font-weight: 800;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  cursor: default;
+}
+
+.objectsCardInfoCx {
+  width: 100%
+}
+
+.objectCardInfo {
+  
+  background-color: #1b2383;
+  color: #F7FAF7;
+
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+  position: absolute;
+  z-index: -100;
+  opacity: 0;
+}
+
+.objectCardName {
+  text-align: left;
+  font-weight: 200;
+  margin: 8px;
+  cursor: default; 
+}
+
+.objectCardName:hover {
+  font-weight: 500;
+  color: #3D4AFF
+}
+
+.objectCardInfo.active {
+  opacity: 1;
+  z-index: 100;
+}
+.objectCardInfo ul {
+  list-style: none;
+  text-align: left;
+}
+
+.deplsCardInfoCx,
+.podsCardInfoCx,
+.servicesCardInfoCx
+{
+  width: 100%;
+}
+
+.objectCardInfoProp{
+  font-weight: 200;
+  font-size: 80%;
+  color: #F7FAF7;
+}
+
+.objectCardInfoAttr {
+  font-weight: 400;
+  font-size: 90%;
+  color: #E7C29A;
+}
+
+/*
+Styling for Node Cards
+*/
+
+.nodeCardBoxBorder{
+  position: relative;
+  margin: 2em 1em 2em 1em;
+  background: linear-gradient(to right, #647BE5, #3FBCEB);;
+  border-radius: 50%;
+  width: 12em;
+  height: 12em;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nodeCardBox {
+  background: #F7FAF7;
+  border-radius: 50%;
+  width: 11.5em;
+  height: 11.5em;
+  top: 0.5em;
+  left: 0.5em;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;  
+} 
+
+.nodeCardBox ul {
+  list-style-type: none;
+  text-align: center;
+}
+
+.nodeCardBox .nodeIcon {
+  color: #3D4AFF;
+}
+
+.nodeCardBox .nodeFrontName {
+  font-weight: 700
+}
+
+.nodeCardBox .nodeFrontPodCount {
+  font-weight: 500;
+  color: #4EA65D;
+  font-size: 0.7em;
+}
+
+.nodeCardBackBox {
+  position: absolute;
+  
+  background: #F7FAF7;
+  border-radius: 50%;
+  width: 12em;
+  height: 12em;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+}
+
+.nodeCardBackBox:hover {
+  opacity: 1;
+}
+
+.nodeBackInfoCx {
+  max-width: 10em; 
+}
+
+.nodeCardBackBox .nodeCardBackButtonCx .nodeCardBackMaximize {
+  all: unset;
+  color: #272FA3;
+  cursor: pointer;
+}
+
+.nodeCardBackBox ul {
+  list-style-type: none;
+}
+
+.nodeCardBackBox .nodeBackAttribute {
+  color: black;
+  text-transform: uppercase;
+  font-weight: 200;
+  font-size: 0.7rem;
+}
+
+.nodeCardBackBox .nodeBackValue {
+  color: #272FA3;
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+
+.nodeDimmer {
+  z-index: -100;
+}
+
+.nodeDimmer.active{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0, 0.6);
+}
