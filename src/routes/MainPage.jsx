@@ -3,10 +3,8 @@ import React, { useEffect, useState } from 'react';
 // import containers
 import ClustersContainer from '../containers/ClustersContainer.jsx';
 import ResourcesContainer from '../containers/ResourcesContainer.jsx';
-import ControlPlaneAPI from '../containers/control_plane/ControlPlaneAPI.jsx';
-import ControlPlaneScheduler from '../containers/control_plane/ControlPlaneScheduler.jsx';
-import ControllerManager from '../containers/control_plane/ControllerManager.jsx';
-import AlertContainer from '../containers/AlertContainer.jsx';
+import PromContainer from '../containers/PromContainer.jsx';
+import DashboardContainer from '../containers/DashboardContainer.jsx';
 
 const MainPage = () => {
 
@@ -26,8 +24,8 @@ const MainPage = () => {
     const nameMapping = {
       clustersTab: "Clusters",
       resourcesTab: "Resources",
-      controlPlaneTab: "Control Plane",
-      alertsTab: "Alerting"
+      controlPlaneTab: "Dashboard",
+      promTab: "Prometheus"
     }
     const tab = document.getElementById(event.currentTarget.id);
     const spanText = document.createElement('span');
@@ -80,9 +78,9 @@ const MainPage = () => {
           </button>
           <button 
             className="menuTab"
-            id="controlPlaneTab" 
-            active={ `${active.currentTab === "controlPlaneTab"}` } 
-            onClick={ () => setActive({ currentTab: "controlPlaneTab", prevTab: active.currentTab} )}
+            id="dashboardTab" 
+            active={ `${active.currentTab === "dashboardTab"}` } 
+            onClick={ () => setActive({ currentTab: "dashboardTab", prevTab: active.currentTab} )}
             onMouseEnter={ toggleMenuNameOn }
             onMouseLeave={ toggleMenuNameOff }
           >
@@ -90,22 +88,20 @@ const MainPage = () => {
           </button>
           <button
             className="menuTab"
-            id="alertsTab" 
-            active={`${active.currentTab === "alertsTab"}`} 
-            onClick={ () => setActive({ currentTab: "alertsTab", prevTab: active.currentTab}) }
+            id="promTab" 
+            active={`${active.currentTab === "promTab"}`} 
+            onClick={ () => setActive({ currentTab: "promTab", prevTab: active.currentTab}) }
             onMouseEnter={ toggleMenuNameOn }
             onMouseLeave={ toggleMenuNameOff }  
           > 
-            <i className="fa-solid fa-triangle-exclamation fa-2x"></i>
+            <i className="fa-solid fa-fire fa-2x"></i>
           </button>
         </div>
         <React.Fragment>
           { active.currentTab === 'clustersTab' &&  <ClustersContainer /> }
           { active.currentTab === 'resourcesTab' && <ResourcesContainer /> }
-          { active.currentTab === 'controlPlaneTab' && <ControlPlaneAPI /> }
-          { active.currentTab === 'controlPlaneTab' && <ControlPlaneScheduler /> }
-          { active.currentTab === 'controlPlaneTab' && <ControllerManager /> }
-          { active.currentTab === 'alertsTab' && <AlertContainer /> } 
+          { active.currentTab === 'dashboardTab' && <DashboardContainer /> }
+          { active.currentTab === 'promTab' && <PromContainer /> } 
           { }
         </React.Fragment>
       </div>

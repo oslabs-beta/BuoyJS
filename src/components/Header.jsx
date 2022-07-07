@@ -1,43 +1,52 @@
+/**
+ * ************************************
+ *
+ * @module Header.jsx
+ * @author team Buoy
+ * @description React Component for Clusters page top metrics overview
+ *
+ * ************************************
+ */
+
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectNamespaces, selectKubeObjects } from '../reducers/clustersSlice';
+import { selectNamespaces, selectNodes } from '../reducers/clustersSlice';
 
 const Header = () => {
 
   const namespaces = useSelector(selectNamespaces);
-  const clusters = useSelector(selectKubeObjects);
-  
-  const nullNsObjectCount = namespaces.length - 1 + namespaces[0].deployments.length + namespaces[0].services.length + namespaces[0].pods.length;
-  const totalObjectCount = clusters.totalObjects;
-  const nsObjectCount = totalObjectCount - nullNsObjectCount;
+  const nodes = useSelector(selectNodes);
+  let podCount = 0;
+  Object.keys(nodes).map(key => {
+    podCount += nodes[key].length;
+  })
+
 
   return (
     <div className="clusterHeaderCx">
       <div className="clusterHeader">
-        <h1 id="overview">Namespaces</h1>
+        <h1 id="overview">Overview</h1>
         <table id="namespace-table">
           <tbody>
             <tr id = "table-counts">
               <td className="tooltip">
-                {nullNsObjectCount}
-                <span className="tooltiptext" id="leftTT">Unassigned objects</span>
+                {namespaces.length}
+                <span className="tooltiptext" id="leftTT">Namespaces Count</span>
               </td>
               <td className="tooltip" id="objectcount">
-                <strong>{totalObjectCount}</strong>
-                <span className="tooltiptext" id="centerTT">Total objects</span>
+                <strong>{Object.keys(nodes).length}</strong>
+                <span className="tooltiptext" id="centerTT">Node Count</span>
               </td>
               <td className="tooltip">
-                {nsObjectCount}
-                <span className="tooltiptext" id="rightTT">Objects assigned to namespace</span>
+                {podCount}
+                <span className="tooltiptext" id="rightTT">Pod Count</span>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
-  )
-
-}
-
+  );
+};
 
 export default Header;

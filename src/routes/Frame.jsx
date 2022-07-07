@@ -1,10 +1,19 @@
+/**
+ * ************************************
+ *
+ * @module Frame.jsx
+ * @author team Buoy
+ * @description React Component for window frame with X, minimize, and maximize buttons
+ *
+ * ************************************
+ */
+
 import React, { useState } from 'react';
 
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { AiFillMinusCircle } from 'react-icons/ai';
 import { BsArrowUpRightCircleFill } from 'react-icons/bs';
 import { GiPlainCircle } from 'react-icons/gi';
-// import { BsFillCircleFill } from 'react-icons/bs';
 import { ipcRenderer } from 'electron';
 
 const Frame = () => {
@@ -70,6 +79,6 @@ const Frame = () => {
     </div>
   </React.Fragment>
   );
-}
+};
 
 export default Frame;

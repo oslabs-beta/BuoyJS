@@ -1,3 +1,13 @@
+/**
+ * ************************************
+ *
+ * @module DefaultResourcesCard.jsx
+ * @author team Buoy
+ * @description React Component for Resources Cards
+ *
+ * ************************************
+ */
+
 import React from 'react';
 
 // where data coming from may not be props .... subject to change

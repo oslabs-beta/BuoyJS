@@ -1,3 +1,13 @@
+/**
+ * ************************************
+ *
+ * @module networkSlice.js
+ * @author team Buoy
+ * @description Reducer for all Network actions
+ *
+ * ************************************
+ */
+
 import { createSlice, current } from '@reduxjs/toolkit';
 
 /**
@@ -11,15 +21,17 @@ import { createSlice, current } from '@reduxjs/toolkit';
  * @returns 
  */
 const getNodeResourceUsageArr = (nodeUsageArr, data) => {
-  // if we have a blank slate, insert incoming data as part of state
 
+  // if we have a blank slate, insert incoming data as part of state
   if (nodeUsageArr.length === 0) {
+
     const recvNodeUsage = data.map(node => {
       return { name: node.name, resourceUsage: [node.resourceUsage] }
     })
     return recvNodeUsage;
-  } else {
+  } 
 
+  else {
     const newNodeResourceUsage = [];
     // limit resourceUsage dataset to 25 per node
     if (nodeUsageArr[0].resourceUsage.length < 25) {
@@ -29,12 +41,12 @@ const getNodeResourceUsageArr = (nodeUsageArr, data) => {
         newNodeResourceUsage.push({
           name: payloadNode.name,
           resourceUsage: [...nodeUsageArr[i].resourceUsage, payloadNode.resourceUsage ]
-        })
+        });
       }
-      
       return newNodeResourceUsage;
+    } 
     // reached dataset Limit to 25 per node
-    } else {
+    else {
       // remove 1st element index & push new element in;
       for (let i = 0; i < nodeUsageArr.length; i++) {
         const payloadNode = data[i];
@@ -44,11 +56,10 @@ const getNodeResourceUsageArr = (nodeUsageArr, data) => {
           resourceUsage: [...shiftedArray, payloadNode.resourceUsage]
         });
       }
-      
       return newNodeResourceUsage;
     }
   }
-}
+};
 
 const getNodeResourceTimestamp = (getNodeResourceTimestampArr, time) => {
   // timestamp result for our chart
@@ -60,7 +71,7 @@ const getNodeResourceTimestamp = (getNodeResourceTimestampArr, time) => {
     shiftedArray.push(time);
     return shiftedArray;
   }
-}
+};
 
 /**
  * Functions to generate colors for each particular resources within our render graphs
@@ -70,14 +81,14 @@ const getNodeResourceTimestamp = (getNodeResourceTimestampArr, time) => {
  * @returns {array} newColors - return colors to be added for graphs
  */
 const getColorsArr = (resourceArr, colorArr) => {
-    const resourceNum = resourceArr.length;
-    const colorCount = colorArr.length;
+  const resourceNum = resourceArr.length;
+  const colorCount = colorArr.length;
 
-    const newColors = [];
-    // assign each node a random color
-    if (colorCount < resourceNum) {
+  const newColors = [];
+  // assign each node a random color
+  if (colorCount < resourceNum) {
 
-    let colorsToAdd = resourceNum - colorCount;
+  let colorsToAdd = resourceNum - colorCount;
     while(colorsToAdd > 0) {
       const r = Math.floor(Math.random() * 255);
       const g = Math.floor(Math.random() * 255);
@@ -87,11 +98,12 @@ const getColorsArr = (resourceArr, colorArr) => {
         borderColor: `rgb(${r}, ${g}, ${b})`,
         backgroundColor: `rgba(${r}, ${g}, ${b}, 0.5)`
       });
+
       colorsToAdd--;
     }
   }
-  return newColors;
-}
+  return [...colorArr, ...newColors];
+};
 
 export const networkSlice = createSlice({
   name: "network",
@@ -111,8 +123,17 @@ export const networkSlice = createSlice({
     nodeCpuColors: [],
 
     nodeMemoryUsage: [],
+    nodeMemoryMBUsage: [],
     nodeMemoryTimestamp: [],
     nodeMemoryColors: [],
+
+    nodesPodsCpuUsage: {},
+    nodesPodsCpuTimestamp: [],
+    nodesPodsCpuColors: {},
+
+    nodesPodsMemoryUsage: {},
+    nodesPodsMemoryTimestamp: [],
+    nodesPodsMemoryColors: {},
 
   },
 
@@ -149,7 +170,7 @@ export const networkSlice = createSlice({
     // set colors for the node CPU graphs
     setNodeCpuColors: (state, action) => {
       const newColors = getColorsArr(current(state.nodeCpuUsage), current(state.nodeCpuColors));
-      return { ...state, nodeCpuColors: [...state.nodeCpuColors, ...newColors]};
+      return { ...state, nodeCpuColors: newColors};
     },
 
     setNodeMemoryUsage: (state, action) => {
@@ -162,7 +183,81 @@ export const networkSlice = createSlice({
     },
     setNodeMemoryColors: (state, action) => {
       const newColors = getColorsArr(current(state.nodeMemoryUsage), current(state.nodeMemoryColors));
-      return { ...state, nodeMemoryColors: [...state.nodeMemoryColors, ...newColors]};
+      return { ...state, nodeMemoryColors: newColors};
+    },
+    setNodeMemoryMBUsage: (state, action) => {
+      return { ...state, nodeMemoryMBUsage: action.payload }
+    },
+    setNodesPodsCpuUsage: (state, action) => {
+
+      if(Object.keys(current(state.nodesPodsCpuUsage)).length === 0) {
+        const newNodesPodsCpuUsage = { ...action.payload };
+        Object.keys(newNodesPodsCpuUsage).map (key => {
+          newNodesPodsCpuUsage[key].map( pod => {
+            pod.resourceUsage = [pod.resourceUsage]
+          })
+        })
+        return {...state, nodesPodsCpuUsage: newNodesPodsCpuUsage}
+      }
+      else {
+        const newNodesPodsCpuUsage = { ...current(state.nodesPodsCpuUsage)};
+        Object.keys(newNodesPodsCpuUsage).map (key => {
+          const newPodsMetricArr = getNodeResourceUsageArr(newNodesPodsCpuUsage[key], action.payload[key]);
+          newNodesPodsCpuUsage[key] = newPodsMetricArr;
+        })
+        return {...state, nodesPodsCpuUsage: newNodesPodsCpuUsage } 
+      }
+    },
+    setNodesPodsCpuTimestamp: (state, action) => {
+      const newTimestampArr = getNodeResourceTimestamp(current(state.nodesPodsCpuTimestamp), action.payload);
+      return { ...state, nodesPodsCpuTimestamp: newTimestampArr}
+    },
+
+    setNodesPodsCpuColors: (state, action) => {
+      const newColorsArr = {};
+      Object.keys(current(state.nodesPodsCpuUsage)).map( (key, idx) => {
+
+        const currentColorArr = current(state.nodesPodsCpuColors)[key] ? current(state.nodesPodsCpuColors)[key] : []; 
+        const colorsArr = getColorsArr(current(state.nodesPodsCpuUsage)[key], currentColorArr);
+        newColorsArr[key] = colorsArr;
+      }); 
+      return { ...state, nodesPodsCpuColors: newColorsArr };
+    },
+
+    setNodesPodsMemoryUsage: (state, action) => {
+      if(Object.keys(current(state.nodesPodsMemoryUsage)).length === 0) {
+        const newNodesPodsMemoryUsage = { ...action.payload };
+        Object.keys(newNodesPodsMemoryUsage).map (key => {
+          newNodesPodsMemoryUsage[key].map( pod => {
+            pod.resourceUsage = [pod.resourceUsage]
+          })
+        })
+        return {...state, nodesPodsMemoryUsage: newNodesPodsMemoryUsage}
+      }
+      else {
+        const newNodesPodsMemoryUsage = { ...current(state.nodesPodsMemoryUsage)};
+        Object.keys(newNodesPodsMemoryUsage).map (key => {
+          const newPodsMetricArr = getNodeResourceUsageArr(newNodesPodsMemoryUsage[key], action.payload[key]);
+          newNodesPodsMemoryUsage[key] = newPodsMetricArr;
+        })
+        return {...state, nodesPodsMemoryUsage: newNodesPodsMemoryUsage } 
+      }
+    },
+
+    setNodesPodsMemoryTimestamp: (state, action) => {
+      const newTimestampArr = getNodeResourceTimestamp(current(state.nodesPodsMemoryTimestamp), action.payload);
+      return { ...state, nodesPodsMemoryTimestamp: newTimestampArr}
+    },
+
+    setNodesPodsMemoryColors: (state, action) => {
+      const newColorsArr = {};
+      Object.keys(current(state.nodesPodsMemoryUsage)).map( (key, idx) => {
+
+        const currentColorArr = current(state.nodesPodsMemoryColors)[key] ? current(state.nodesPodsMemoryColors)[key] : []; 
+        const colorsArr = getColorsArr(current(state.nodesPodsMemoryUsage)[key], currentColorArr);
+        newColorsArr[key] = colorsArr;
+      }); 
+      return { ...state, nodesPodsMemoryColors: newColorsArr };
     },
 
   }
@@ -171,12 +266,23 @@ export const networkSlice = createSlice({
 export const selectCpuUsage = (state) => state.network.cpuUsage;
 export const selectMemUsage = (state) => state.network.memUsage;
 export const selectNetwork = (state) => state.network;
+
 export const selectNodeCpuUsage = (state) => state.network.nodeCpuUsage;
 export const selectNodeCpuTimestamp = (state) => state.network.nodeCpuTimestamp;
 export const selectNodeCpuColors = (state) => state.network.nodeCpuColors;
+
 export const selectNodeMemoryUsage = (state) => state.network.nodeMemoryUsage;
+export const selectNodeMemoryMBUsage = (state) => state.network.nodeMemoryMBUsage;
 export const selectNodeMemoryTimestamp = (state) => state.network.nodeMemoryTimestamp;
 export const selectNodeMemoryColors = (state) => state.network.nodeMemoryColors;
+
+export const selectNodesPodsCpuUsage = (state) => state.network.nodesPodsCpuUsage;
+export const selectNodesPodsCpuTimestamp = (state) => state.network.nodesPodsCpuTimestamp;
+export const selectNodesPodsCpuColors = (state) => state.network.nodesPodsCpuColors;
+
+export const selectNodesPodsMemoryUsage = (state) => state.network.nodesPodsMemoryUsage;
+export const selectNodesPodsMemoryTimestamp = (state) => state.network.nodesPodsMemoryTimestamp;
+export const selectNodesPodsMemoryColors = (state) => state.network.nodesPodsMemoryColors;
 
 export const { 
   getCpuUsage, 
@@ -187,10 +293,20 @@ export const {
   setNodeCpuUsage,
   setNodeCpuTimestamp,
   setNodeCpuColors,
+
   setNodeMemoryUsage,
+  setNodeMemoryMBUsage,
   setNodeMemoryTimestamp,
   setNodeMemoryColors,
   
+  setNodesPodsCpuUsage,
+  setNodesPodsCpuTimestamp,
+  setNodesPodsCpuColors,
+
+  setNodesPodsMemoryUsage,
+  setNodesPodsMemoryTimestamp,
+  setNodesPodsMemoryColors,
+
   getLatency,
   getErrorRate,
   getReqPerSec,

@@ -1,5 +1,36 @@
+/**
+ * ************************************
+ *
+ * @module loadPromClientData.js
+ * @author team Buoy
+ * @description Prometheus Client data??
+ *
+ * ************************************
+ */
+
 import { ipcRenderer, ipcMain } from "electron";
-import { getCpuUsage, getErrorRate, getLatency, getMemUsage, getReqPerSec, getTotalCpu, getTotalMem, setNodeCpuColors, setNodeCpuTimestamp, setNodeCpuUsage, setNodeMemoryColors, setNodeMemoryTimestamp, setNodeMemoryUsage } from "../src/reducers/networkSlice";
+import { 
+  getCpuUsage, 
+  getErrorRate, 
+  getLatency, 
+  getMemUsage, 
+  getReqPerSec, 
+  getTotalCpu,
+  getTotalMem, 
+  setNodesPodsCpuUsage, 
+  setNodeCpuColors, 
+  setNodeCpuTimestamp, 
+  setNodeCpuUsage, 
+  setNodeMemoryColors, 
+  setNodeMemoryMBUsage, 
+  setNodeMemoryTimestamp, 
+  setNodeMemoryUsage, 
+  setNodesPodsCpuTimestamp,
+  setNodesPodsCpuColors,
+  setNodesPodsMemoryUsage,
+  setNodesPodsMemoryTimestamp,
+  setNodesPodsMemoryColors
+} from "../src/reducers/networkSlice";
 import { getCustomQueries } from "../src/reducers/inputSlice.js"
 
 // timestamp function for all data retrieval
@@ -14,6 +45,7 @@ const getCurrentTimeUTC = () => {
   return time;
 }
 
+// exporting and dispatching prometheus client event listeners to respective channels 
 export const promClientListeners = (dispatch) => {
     ipcRenderer.on('get:cpu-usage', (e, data) => {
       dispatch(getCpuUsage(data));
@@ -65,8 +97,32 @@ export const promClientListeners = (dispatch) => {
       dispatch(setNodeMemoryColors());
     });
 
+    ipcRenderer.send('load:NodeMemoryUsageMB');
+    ipcRenderer.on('get:NodeMemoryUsageMB', (e, data) => {
+      dispatch(setNodeMemoryMBUsage(data));
+    });
+
+    ipcRenderer.send('load:NodesPodsCpuUsage');
+    ipcRenderer.on('get:NodesPodsCpuUsage', (e, data) => {
+      // get currentTime
+      const time = getCurrentTimeUTC();
+      dispatch(setNodesPodsCpuTimestamp(time));
+      dispatch(setNodesPodsCpuUsage(data));
+      dispatch(setNodesPodsCpuColors());
+    });
+
+    ipcRenderer.send('load:NodesPodsMemoryUsage');
+    ipcRenderer.on('get:NodesPodsMemoryUsage', (e, data) => {
+      const time = getCurrentTimeUTC();
+      dispatch(setNodesPodsMemoryTimestamp(time));
+      dispatch(setNodesPodsMemoryUsage(data));
+      dispatch(setNodesPodsMemoryColors());
+    });
+
+    ipcRenderer.send('load:NodesPodsMemoryMBUsage');
 };
 
+// exporting and dispatching prometheus client event emitters to respective channels
 export const promClientEmitters = () => {
   setInterval( () => {
   ipcRenderer.send('load:cpu-usage');
@@ -76,7 +132,6 @@ export const promClientEmitters = () => {
   ipcRenderer.send('load:latency');
   ipcRenderer.send('load:error-rate');
   ipcRenderer.send('load:req-per-sec')
-  ipcRenderer.send('load:custom-queries');
-  ipcRenderer.send('load:NodeCPUUsage');
+  //ipcRenderer.send('load:custom-queries');
   }, 15000);
 }

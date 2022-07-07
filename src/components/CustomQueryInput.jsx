@@ -1,39 +1,49 @@
+/**
+ * ************************************
+ *
+ * @module CustomQueryInput.jsx
+ * @author team Buoy
+ * @description React Component for user-inputted custom query metrics
+ *
+ * ************************************
+ */
+
 import { ipcRenderer } from 'electron';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPortNumber, getQueryLabel } from '../reducers/inputSlice';
+
 const CustomQueryInput = props => {
 
-// query itself
-// enter query type
-// enter query label
-// 1 enter for all 3 inputs
-
   let customPort;
+  // 1st input box for custom port-number
   const portInput = e => {
     customPort = e.target.value;
     return (Number(customPort) === NaN ? console.error("Please enter a valid number") : Number(customPort));
-  }
-
+  };
+  
   let customQueryInput;
-    const queryInput = e => {
-      customQueryInput = e.target.value;
-      return customQueryInput;
-    };
+  // 2nd input box for user-inputted query string
+  const queryInput = e => {
+    customQueryInput = e.target.value;
+    return customQueryInput;
+  };
 
   let customQueryLabel;
-    const queryInputLabel = e => {
-      customQueryLabel = e.target.value;
-      return customQueryLabel;
-    };
+  // 3rd input box for user's query label/name
+  const queryInputLabel = e => {
+    customQueryLabel = e.target.value;
+    return customQueryLabel;
+  };
 
-  let customQueryType = 'query'
-    const queryType = e => {
-      customQueryType = e.target.value;
-      return customQueryType
-    };
+  let customQueryType = 'query';
+  // 4th input box for query type
+  const queryType = e => {
+    customQueryType = e.target.value;
+    return customQueryType;
+  };
 
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   return (
 

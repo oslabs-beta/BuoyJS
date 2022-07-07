@@ -1,3 +1,13 @@
+/**
+ * ************************************
+ *
+ * @module ClustersCardsContainers.jsx
+ * @author team Buoy
+ * @description React Component for rendering Cluster Node Cards
+ *
+ * ************************************
+ */
+
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectNamespaces, selectNodes } from '../reducers/clustersSlice';
@@ -9,7 +19,7 @@ const ClustersCardsContainer = () => {
     <div className="clustersCardsContainer">
       <div className="nodesHeader">Nodes</div>
         <div className="clustersCardsContentCx">
-            { Object.entries(useSelector(selectNodes)).map( ([key, value]) => {
+            { Object.entries(useSelector(selectNodes)).map(([key, value]) => {
               return <NodesCard 
                 key={ key } 
                 name={ key } 
@@ -25,6 +35,6 @@ const ClustersCardsContainer = () => {
       </div>
     </div>
   );
-}
+};
 
 export default ClustersCardsContainer;

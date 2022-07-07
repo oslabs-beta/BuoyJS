@@ -1,20 +1,29 @@
-const path = require('path')
-const url = require('url')
-const { app, BrowserWindow, ipcRenderer } = require('electron')
-const KubeClient = require('./kubeclient/kubeClient')
+/**
+ * ************************************
+ *
+ * @module main.js
+ * @author team Buoy
+ * @description Electron app location to handle IPC 
+ *
+ * ************************************
+ */
+
+const path = require('path');
+const url = require('url');
+const { app, BrowserWindow, ipcRenderer } = require('electron');
+const KubeClient = require('./kubeclient/kubeClient');
 const { ipcMain } = require('electron');
-const PromClient = require('./promclient/promClient')
-let mainWindow
+const PromClient = require('./promclient/promClient');
+let mainWindow;
 
-let isDev = false
+let isDev = false;
 
-if (
-	process.env.NODE_ENV !== undefined &&
-	process.env.NODE_ENV === 'development'
-) {
+// initializes development mode if run in dev
+if (process.env.NODE_ENV !== undefined && process.env.NODE_ENV === 'development') {
 	isDev = true
 }
 
+// creates window for desktop app
 function createMainWindow() {
 	mainWindow = new BrowserWindow({
 		width: 1100,
@@ -27,39 +36,19 @@ function createMainWindow() {
 			nodeIntegration: true,
 			contextIsolation: false,
 		},
-	})
-
-	/*
-	ipcMain.on('set-title', (e, title) => {
-
-		const webContents = e.sender
-		const win = BrowserWindow.fromWebContents(webContents);
-		win.setTitle('Something')
 	});
-	*/
 	
-	let indexPath
+	let indexPath;
 
-	//if (isDev && process.argv.indexOf('--noDevServer') === -1) {
 		indexPath = url.format({
 			protocol: 'http:',
 			host: 'localhost:8080',
 			pathname: 'index.html',
 			slashes: true,
-		})
-	/*
-	} else {
-		indexPath = url.format({
-			protocol: 'file:',
-			pathname: path.join(__dirname, 'build', 'index.html'),
-			slashes: true,
-		})
-	}
-	*/
+		});
 
 	new KubeClient(mainWindow);
 	new PromClient(mainWindow);
-	// const promClient = new PromClient(mainWindow);
 
 	mainWindow.loadURL(indexPath);
 
@@ -72,52 +61,50 @@ function createMainWindow() {
 			const {
 				default: installExtension,
 				REACT_DEVELOPER_TOOLS,
-			} = require('electron-devtools-installer')
+			} = require('electron-devtools-installer');
 
 			installExtension(REACT_DEVELOPER_TOOLS).catch((err) =>
 				console.log('Error loading React DevTools: ', err)
-			)
-			mainWindow.webContents.openDevTools()
+			);
+			mainWindow.webContents.openDevTools();
 		}
-	})
+	});
 
 	mainWindow.on('closed', () => (mainWindow = null))
-}
+};
 
-// ipcMain.on('add:prom-target', (evt, arg) =>{
-// 	promClient.target = arg
-// })
+// IPC listeners
 
+// X button listener to close application
 ipcMain.on('close-app', (evt, arg) => {
-	app.quit()
+	app.quit();
 });
 
+// minimize button listener to minimize application
 ipcMain.on('minimize-app', (evt, arg) => {
 	mainWindow.minimize();
 });
 
+// maximize button listener to maximize application
 ipcMain.on('maximize-app', (evt, arg) => {
 	mainWindow.maximize();
 });
 
-// ipcMain.on('get:cpuUsage', (evt, arg) => {
-// 	ipcRenderer.send
-// })
+app.on('ready', createMainWindow);
 
-app.on('ready', createMainWindow)
-
+// closes window when app is closed
 app.on('window-all-closed', () => {
 	if (process.platform !== 'darwin') {
-		app.quit()
+		app.quit();
 	}
-})
+});
 
+// initializes new window
 app.on('activate', () => {
 	if (mainWindow === null) {
-		createMainWindow()
+		createMainWindow();
 	}
-})
-
+});
 
 // Stop error
-app.allowRendererProcessReuse = true
+app.allowRendererProcessReuse = true;

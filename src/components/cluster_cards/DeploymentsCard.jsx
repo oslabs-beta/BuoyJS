@@ -1,3 +1,13 @@
+/**
+ * ************************************
+ *
+ * @module DeploymentsCard.jsx
+ * @author team Buoy
+ * @description React Component for rendering deployment components in Clusters card
+ *
+ * ************************************
+ */
+
 import React from 'react';
 import Deployment from './Deployment.jsx';
 
@@ -19,8 +29,7 @@ const DeploymentsCard = (props) => {
       </div>
     </div>
   );
-
-}
+};
 
 
 export default DeploymentsCard;

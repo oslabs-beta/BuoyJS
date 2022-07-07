@@ -1,5 +1,14 @@
+/**
+ * ************************************
+ *
+ * @module inputSlice.js
+ * @author team Buoy
+ * @description Reducer for all user input actions
+ *
+ * ************************************
+ */
+
 import { createSlice, current } from '@reduxjs/toolkit';
-//const PromClient = require('.s/promClient/promClient.js')
 
 export const inputSlice = createSlice({
   name: "input",
@@ -7,33 +16,35 @@ export const inputSlice = createSlice({
   initialState: {
     portNumber: 8080,
     customMetrics: [],
-    //queryType: [],
     queryLabel: [],
   },
 
   reducers: {
+    // saves user inputted target port in state
     getPortNumber: (state, action) => {
-      return Object.assign({}, state, {portNumber: action.payload});
+      return Object.assign({}, state, {
+        portNumber: action.payload
+      });
     },
+    // saves user inputted query names in state
     getQueryLabel: (state, action) => {
       return Object.assign({}, state, {
-        //query : [...state.query, action.payload.queryInput],
-        //queryType: [...state.queryType, action.payload.queryType],
         queryLabel: [...state.queryLabel, action.payload]
       });
     },
+    // user's custom metrics response information to store in state
     getCustomQueries: (state, action) => {
-      console.log(state.customMetrics)
       return Object.assign({}, state, {
-        //queryType : [...action.payload.queryType],
         customMetrics : [...action.payload]
-      })
+      });
     }
   },
-
 });
 
-
-export const selectInputs = (state) => state.input; 
+// export input slice reducers as actions
 export const { getPortNumber, getCustomQueries, getQueryLabel } = inputSlice.actions;
+
+// export each piece of state for user inputs
+export const selectInputs = (state) => state.input; 
+
 export default inputSlice.reducer;

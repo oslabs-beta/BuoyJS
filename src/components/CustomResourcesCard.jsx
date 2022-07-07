@@ -1,3 +1,13 @@
+/**
+ * ************************************
+ *
+ * @module CustomResourcesCard.jsx
+ * @author team Buoy
+ * @description React Component for custom resource metrics card
+ *
+ * ************************************
+ */
+
 import React, { useEffect } from 'react';
 import { selectInputs } from '../reducers/inputSlice.js'
 import { useSelector } from 'react-redux';

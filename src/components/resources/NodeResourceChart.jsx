@@ -1,3 +1,13 @@
+/**
+ * ************************************
+ *
+ * @module NodeResourcesChart.jsx
+ * @author team Buoy
+ * @description React Component for rendering node resource charts in Chart JS
+ *
+ * ************************************
+ */
+
 import React from 'react';  
 import {
   Chart as ChartJS,

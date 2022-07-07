@@ -1,3 +1,13 @@
+/**
+ * ************************************
+ *
+ * @module Deployments.jsx
+ * @author team Buoy
+ * @description React Component for rendering list of deployments components
+ *
+ * ************************************
+ */
+
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectNamespaces } from '../../reducers/clustersSlice';
@@ -56,8 +66,7 @@ const Deployments = (props) => {
         </div>
     </div>
   );
-
-}
+};
 
 
 export default Deployments;

@@ -1,11 +1,49 @@
+.nodeChartsHeader {
+  margin-top: 0.5em;
+  background: linear-gradient(to right, #647BE5, #3FBCEB);
+  padding: 0.5em;
+  font-size: 1.5em;
+  font-weight: 700;
+  font-variant-caps: small-caps;
+}
+
 .chartContentCx {
   padding: 0.5em;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .chartHeader {
-  color: white;
-  text-shadow: 0 0 1px black, 0 0 2px black, 0 0 1px black, 0 0 1px black;
-  background: linear-gradient(to right, #647BE5, #3FBCEB);
+  color: #3FBCEB;
+  font-weight: 300;
+  background: #272FA3;
   padding: 0.5em;
 }
 
+.chartCx {
+  padding: 1em;
+}
+
+.NodeCpuStatsCx,
+.NodeMemoryStatsCx
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+  width: 15em;
+}
+
+.NodeCpuAttr,
+.NodeMemAttr
+{
+  font-weight: 100;
+  font-size: 0.80em;
+}
+
+.NodeCpuValue,
+.NodeMemValue {
+  font-weight: 500;
+  font-size: 1.25em;
+}

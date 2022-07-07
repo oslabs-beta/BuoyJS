@@ -1,3 +1,13 @@
+/**
+ * ************************************
+ *
+ * @module ServicesCard.jsx
+ * @author team Buoy
+ * @description React Component for rendering Service components in Clusters card
+ *
+ * ************************************
+ */
+
 import React from 'react';
 import Service from './Service.jsx';
 
@@ -22,8 +32,7 @@ const ServicesCard = (props) => {
       </div>
     </div>
   );
-
-}
+};
 
 
 export default ServicesCard;

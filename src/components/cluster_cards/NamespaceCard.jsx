@@ -1,3 +1,13 @@
+/**
+ * ************************************
+ *
+ * @module NamespaceCard.jsx
+ * @author team Buoy
+ * @description React Component for rendering Namespace components in Clusters card
+ *
+ * ************************************
+ */
+
 import React, { useState, useEffect } from 'react';
 import DeploymentsCard from './DeploymentsCard.jsx';
 import PodsCard from './PodsCard.jsx';
@@ -14,15 +24,7 @@ const NamespaceCard = (props) => {
     const dimmer = document.querySelector('.dimmer');
     cardContainer.classList.toggle('active');
     dimmer.classList.toggle('active');
-  }
-
-  /*
-  const onDimmerClick = () => {
-    const cardContainer = document.querySelector('.namespaceCardBox.active')
-    const dimmer = document.querySelector('.dimmer');
-    cardContainer.classList.remove('active');
-    dimmer.classList.remove('active');
-  }*/
+  };
 
   const NsFrontBack = () => {
     
@@ -64,7 +66,7 @@ const NamespaceCard = (props) => {
         </div>
       </React.Fragment>
     );
-  }
+  };
 
   const NsExpanded = (props) => {
     return (
@@ -86,7 +88,7 @@ const NamespaceCard = (props) => {
       </div>
     </React.Fragment>
     );
-  }
+  };
 
   return (
   <React.Fragment>
@@ -96,7 +98,6 @@ const NamespaceCard = (props) => {
     </div>
   </React.Fragment>
   );
-
-}
+};
 
 export default NamespaceCard;
