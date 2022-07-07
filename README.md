@@ -8,7 +8,7 @@ Buoy is a lightweight Desktop-App built in Electron.js that provides developers 
 
 ## Installation
 
-Please download Buoy from our [website](www.buoy.dev).
+Please download Buoy from our [website](https://www.buoy.dev/).
 
 ## How it works
 
