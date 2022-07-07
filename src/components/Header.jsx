@@ -8,7 +8,7 @@
  * ************************************
  */
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectNamespaces, selectNodes } from '../reducers/clustersSlice';
 
@@ -19,8 +19,8 @@ const Header = () => {
   let podCount = 0;
   Object.keys(nodes).map(key => {
     podCount += nodes[key].length;
+    return null;
   })
-
 
   return (
     <div className="clusterHeaderCx">

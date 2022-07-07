@@ -1,13 +1,3 @@
-/**
- * ************************************
- *
- * @module Service.jsx
- * @author team Buoy
- * @description React Component for displaying services info in Clusters page
- *
- * ************************************
- */
-
 import React from 'react';
 
 const Service = (props) => {

@@ -8,7 +8,7 @@
  * ************************************
  */
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectNamespaces, selectNodes } from '../reducers/clustersSlice';
 import NamespaceCard from '../components/cluster_cards/NamespaceCard.jsx';

@@ -1,13 +1,3 @@
-/**
- * ************************************
- *
- * @module ApiResources.jsx
- * @author team Buoy
- * @description React Component for loading and displaying api resources
- *
- * ************************************
- */
-
 import React, { useEffect, useState } from 'react';
 import { ipcRenderer } from 'electron';
 
@@ -17,7 +7,6 @@ const ApiResources = () => {
 
   useEffect( () => {
 
-    // on page load, requests to IPC listener in kubeClient for resource data
     ipcRenderer.send('load:apiResources');
     ipcRenderer.on('get:apiResources', (e, data) => {
       setApiResources(data);
@@ -37,6 +26,8 @@ const ApiResources = () => {
         </div>
     </div>
   );
-};
+
+}
+
 
 export default ApiResources;

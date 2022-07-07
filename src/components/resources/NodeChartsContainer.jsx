@@ -67,25 +67,6 @@ const NodeChartsContainer = () => {
       />
     );
   });
-
-  /*
-
-
-  const nodesMemory = Object.keys(nodesPodsMemoryUsage).sort();
-
-  const nodesPodsMemoryArr = nodesMemory.map( node => {
-    return(
-      <NodesPodsResourceChart 
-        key={`${node}MemoryChart`}
-        node={node}
-        nodeResourceUsage={nodesPodsMemoryUsage[node]} 
-        nodeResourceTimestamp={nodesPodsMemoryTimestamp}
-        colorArr={nodesPodsMemoryColorArr[node]}
-      />
-    );
-  });
-  */
-  
   
   return (
     <div className="nodeChartsCx">

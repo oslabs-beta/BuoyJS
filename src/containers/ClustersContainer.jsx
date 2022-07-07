@@ -27,9 +27,9 @@ const ClustersContainer = () => {
           { clustersTab ? <AiFillCodeSandboxCircle size="1.2em"/> : <BsFillFilterCircleFill size="1.2em" />}
         </button>
       </div>
-
       { !clustersTab && <ClustersCardsContainer/>}
       { clustersTab && <ClustersDetailsContainer/>}
+
     </div>
   );
 };

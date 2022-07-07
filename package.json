@@ -1,84 +1,89 @@
 {
-  "name": "ny33group3",
-  "version": "1.0.0",
-  "description": "GUI for visualizing Kubernetes metrics",
-  "main": "main.js",
-  "scripts": {
-    "build": "webpack",
-    "client": "webpack serve --mode=development",
-    "server": "electron .",
-    "dev": "concurrently \"npm run client\" \"wait-on http://localhost:8080 && npm run server\"",
-    "test": "jest --verbose"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/oslabs-beta/NY33Group3.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/oslabs-beta/NY33Group3/issues"
-  },
-  "homepage": "https://github.com/oslabs-beta/NY33Group3#readme",
-  "jest": {
-    "testEnvironment": "jest-environment-jsdom",
-    "setupFilesAfterEnv": [
-      "@testing-library/jest-dom/extend-expect"
-    ]
+  "name": "buoy-js",
+  "version": "0.1.0",
+  "private": true,
+  "author": "Guo Hong Wu, Jenna Hamza, Joe Heinz, Jonah Hauanio, Garrett Layden",
+  "description": "A Kubernetes Visualizer",
+  "homepage": "./",
+  "main": "./public/electron.js",
+  "build": {
+    "appId": "com.electron.buoyjs",
+    "productName": "Buoy JS",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "public"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "deb"
+    }
   },
   "dependencies": {
-    "@kubernetes/client-node": "^0.16.3",
-    "@reduxjs/toolkit": "^1.8.2",
-    "@testing-library/jest-dom": "^5.15.0",
+    "@fortawesome/free-regular-svg-icons": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@kubernetes/client-node": "^0.17.0",
+    "@reduxjs/toolkit": "^1.8.3",
+    "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
     "chart.js": "^3.8.0",
-    "concurrently": "^7.2.2",
-    "electron": "^19.0.4",
-    "electron-packager": "^15.5.1",
     "fetch": "^1.1.0",
-    "jest-environment-jsdom": "^27.3.1",
-    "lottie-web": "^5.9.4",
+    "lottie-web": "^5.9.6",
     "node-fetch": "^2.6.7",
-    "path-browserify": "^1.0.1",
-    "prometheus-query": "^3.2.3",
     "react": "^18.2.0",
     "react-chartjs-2": "^4.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
     "react-redux": "^8.0.2",
-    "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
-    "react-test-utils": "^0.0.1",
+    "react-scripts": "5.0.1",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
-    "regenerator-runtime": "^0.13.9",
-    "sass": "^1.52.3",
-    "wait-on": "^6.0.1"
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "electron-start": "concurrently -k \"npm start\" \"wait-on http://localhost:3000 && electronmon .\"",
+    "electron-package-mac": "npm run build && electron-builder -m -c.extraMetadata.main=build/electron.js"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      "last 1 electron version",
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 electron version",
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "devDependencies": {
-    "@babel/core": "^7.18.5",
-    "@babel/plugin-proposal-class-properties": "^7.17.12",
-    "@babel/preset-env": "^7.18.2",
-    "@babel/preset-react": "^7.17.12",
-    "@types/eslint": "8.4.3",
-    "babel-jest": "^23.6.0",
-    "babel-loader": "^8.2.5",
-    "clean-webpack-plugin": "^4.0.0",
-    "css-loader": "^6.7.1",
-    "enzyme": "^3.11.0",
-    "html-webpack-plugin": "^5.5.0",
-    "identity-obj-proxy": "^3.0.0",
-    "jest": "^27.3.1",
-    "jest-canvas-mock": "^2.4.0",
-    "jest-css-modules-transform": "^4.4.2",
-    "jest-puppeteer": "^3.4.0",
-    "react-test-renderer": "^18.2.0",
-    "sass-loader": "^13.0.0",
-    "style-loader": "^3.3.1",
-    "supertest": "^3.3.0",
-    "webpack": "^5.73.0",
-    "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.9.2"
+    "concurrently": "^7.2.2",
+    "electron": "^19.0.8",
+    "electron-builder": "^23.1.0",
+    "electronmon": "^2.0.2",
+    "path-browserify": "^1.0.1",
+    "wait-on": "^6.0.1"
   }
 }

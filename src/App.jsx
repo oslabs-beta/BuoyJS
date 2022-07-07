@@ -9,49 +9,48 @@
  */
 
 import React, { useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { ipcRenderer } from 'electron';
 
-import { loadKubeClientData } from '../controllers/loadKubeClientData';
-import { promClientListeners, promClientEmitters } from '../controllers/loadPromClientData';
+import { loadKubeClientData } from './controllers/loadKubeClientData';
+import { promClientListeners, promClientEmitters } from './controllers/loadPromClientData';
 
 // import pages
 import Frame from './routes/Frame.jsx';
 import MainPage from './routes/MainPage.jsx';
 
 // imports css 
-import '../assets/Frame.css';
-import '../assets/HomePage.css';
-import '../assets/MainPage.css';
-import '../assets/resources.css';
-import '../assets/ClustersContainer.css';
-import '../assets/ClusterDetailsContainer.css';
-import '../assets/ClustersCardsContainer.css'
-import '../assets/ControlPlaneAPI.css';
-import '../assets/ControlPlaneScheduler.css';
-import '../assets/ControllerManager.css';
-import '../assets/Header.css';
-import '../assets/NodeChartsContainer.css';
+import './assets/css/Frame.css';
+import './assets/css/HomePage.css';
+import './assets/css/MainPage.css';
+import './assets/css/resources.css';
+import './assets/css/ClustersContainer.css';
+import './assets/css/ClusterDetailsContainer.css';
+import './assets/css/ClustersCardsContainer.css'
+import './assets/css/ControlPlaneAPI.css';
+import './assets/css/ControlPlaneScheduler.css';
+import './assets/css/ControllerManager.css';
+import './assets/css/Header.css';
+import './assets/css/NodeChartsContainer.css';
 
 const App = () => {
 
-	const dispatch = useDispatch();
+const dispatch = useDispatch();
 
-	// on page load, fetch prometheus and kubernetes API data
-	useEffect(() => {
-		promClientListeners(dispatch);
-		loadKubeClientData(dispatch);
-	  promClientEmitters();	
-	}, [])
+  // on page load, fetch prometheus and kubernetes API data
+  //        
+  useEffect(() => {
+    promClientListeners(dispatch);
+    loadKubeClientData(dispatch);
+    promClientEmitters();	
+  }, []);
 
-	return (
-		
-		<div className="App">
-			<Frame />
-			<MainPage />
-		</div>
-	);
+  return (
+    
+    <div className="App">
+      <Frame />
+      <MainPage />
+    </div>
+  );
 };
 
 export default App;

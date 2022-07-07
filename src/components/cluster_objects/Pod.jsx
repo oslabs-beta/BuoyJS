@@ -1,13 +1,3 @@
-/**
- * ************************************
- *
- * @module Pod.jsx
- * @author team Buoy
- * @description React Component for displaying pods info in Clusters page
- *
- * ************************************
- */
-
 import React from 'react';
 
 const Pod = (props) => {

@@ -1,13 +1,3 @@
-/**
- * ************************************
- *
- * @module Namespace.jsx
- * @author team Buoy
- * @description React Component for displaying namespaces and their corresponding deployments/pods/services components
- *
- * ************************************
- */
-
 import React, { useEffect, useState } from 'react';
 import Deployments from './Deployments.jsx';
 import Pods from './Pods.jsx';

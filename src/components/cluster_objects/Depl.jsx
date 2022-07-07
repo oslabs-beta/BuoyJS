@@ -1,13 +1,3 @@
-/**
- * ************************************
- *
- * @module Depl.jsx
- * @author team Buoy
- * @description React Component for displaying deployments info in Clusters page
- *
- * ************************************
- */
-
 import React from 'react';
 
 const Depl = (props) => {

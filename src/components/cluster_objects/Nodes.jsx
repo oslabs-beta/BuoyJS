@@ -1,13 +1,3 @@
-/**
- * ************************************
- *
- * @module Nodes.jsx
- * @author team Buoy
- * @description React Component for rendering multiple node components in Clusters page
- *
- * ************************************
- */
-
 import React, { useState }from 'react';
 import Node from './Node.jsx';
 import { useSelector } from 'react-redux';

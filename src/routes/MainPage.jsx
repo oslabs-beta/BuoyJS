@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import ClustersContainer from '../containers/ClustersContainer.jsx';
 import ResourcesContainer from '../containers/ResourcesContainer.jsx';
 import PromContainer from '../containers/PromContainer.jsx';
-import DashboardContainer from '../containers/DashboardContainer.jsx';
+//import DashboardContainer from '../containers/DashboardContainer.jsx';
 
 const MainPage = () => {
 
@@ -24,7 +24,7 @@ const MainPage = () => {
     const nameMapping = {
       clustersTab: "Clusters",
       resourcesTab: "Resources",
-      controlPlaneTab: "Dashboard",
+      dashboardTab: "Dashboard",
       promTab: "Prometheus"
     }
     const tab = document.getElementById(event.currentTarget.id);
@@ -100,9 +100,7 @@ const MainPage = () => {
         <React.Fragment>
           { active.currentTab === 'clustersTab' &&  <ClustersContainer /> }
           { active.currentTab === 'resourcesTab' && <ResourcesContainer /> }
-          { active.currentTab === 'dashboardTab' && <DashboardContainer /> }
           { active.currentTab === 'promTab' && <PromContainer /> } 
-          { }
         </React.Fragment>
       </div>
     </div>
@@ -111,3 +109,8 @@ const MainPage = () => {
 };
 
 export default MainPage;
+/*
+          
+          
+          { active.currentTab === 'dashboardTab' && <DashboardContainer /> }
+*/

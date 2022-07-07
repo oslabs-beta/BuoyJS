@@ -1,13 +1,3 @@
-/**
- * ************************************
- *
- * @module Namespaces.jsx
- * @author team Buoy
- * @description React Component for rendering multiple namespaces in Clusters page
- *
- * ************************************
- */
-
 import React from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -21,7 +11,7 @@ const Namespaces = () => {
 
   const [allOpen, setAllOpen] = useState(false);
 
-  const namespaceArr = [];
+  const namespaceArr =[];
 
   for (let i = 0; i < name_spaces.length; i++) {
     if (name_spaces[i].name) {
@@ -49,7 +39,8 @@ const Namespaces = () => {
       </div>
     </React.Fragment>
   );
-};
+
+}
 
 
 export default Namespaces;

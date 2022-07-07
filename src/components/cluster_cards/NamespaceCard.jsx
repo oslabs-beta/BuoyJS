@@ -12,7 +12,7 @@ import React, { useState, useEffect } from 'react';
 import DeploymentsCard from './DeploymentsCard.jsx';
 import PodsCard from './PodsCard.jsx';
 import ServicesCard from './ServicesCard.jsx';
-import nsAnimation from '../../../assets/icons/namespace.json';
+import nsAnimation from '../../assets/icon-images/namespace.json';
 import lottie from 'lottie-web';
 
 const NamespaceCard = (props) => {

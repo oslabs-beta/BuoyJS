@@ -1,17 +1,7 @@
-/**
- * ************************************
- *
- * @module Services.jsx
- * @author team Buoy
- * @description React Component for rendering list of services components
- *
- * ************************************
- */
-
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectNamespaces } from '../../reducers/clustersSlice';
-import Service from './Service.jsx';
+import Service from './Service.jsx'
 import { BsFillCaretDownFill } from 'react-icons/bs';
 import { BsFillCaretRightFill } from 'react-icons/bs';
 
@@ -54,7 +44,8 @@ const Services = (props) => {
         </div>
     </div>
   );
-};
+
+}
 
 
 export default Services;

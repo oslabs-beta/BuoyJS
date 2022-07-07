@@ -1,13 +1,3 @@
-/**
- * ************************************
- *
- * @module NodePods.jsx
- * @author team Buoy
- * @description React Component for rendering multiple node pods in Clusters page 
- *
- * ************************************
- */
-
 import React, { useState, useEffect } from 'react'; 
 import { BsFillCaretDownFill } from 'react-icons/bs';
 import { BsFillCaretRightFill } from 'react-icons/bs';
@@ -50,7 +40,7 @@ const NodePods = (props) => {
         </div>
     </div>
   );
-};
+}
 
 
 export default NodePods;

@@ -1,13 +1,3 @@
-/**
- * ************************************
- *
- * @module Node.jsx
- * @author team Buoy
- * @description React Component for rendering multiple node components in Clusters page
- *
- * ************************************
- */
-
 import React, { useState, useEffect } from 'react';
 import { BsFillCaretDownFill } from 'react-icons/bs';
 import { BsFillCaretRightFill } from 'react-icons/bs';
@@ -48,7 +38,13 @@ const Node = (props) => {
         {open && <NodePods pods={pods} openState={allOpen} />}
       </div>
     </div>
+    
   );
 };
+/*
+        {allOpen && !open && <Pods openState={allOpen} key={`pods${id}`} namespace={name}/>}
+        {open && <Pods openState={allOpen} key={`pods${id}`} namespace={name}/>}
+*/
+
 
 export default Node;

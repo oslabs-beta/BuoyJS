@@ -1,13 +1,3 @@
-/**
- * ************************************
- *
- * @module Pods.jsx
- * @author team Buoy
- * @description React Component for rendering list of pods components
- *
- * ************************************
- */
-
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectNamespaces } from '../../reducers/clustersSlice';
@@ -54,7 +44,8 @@ const Pods = (props) => {
         </div>
     </div>
   );
-};
+
+}
 
 
 export default Pods;
